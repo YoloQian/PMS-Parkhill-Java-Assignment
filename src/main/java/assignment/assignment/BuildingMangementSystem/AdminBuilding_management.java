@@ -8,12 +8,12 @@ package assignment.assignment.BuildingMangementSystem;
  *
  * @author TeD
  */
-public class Building_management extends javax.swing.JFrame {
+public class AdminBuilding_management extends javax.swing.JFrame {
 
     /**
      * Creates new form Unit_management
      */
-    public Building_management() {
+    public AdminBuilding_management() {
         initComponents();
     }
 
@@ -35,8 +35,6 @@ public class Building_management extends javax.swing.JFrame {
         unit_number = new javax.swing.JTextField();
         tenant_name = new javax.swing.JTextField();
         add_unit = new javax.swing.JButton();
-        modify_unit = new javax.swing.JButton();
-        search_unit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         unit_type = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -44,7 +42,6 @@ public class Building_management extends javax.swing.JFrame {
         rent = new javax.swing.JTextField();
         owner = new javax.swing.JTextField();
         view_unit = new javax.swing.JButton();
-        delete_unit = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -52,8 +49,6 @@ public class Building_management extends javax.swing.JFrame {
         facility_type = new javax.swing.JTextField();
         add_facility = new javax.swing.JButton();
         view_facility = new javax.swing.JButton();
-        update_facility = new javax.swing.JButton();
-        delete_facility = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -65,8 +60,6 @@ public class Building_management extends javax.swing.JFrame {
         facility_bookingtime2 = new javax.swing.JComboBox<>();
         facility_addbooking = new javax.swing.JButton();
         facility_viewbooking = new javax.swing.JButton();
-        facility_updatebooking = new javax.swing.JButton();
-        facility_deletebooking = new javax.swing.JButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -94,10 +87,6 @@ public class Building_management extends javax.swing.JFrame {
 
         add_unit.setText("Add");
 
-        modify_unit.setText("Modify");
-
-        search_unit.setText("Search");
-
         jLabel4.setText("Unit Type :");
 
         unit_type.addActionListener(new java.awt.event.ActionListener() {
@@ -111,8 +100,6 @@ public class Building_management extends javax.swing.JFrame {
         jLabel6.setText("Owner :");
 
         view_unit.setText("View");
-
-        delete_unit.setText("Delete");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,13 +135,7 @@ public class Building_management extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(add_unit)
                         .addGap(18, 18, 18)
-                        .addComponent(modify_unit)
-                        .addGap(18, 18, 18)
-                        .addComponent(search_unit)
-                        .addGap(18, 18, 18)
-                        .addComponent(view_unit)
-                        .addGap(18, 18, 18)
-                        .addComponent(delete_unit)))
+                        .addComponent(view_unit)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,10 +162,7 @@ public class Building_management extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_unit)
-                    .addComponent(modify_unit)
-                    .addComponent(search_unit)
-                    .addComponent(view_unit)
-                    .addComponent(delete_unit))
+                    .addComponent(view_unit))
                 .addContainerGap())
         );
 
@@ -197,15 +175,6 @@ public class Building_management extends javax.swing.JFrame {
         add_facility.setText("Add Facility");
 
         view_facility.setText("View Facility");
-
-        update_facility.setText("Update Facility Details");
-        update_facility.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update_facilityActionPerformed(evt);
-            }
-        });
-
-        delete_facility.setText("Delete Facility");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -225,12 +194,8 @@ public class Building_management extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(add_facility)
                         .addGap(18, 18, 18)
-                        .addComponent(view_facility)
-                        .addGap(18, 18, 18)
-                        .addComponent(update_facility)
-                        .addGap(18, 18, 18)
-                        .addComponent(delete_facility)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(view_facility)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,9 +209,7 @@ public class Building_management extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add_facility)
-                    .addComponent(view_facility)
-                    .addComponent(update_facility)
-                    .addComponent(delete_facility))
+                    .addComponent(view_facility))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -267,10 +230,6 @@ public class Building_management extends javax.swing.JFrame {
         facility_addbooking.setText("Add Booking");
 
         facility_viewbooking.setText("View Booking");
-
-        facility_updatebooking.setText("Update Booking");
-
-        facility_deletebooking.setText("Delete Booking");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -300,11 +259,7 @@ public class Building_management extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(facility_addbooking)
                         .addGap(18, 18, 18)
-                        .addComponent(facility_viewbooking)
-                        .addGap(18, 18, 18)
-                        .addComponent(facility_updatebooking)
-                        .addGap(18, 18, 18)
-                        .addComponent(facility_deletebooking)))
+                        .addComponent(facility_viewbooking)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -325,9 +280,7 @@ public class Building_management extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(facility_addbooking)
-                    .addComponent(facility_viewbooking)
-                    .addComponent(facility_updatebooking)
-                    .addComponent(facility_deletebooking))
+                    .addComponent(facility_viewbooking))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -369,10 +322,6 @@ public class Building_management extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_unit_typeActionPerformed
 
-    private void update_facilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update_facilityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_update_facilityActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -390,14 +339,18 @@ public class Building_management extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Building_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminBuilding_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Building_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminBuilding_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Building_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminBuilding_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Building_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminBuilding_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -406,7 +359,7 @@ public class Building_management extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Building_management().setVisible(true);
+                new AdminBuilding_management().setVisible(true);
             }
         });
     }
@@ -414,17 +367,13 @@ public class Building_management extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_facility;
     private javax.swing.JButton add_unit;
-    private javax.swing.JButton delete_facility;
-    private javax.swing.JButton delete_unit;
     private javax.swing.JButton facility_addbooking;
     private javax.swing.JTextField facility_bookingName;
     private javax.swing.JComboBox<String> facility_bookingtime1;
     private javax.swing.JComboBox<String> facility_bookingtime2;
     private javax.swing.JTextField facility_bookingtype;
-    private javax.swing.JButton facility_deletebooking;
     private javax.swing.JTextField facility_name;
     private javax.swing.JTextField facility_type;
-    private javax.swing.JButton facility_updatebooking;
     private javax.swing.JButton facility_viewbooking;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -442,15 +391,12 @@ public class Building_management extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JButton modify_unit;
     private javax.swing.JTextField owner;
     private javax.swing.JTextField rent;
-    private javax.swing.JButton search_unit;
     private javax.swing.JTextField tenant_name;
     private javax.swing.JTextField unit_ID;
     private javax.swing.JTextField unit_number;
     private javax.swing.JTextField unit_type;
-    private javax.swing.JButton update_facility;
     private javax.swing.JButton view_facility;
     private javax.swing.JButton view_unit;
     // End of variables declaration//GEN-END:variables

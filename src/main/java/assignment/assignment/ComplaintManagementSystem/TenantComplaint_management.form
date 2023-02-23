@@ -66,24 +66,17 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="complaint_date" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="complaint_subject" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="TenantComplaint_date" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="TenantComplaint_subject" min="-2" pref="180" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="new_complaint" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TenantNew_complaint" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="view_complaint" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TenantView_complaint" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="update_complaint" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="delete_complaint" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="complaint_status" min="-2" pref="71" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="TenantComplaint_status" min="-2" pref="71" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -94,8 +87,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="complaint_name" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="complaint_unitnumber" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="TenantComplaint_name" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="TenantComplaint_UnitNumber" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -109,24 +102,24 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="complaint_name" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantComplaint_name" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="complaint_status" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantComplaint_status" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="complaint_unitnumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantComplaint_UnitNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="complaint_date" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantComplaint_date" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="complaint_subject" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantComplaint_subject" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -135,10 +128,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="new_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="view_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="update_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="delete_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantNew_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantView_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
@@ -156,9 +147,9 @@
             <Property name="text" type="java.lang.String" value="Unit Number :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="complaint_name">
+        <Component class="javax.swing.JTextField" name="TenantComplaint_name">
         </Component>
-        <Component class="javax.swing.JTextField" name="complaint_unitnumber">
+        <Component class="javax.swing.JTextField" name="TenantComplaint_UnitNumber">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -170,9 +161,9 @@
             <Property name="text" type="java.lang.String" value="Subject :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="complaint_date">
+        <Component class="javax.swing.JTextField" name="TenantComplaint_date">
         </Component>
-        <Component class="javax.swing.JTextField" name="complaint_subject">
+        <Component class="javax.swing.JTextField" name="TenantComplaint_subject">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -186,7 +177,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="complaint_details">
+            <Component class="javax.swing.JTextArea" name="TenantComplaint_details">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -194,24 +185,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="new_complaint">
+        <Component class="javax.swing.JButton" name="TenantNew_complaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="New"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="view_complaint">
+        <Component class="javax.swing.JButton" name="TenantView_complaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="View"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="update_complaint">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Update"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="delete_complaint">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -219,7 +200,7 @@
             <Property name="text" type="java.lang.String" value="Status :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="complaint_status">
+        <Component class="javax.swing.JTextField" name="TenantComplaint_status">
           <Properties>
             <Property name="text" type="java.lang.String" value="Open"/>
           </Properties>

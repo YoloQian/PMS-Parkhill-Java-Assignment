@@ -8,12 +8,12 @@ package assignment.assignment.ComplaintManagementSystem;
  *
  * @author TeD
  */
-public class Complaint_management extends javax.swing.JFrame {
+public class AdminComplaint_management extends javax.swing.JFrame {
 
     /**
      * Creates new form Complaint_management
      */
-    public Complaint_management() {
+    public AdminComplaint_management() {
         initComponents();
     }
 
@@ -40,8 +40,6 @@ public class Complaint_management extends javax.swing.JFrame {
         complaint_details = new javax.swing.JTextArea();
         new_complaint = new javax.swing.JButton();
         view_complaint = new javax.swing.JButton();
-        update_complaint = new javax.swing.JButton();
-        delete_complaint = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         complaint_status = new javax.swing.JTextField();
 
@@ -68,10 +66,6 @@ public class Complaint_management extends javax.swing.JFrame {
 
         view_complaint.setText("View");
 
-        update_complaint.setText("Update");
-
-        delete_complaint.setText("Delete");
-
         jLabel6.setText("Status :");
 
         complaint_status.setText("Open");
@@ -97,15 +91,10 @@ public class Complaint_management extends javax.swing.JFrame {
                                 .addComponent(new_complaint)
                                 .addGap(18, 18, 18)
                                 .addComponent(view_complaint)
+                                .addGap(108, 108, 108)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(update_complaint)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(delete_complaint)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(complaint_status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(complaint_status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -144,9 +133,7 @@ public class Complaint_management extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(new_complaint)
-                    .addComponent(view_complaint)
-                    .addComponent(update_complaint)
-                    .addComponent(delete_complaint))
+                    .addComponent(view_complaint))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -186,21 +173,23 @@ public class Complaint_management extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Complaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminComplaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Complaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminComplaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Complaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminComplaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Complaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminComplaint_management.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Complaint_management().setVisible(true);
+                new AdminComplaint_management().setVisible(true);
             }
         });
     }
@@ -212,7 +201,6 @@ public class Complaint_management extends javax.swing.JFrame {
     private javax.swing.JTextField complaint_status;
     private javax.swing.JTextField complaint_subject;
     private javax.swing.JTextField complaint_unitnumber;
-    private javax.swing.JButton delete_complaint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,7 +210,6 @@ public class Complaint_management extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton new_complaint;
-    private javax.swing.JButton update_complaint;
     private javax.swing.JButton view_complaint;
     // End of variables declaration//GEN-END:variables
 }
