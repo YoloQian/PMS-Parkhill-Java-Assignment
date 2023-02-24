@@ -5,7 +5,7 @@
 package assignment.assignment;
 
 //public class Resident {
-public class Resident extends User{
+public class Tenant extends User{
     private int residentID;
     private String name;
     //private String email;
@@ -13,7 +13,7 @@ public class Resident extends User{
     private String unitNumber;
     
     //public Resident (int residentID, String name, String email, String phone, String unitNumber){
-    public Resident (String username, String password, String email, int residentID, String name, String phone, String unitNumber){
+    public Tenant (String username, String password, String email, int residentID, String name, String phone, String unitNumber){
         super (username, password, email);
         this.residentID = residentID;
         this.name = name;
