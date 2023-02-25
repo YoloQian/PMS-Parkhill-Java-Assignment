@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package assignment.assignment;
+import assignment.assignment.UserManagementSystem.TenantViewProfile;
 
 //public class Resident {
 public class Tenant extends User{
@@ -63,7 +64,7 @@ public class Tenant extends User{
     }
     
     public void viewProfile(){
-        // Code to view profile
+        new TenantViewProfile().setVisible(true);
     }
     
     public void makePayment(){

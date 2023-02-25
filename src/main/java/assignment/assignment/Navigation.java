@@ -28,7 +28,7 @@ public class Navigation extends javax.swing.JFrame {
 
         SystemsPanel = new javax.swing.JPanel();
         UserManagementBTN = new javax.swing.JButton();
-        FundBTN = new javax.swing.JButton();
+        PaymentBTN = new javax.swing.JButton();
         TeamStructureBTN = new javax.swing.JButton();
         BuildingManagementBTN = new javax.swing.JButton();
         ReportingBTN = new javax.swing.JButton();
@@ -47,10 +47,10 @@ public class Navigation extends javax.swing.JFrame {
             }
         });
 
-        FundBTN.setText("Fund");
-        FundBTN.addActionListener(new java.awt.event.ActionListener() {
+        PaymentBTN.setText("Payment");
+        PaymentBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FundBTNActionPerformed(evt);
+                PaymentBTNActionPerformed(evt);
             }
         });
 
@@ -75,7 +75,7 @@ public class Navigation extends javax.swing.JFrame {
                     .addGroup(SystemsPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(SystemsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(FundBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PaymentBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TeamStructureBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(UserManagementBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                         .addGap(32, 32, 32)
@@ -101,7 +101,7 @@ public class Navigation extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(SystemsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FeedbackBTN)
-                    .addComponent(FundBTN))
+                    .addComponent(PaymentBTN))
                 .addGap(31, 31, 31)
                 .addGroup(SystemsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TeamStructureBTN)
@@ -137,9 +137,9 @@ public class Navigation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserManagementBTNActionPerformed
 
-    private void FundBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundBTNActionPerformed
+    private void PaymentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FundBTNActionPerformed
+    }//GEN-LAST:event_PaymentBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,8 +179,8 @@ public class Navigation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuildingManagementBTN;
     private javax.swing.JButton FeedbackBTN;
-    private javax.swing.JButton FundBTN;
     private javax.swing.JButton LogoutBTN;
+    private javax.swing.JButton PaymentBTN;
     private javax.swing.JButton ReportingBTN;
     private javax.swing.JButton SecurityManagementBTN;
     private javax.swing.JPanel SystemsPanel;

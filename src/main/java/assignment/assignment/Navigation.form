@@ -58,7 +58,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="FundBTN" max="32767" attributes="0"/>
+                              <Component id="PaymentBTN" max="32767" attributes="0"/>
                               <Component id="TeamStructureBTN" max="32767" attributes="0"/>
                               <Component id="UserManagementBTN" pref="148" max="32767" attributes="0"/>
                           </Group>
@@ -93,7 +93,7 @@
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="FeedbackBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="FundBTN" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="PaymentBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -118,12 +118,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserManagementBTNActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="FundBTN">
+        <Component class="javax.swing.JButton" name="PaymentBTN">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fund"/>
+            <Property name="text" type="java.lang.String" value="Payment"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FundBTNActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PaymentBTNActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="TeamStructureBTN">
