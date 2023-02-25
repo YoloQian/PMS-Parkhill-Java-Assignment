@@ -34,8 +34,8 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AdminViewFacility = new javax.swing.JTable();
-        AdminFacilityUpdate = new javax.swing.JButton();
-        AdminFacilityDelete = new javax.swing.JButton();
+        TenantUpdateBooking = new javax.swing.JButton();
+        TenantDeleteBooking = new javax.swing.JButton();
         TenantImportBookingData = new javax.swing.JButton();
 
         jButton3.setText("Delete");
@@ -55,17 +55,17 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(AdminViewFacility);
 
-        AdminFacilityUpdate.setText("Update");
-        AdminFacilityUpdate.addActionListener(new java.awt.event.ActionListener() {
+        TenantUpdateBooking.setText("Update");
+        TenantUpdateBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminFacilityUpdateActionPerformed(evt);
+                TenantUpdateBookingActionPerformed(evt);
             }
         });
 
-        AdminFacilityDelete.setText("Cancel");
-        AdminFacilityDelete.addActionListener(new java.awt.event.ActionListener() {
+        TenantDeleteBooking.setText("Delete");
+        TenantDeleteBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminFacilityDeleteActionPerformed(evt);
+                TenantDeleteBookingActionPerformed(evt);
             }
         });
 
@@ -88,9 +88,9 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addComponent(TenantImportBookingData)
                 .addGap(18, 18, 18)
-                .addComponent(AdminFacilityUpdate)
+                .addComponent(TenantUpdateBooking)
                 .addGap(18, 18, 18)
-                .addComponent(AdminFacilityDelete)
+                .addComponent(TenantDeleteBooking)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,8 +100,8 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AdminFacilityUpdate)
-                    .addComponent(AdminFacilityDelete)
+                    .addComponent(TenantUpdateBooking)
+                    .addComponent(TenantDeleteBooking)
                     .addComponent(TenantImportBookingData))
                 .addGap(24, 24, 24))
         );
@@ -109,13 +109,13 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AdminFacilityUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminFacilityUpdateActionPerformed
+    private void TenantUpdateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantUpdateBookingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AdminFacilityUpdateActionPerformed
+    }//GEN-LAST:event_TenantUpdateBookingActionPerformed
 
-    private void AdminFacilityDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminFacilityDeleteActionPerformed
+    private void TenantDeleteBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantDeleteBookingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AdminFacilityDeleteActionPerformed
+    }//GEN-LAST:event_TenantDeleteBookingActionPerformed
 
     private void TenantImportBookingDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportBookingDataActionPerformed
         // TODO add your handling code here:
@@ -172,10 +172,10 @@ public class TenantFacility_booking_view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AdminFacilityDelete;
-    private javax.swing.JButton AdminFacilityUpdate;
     private javax.swing.JTable AdminViewFacility;
+    private javax.swing.JButton TenantDeleteBooking;
     private javax.swing.JButton TenantImportBookingData;
+    private javax.swing.JButton TenantUpdateBooking;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

@@ -39,9 +39,9 @@
               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
               <Component id="TenantImportBookingData" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="AdminFacilityUpdate" min="-2" max="-2" attributes="0"/>
+              <Component id="TenantUpdateBooking" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="AdminFacilityDelete" min="-2" max="-2" attributes="0"/>
+              <Component id="TenantDeleteBooking" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -53,8 +53,8 @@
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace pref="27" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="AdminFacilityUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AdminFacilityDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TenantUpdateBooking" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TenantDeleteBooking" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TenantImportBookingData" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -110,20 +110,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="AdminFacilityUpdate">
+    <Component class="javax.swing.JButton" name="TenantUpdateBooking">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminFacilityUpdateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantUpdateBookingActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="AdminFacilityDelete">
+    <Component class="javax.swing.JButton" name="TenantDeleteBooking">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancel"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AdminFacilityDeleteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantDeleteBookingActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="TenantImportBookingData">

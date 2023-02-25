@@ -7,15 +7,17 @@ package assignment.assignment;
 //public class Vendor {
 public class Vendor extends User{
     private String companyName;
+    private String name;
     private String password;
     private String email;
     private String phone;
     private String service;
     
     //public Vendor (String companyName, String password, String email, String phone, String service){
-    public Vendor (String username, String password, String email, String companyName, String phone, String service){
+    public Vendor (String username, String password, String email, String companyName,String name, String phone, String service){
         super (username, password, email);
         this.companyName = companyName;
+        this.name = name;
         this.password = password;
         //this.email = email;
         this.phone= phone;
@@ -24,6 +26,10 @@ public class Vendor extends User{
     
     public String getCompanyName(){
         return companyName;
+    }
+    
+    public String getName(){
+        return name;
     }
     
     public String password(){
@@ -44,6 +50,10 @@ public class Vendor extends User{
     
     public void setCompanyName(String companyName){
         this.companyName = companyName;
+    }
+    
+    public void setName(String name){
+        this.name = name;
     }
     
     public void setPassword(String password){
