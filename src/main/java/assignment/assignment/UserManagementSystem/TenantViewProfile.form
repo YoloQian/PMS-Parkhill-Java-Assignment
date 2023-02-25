@@ -130,12 +130,24 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TenantProfileName">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfileNameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TenantProfileEmail">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfileEmailActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TenantProfilePhone">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfilePhoneActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TenantProfilePassword">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfilePasswordActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

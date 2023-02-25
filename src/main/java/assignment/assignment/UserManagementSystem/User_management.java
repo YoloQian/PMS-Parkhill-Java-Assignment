@@ -4,6 +4,8 @@
  */
 package assignment.assignment.UserManagementSystem;
 
+import assignment.assignment.Tenant;
+
 /**
  *
  * @author user
@@ -187,7 +189,9 @@ public class User_management extends javax.swing.JFrame {
     }//GEN-LAST:event_ModifyTenantBTNActionPerformed
 
     private void ViewProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewProfileBTNActionPerformed
-        // TODO add your handling code here:
+        Tenant tenant = new Tenant("username", "password", "email", 1, "name", "phone", "unitNumber");
+        tenant.viewProfile();
+
     }//GEN-LAST:event_ViewProfileBTNActionPerformed
 
     private void AddUserBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBTNActionPerformed

@@ -1,7 +1,5 @@
 package assignment.assignment.UserManagementSystem;
 
-import assignment.assignment.SecurityManagementSystem.*;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -58,6 +56,30 @@ public class TenantViewProfile extends javax.swing.JFrame {
         TenantProfileUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TenantProfileUsernameActionPerformed(evt);
+            }
+        });
+
+        TenantProfileName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantProfileNameActionPerformed(evt);
+            }
+        });
+
+        TenantProfileEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantProfileEmailActionPerformed(evt);
+            }
+        });
+
+        TenantProfilePhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantProfilePhoneActionPerformed(evt);
+            }
+        });
+
+        TenantProfilePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantProfilePasswordActionPerformed(evt);
             }
         });
 
@@ -121,6 +143,22 @@ public class TenantViewProfile extends javax.swing.JFrame {
     private void TenantProfileUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfileUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TenantProfileUsernameActionPerformed
+
+    private void TenantProfileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfileNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TenantProfileNameActionPerformed
+
+    private void TenantProfileEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfileEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TenantProfileEmailActionPerformed
+
+    private void TenantProfilePhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfilePhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TenantProfilePhoneActionPerformed
+
+    private void TenantProfilePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfilePasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TenantProfilePasswordActionPerformed
 
     /**
      * @param args the command line arguments

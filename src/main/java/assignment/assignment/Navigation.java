@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package assignment.assignment;
+import assignment.assignment.PaymentSystem.Fund;
+import assignment.assignment.UserManagementSystem.User_management;
 
-/**
- *
- * @author user
- */
 public class Navigation extends javax.swing.JFrame {
 
     /**
@@ -134,11 +132,11 @@ public class Navigation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UserManagementBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserManagementBTNActionPerformed
-        // TODO add your handling code here:
+        new User_management().setVisible(true);
     }//GEN-LAST:event_UserManagementBTNActionPerformed
 
     private void PaymentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBTNActionPerformed
-        // TODO add your handling code here:
+        new Fund().setVisible(true);
     }//GEN-LAST:event_PaymentBTNActionPerformed
 
     /**
