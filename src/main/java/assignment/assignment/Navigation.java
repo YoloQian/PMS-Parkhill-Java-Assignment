@@ -41,8 +41,18 @@ public class Navigation extends javax.swing.JFrame {
         SystemsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Systems"));
 
         UserManagementBTN.setText("User Management");
+        UserManagementBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserManagementBTNActionPerformed(evt);
+            }
+        });
 
         FundBTN.setText("Fund");
+        FundBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FundBTNActionPerformed(evt);
+            }
+        });
 
         TeamStructureBTN.setText("Team Structure");
 
@@ -122,6 +132,14 @@ public class Navigation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void UserManagementBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserManagementBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserManagementBTNActionPerformed
+
+    private void FundBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FundBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FundBTNActionPerformed
 
     /**
      * @param args the command line arguments

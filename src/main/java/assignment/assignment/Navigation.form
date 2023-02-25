@@ -114,11 +114,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="User Management"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserManagementBTNActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="FundBTN">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fund"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FundBTNActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="TeamStructureBTN">
           <Properties>

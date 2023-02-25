@@ -28,7 +28,6 @@ public class User_management extends javax.swing.JFrame {
 
         ManageProfilePanel = new javax.swing.JPanel();
         ViewProfileBTN = new javax.swing.JButton();
-        UpdateProfileBTN = new javax.swing.JButton();
         ManageUserPanel = new javax.swing.JPanel();
         SearchUserBTN = new javax.swing.JButton();
         DeleteUserBTN = new javax.swing.JButton();
@@ -51,27 +50,21 @@ public class User_management extends javax.swing.JFrame {
             }
         });
 
-        UpdateProfileBTN.setText("Update Profile");
-
         javax.swing.GroupLayout ManageProfilePanelLayout = new javax.swing.GroupLayout(ManageProfilePanel);
         ManageProfilePanel.setLayout(ManageProfilePanelLayout);
         ManageProfilePanelLayout.setHorizontalGroup(
             ManageProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ManageProfilePanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(83, 83, 83)
                 .addComponent(ViewProfileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(UpdateProfileBTN)
-                .addGap(35, 35, 35))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ManageProfilePanelLayout.setVerticalGroup(
             ManageProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ManageProfilePanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(ManageProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ViewProfileBTN)
-                    .addComponent(UpdateProfileBTN))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(ViewProfileBTN)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         ManageUserPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage User"));
@@ -146,7 +139,7 @@ public class User_management extends javax.swing.JFrame {
                 .addGroup(ManageTenantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SearchTenantBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ViewTenantBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         ManageTenantPanelLayout.setVerticalGroup(
             ManageTenantPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +240,6 @@ public class User_management extends javax.swing.JFrame {
     private javax.swing.JButton ModifyUserBTN;
     private javax.swing.JButton SearchTenantBTN;
     private javax.swing.JButton SearchUserBTN;
-    private javax.swing.JButton UpdateProfileBTN;
     private javax.swing.JButton ViewProfileBTN;
     private javax.swing.JButton ViewTenantBTN;
     // End of variables declaration//GEN-END:variables
