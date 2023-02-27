@@ -1,5 +1,7 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import assignment.assignment.User;
+
 
 
 /*
@@ -12,6 +14,7 @@ package assignment.assignment.SecurityManagementSystem;
  * @author leeyu
  */
 public class SecurityManagementSystem extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form SecuritySystem
@@ -135,7 +138,7 @@ public class SecurityManagementSystem extends javax.swing.JFrame {
 
     private void manageVisitorPassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitorPassBtnActionPerformed
         // TODO add your handling code here:
-        VisitorPassView vpView = new VisitorPassView();
+        VisitorPassView vpView = new VisitorPassView(user user);
         vpView.setVisible(true);
         dispose();
     }//GEN-LAST:event_manageVisitorPassBtnActionPerformed

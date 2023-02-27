@@ -5,51 +5,31 @@
 package assignment.assignment;
 
 //public class SecurityGuard {
-public class SecurityGuard extends User{
-    private int guardID;
-    private String name;
-    //private String email;
+public class SecurityGuard extends User {
+
     private String phone;
-    
-    //public SecurityGuard (int guardID, String name, String email, String phone){
-    public SecurityGuard (String username, String password, String email, int guardID, String name, String phone){
-        super (username, password, email);
-        this.guardID = guardID;
-        this.name = name;
-        //this.email = email;
-        this.phone= phone;
+    private String securityGuardID;
+
+    public SecurityGuard(String userID, String password, String name, String email, String role, String securityGuardID, String phone) {
+        super(userID, password, name, email, role);
+        this.phone = phone;
+        this.securityGuardID = securityGuardID;
     }
-    
-    public int getGuardID(){
-        return guardID;
-    }
-    
-    public String getName(){
-        return name;
-    }
-    
-    //public String getEmail(){
-    //    return email;
-    //}
-    
-    public String getPhone(){
+
+    public String getPhone() {
         return phone;
     }
-    
-    public void setGuardID(int guardID){
-        this.guardID = guardID;
-    }
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    //public void setEmail(String email){
-    //    this.email = email;
-    //}
-    
-    public void setPhone(String phone){
+
+    public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getSecurityGuardID() {
+        return securityGuardID;
+    }
+
+    public void setSecurityGuardID(String securityGuardID) {
+        this.securityGuardID = securityGuardID;
     }
     
     public void searchVisitorPass(){

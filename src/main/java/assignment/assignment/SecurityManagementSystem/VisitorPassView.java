@@ -1,5 +1,9 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import assignment.assignment.SecurityGuard;
+import assignment.assignment.Tenant;
+import assignment.assignment.User;
+
 
 
 /*
@@ -12,11 +16,13 @@ package assignment.assignment.SecurityManagementSystem;
  * @author leeyu
  */
 public class VisitorPassView extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form VisitorPassView
+     * @param user
      */
-    public VisitorPassView() {
+    public VisitorPassView(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -29,17 +35,18 @@ public class VisitorPassView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        visitorPassLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        visitorPassTable = new javax.swing.JTable();
+        vistorPassUpdateBtn = new javax.swing.JButton();
+        visitorPassDeleteBtn = new javax.swing.JButton();
+        visitorPassTableBackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Visitor Pass");
+        visitorPassLabel.setText("Visitor Pass");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        visitorPassTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,58 +57,76 @@ public class VisitorPassView extends javax.swing.JFrame {
                 "Visitor Name", "Phone No.", "Visit Date", "Resident ID"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(visitorPassTable);
 
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        vistorPassUpdateBtn.setText("Update");
+        vistorPassUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                vistorPassUpdateBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete");
+        visitorPassDeleteBtn.setText("Delete");
+
+        visitorPassTableBackBtn.setText("Back");
+        visitorPassTableBackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visitorPassTableBackBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(jButton1)
+                .addComponent(vistorPassUpdateBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(visitorPassDeleteBtn)
                 .addGap(96, 96, 96))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(visitorPassLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(visitorPassTableBackBtn)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(visitorPassLabel)
+                    .addComponent(visitorPassTableBackBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(vistorPassUpdateBtn)
+                    .addComponent(visitorPassDeleteBtn))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void vistorPassUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistorPassUpdateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_vistorPassUpdateBtnActionPerformed
+
+    private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
+        // TODO add your handling code here:
+         if (user instanceof SecurityGuard) {
+            // display security guard information
+        } else if (user instanceof Tenant) {
+            // display resident information
+        }
+    }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,10 +164,11 @@ public class VisitorPassView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton visitorPassDeleteBtn;
+    private javax.swing.JLabel visitorPassLabel;
+    private javax.swing.JTable visitorPassTable;
+    private javax.swing.JButton visitorPassTableBackBtn;
+    private javax.swing.JButton vistorPassUpdateBtn;
     // End of variables declaration//GEN-END:variables
 }
