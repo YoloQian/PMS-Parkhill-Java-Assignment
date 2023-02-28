@@ -1,5 +1,6 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import assignment.assignment.Navigation;
 import assignment.assignment.SecurityGuard;
 import assignment.assignment.Tenant;
 import assignment.assignment.User;
@@ -121,13 +122,15 @@ public class VisitorPassView extends javax.swing.JFrame {
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
-         if (user instanceof SecurityGuard) {
-            // display security guard information
-        } else if (user instanceof Tenant) {
-            // display resident information
-        }
+        if (user.getRole().equals("Security Guard")) {
+         new SecurityManagementSystem(user).setVisible(true);
+      }
+      else if (user.getRole().equals("Tenant")) {
+         new Navigation(user).setVisible(true);
+      }
+      this.dispose();
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -158,7 +161,6 @@ public class VisitorPassView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisitorPassView().setVisible(true);
             }
         });
     }

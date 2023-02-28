@@ -7,11 +7,13 @@ import assignment.assignment.PaymentSystem.Fund;
 import assignment.assignment.UserManagementSystem.User_management;
 
 public class Navigation extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form Navigation
      */
-    public Navigation() {
+    public Navigation(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -169,7 +171,6 @@ public class Navigation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Navigation().setVisible(true);
             }
         });
     }
