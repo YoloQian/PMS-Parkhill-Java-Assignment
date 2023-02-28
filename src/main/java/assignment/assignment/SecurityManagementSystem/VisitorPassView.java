@@ -123,7 +123,7 @@ public class VisitorPassView extends javax.swing.JFrame {
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
         if (user.getRole().equals("Security Guard")) {
-         new SecurityManagementSystem(user).setVisible(true);
+         new SecurityGuardMain(user).setVisible(true);
       }
       else if (user.getRole().equals("Tenant")) {
          new Navigation(user).setVisible(true);

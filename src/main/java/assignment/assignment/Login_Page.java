@@ -4,16 +4,20 @@
  */
 package assignment.assignment;
 
+import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
+
 /**
  *
  * @author user
  */
 public class Login_Page extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form Login_Page
      */
     public Login_Page() {
+        this.user = user;
         initComponents();
     }
 
@@ -121,6 +125,34 @@ public class Login_Page extends javax.swing.JFrame {
 
     private void LoginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBTNActionPerformed
         // TODO add your handling code here:
+        switch (user.getRole()) {
+            case "Tenant":  
+                     break;
+            case "Security Guard":  new SecurityGuardMain(user).setVisible(true);
+                     break;
+            case 3:  monthString = "March";
+                     break;
+            case 4:  monthString = "April";
+                     break;
+            case 5:  monthString = "May";
+                     break;
+            case 6:  monthString = "June";
+                     break;
+            case 7:  monthString = "July";
+                     break;
+            case 8:  monthString = "August";
+                     break;
+            case 9:  monthString = "September";
+                     break;
+            case 10: monthString = "October";
+                     break;
+            case 11: monthString = "November";
+                     break;
+            case 12: monthString = "December";
+                     break;
+            default: monthString = "Invalid month";
+                     break;
+        }
     }//GEN-LAST:event_LoginBTNActionPerformed
 
     /**
