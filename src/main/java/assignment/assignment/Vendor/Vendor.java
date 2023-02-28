@@ -14,7 +14,7 @@ public class Vendor extends User{
     private String phone;
     private String service;
 
-    public Vendor (String userId, String password, String role, String name, String email, String companyName, String phone, String service){
+    public Vendor (int userId, String password, String role, String name, String email, String companyName, String phone, String service){
         super (userId, password, role, name, email);
         this.companyName = companyName;
         this.password = password;
