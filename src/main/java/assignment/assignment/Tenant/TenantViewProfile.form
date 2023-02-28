@@ -37,7 +37,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="TenantUpdateProfile" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="TenantProfileUsername" max="32767" attributes="0"/>
+                      <Component id="TenantID" max="32767" attributes="0"/>
                       <Component id="TenantProfileName" alignment="0" max="32767" attributes="0"/>
                       <Component id="TenantProfileEmail" alignment="0" max="32767" attributes="0"/>
                       <Component id="TenantProfilePhone" alignment="0" max="32767" attributes="0"/>
@@ -56,7 +56,7 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TenantProfileUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TenantID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -88,7 +88,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Username :"/>
+        <Property name="text" type="java.lang.String" value="ID : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -127,9 +127,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantUpdateProfileActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="TenantProfileUsername">
+    <Component class="javax.swing.JTextField" name="TenantID">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfileUsernameActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantIDActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="TenantProfileName">

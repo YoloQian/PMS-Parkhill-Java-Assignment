@@ -6,18 +6,18 @@ package assignment.assignment.Tenant;
 import assignment.assignment.User;
 
 public class Tenant extends User{
-    private int residentID;
+    private String residentID;
     private String phone;
     private String unitNumber;
 
-    public Tenant (String userId, String password, String role, String name, String email, int residentID, String phone, String unitNumber){
+    public Tenant (int userId, String password, String role, String name, String email, String residentID, String phone, String unitNumber){
         super (userId, password, role, name, email);
         this.residentID = residentID;
         this.phone= phone;
         this.unitNumber= unitNumber;
     }
     
-    public int getResidentID(){
+    public String getResidentID(){
         return residentID;
     }
     
@@ -29,7 +29,7 @@ public class Tenant extends User{
         return unitNumber;
     }
     
-    public void setResidentID(int residentID){
+    public void setResidentID(String residentID){
         this.residentID = residentID;
     }
     

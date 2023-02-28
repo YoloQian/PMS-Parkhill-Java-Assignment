@@ -9,13 +9,13 @@ package assignment.assignment;
  * @author leeyu
  */
 public abstract class User {
-    private String userId;
+    private int userId;
     private String password;
     private String role;
     private String name;
     private String email;
 
-    public User(String userId, String password, String role, String name, String email) {
+    public User(int userId, String password, String role, String name, String email) {
         this.userId = userId;
         this.password = password;
         this.role = role;
@@ -23,11 +23,11 @@ public abstract class User {
         this.email = email;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

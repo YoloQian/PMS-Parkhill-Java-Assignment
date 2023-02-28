@@ -17,9 +17,6 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class TenantViewProfile extends javax.swing.JFrame {
 
-    /**
-     * Creates new form IncidentUpdateForm
-     */
     Tenant tenant = null;
     public TenantViewProfile() {
         initComponents();
@@ -31,7 +28,8 @@ public class TenantViewProfile extends javax.swing.JFrame {
             String [] colHeadings = line.trim().split(":");
             
             //TODO : Compare username
-//            tenant = new Tenant(colHeadings[0], colHeadings[1], colHeadings[2], Integer.parseInt(colHeadings[3]), colHeadings[4], colHeadings[5], colHeadings[6]);
+            tenant = new Tenant(Integer.parseInt(colHeadings[0]), colHeadings[1], colHeadings[2], colHeadings[3], colHeadings[4], colHeadings[5], colHeadings[6], colHeadings[7]);
+            TenantID.setText(tenant.getUserId());
             TenantProfileName.setText(tenant.getName());
             TenantProfileEmail.setText(tenant.getEmail());
             TenantProfilePhone.setText(tenant.getPhone());
@@ -58,7 +56,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         TenantUpdateProfile = new javax.swing.JButton();
-        TenantProfileUsername = new javax.swing.JTextField();
+        TenantID = new javax.swing.JTextField();
         TenantProfileName = new javax.swing.JTextField();
         TenantProfileEmail = new javax.swing.JTextField();
         TenantProfilePhone = new javax.swing.JTextField();
@@ -66,7 +64,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Username :");
+        jLabel2.setText("ID : ");
 
         jLabel3.setText("Phone :");
 
@@ -86,9 +84,9 @@ public class TenantViewProfile extends javax.swing.JFrame {
             }
         });
 
-        TenantProfileUsername.addActionListener(new java.awt.event.ActionListener() {
+        TenantID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantProfileUsernameActionPerformed(evt);
+                TenantIDActionPerformed(evt);
             }
         });
 
@@ -133,7 +131,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TenantUpdateProfile)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TenantProfileUsername)
+                        .addComponent(TenantID)
                         .addComponent(TenantProfileName)
                         .addComponent(TenantProfileEmail)
                         .addComponent(TenantProfilePhone)
@@ -148,7 +146,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TenantProfileUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TenantID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -173,9 +171,9 @@ public class TenantViewProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TenantProfileUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfileUsernameActionPerformed
+    private void TenantIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TenantProfileUsernameActionPerformed
+    }//GEN-LAST:event_TenantIDActionPerformed
 
     private void TenantProfileNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantProfileNameActionPerformed
         // TODO add your handling code here:
@@ -197,7 +195,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
         File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantInfo.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            String username = TenantProfileUsername.getText();
+            String username = TenantID.getText();
             String name = TenantProfileName.getText();
             String email = TenantProfileEmail.getText();
             String phone = TenantProfilePhone.getText();
@@ -251,11 +249,11 @@ public class TenantViewProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TenantID;
     private javax.swing.JTextField TenantProfileEmail;
     private javax.swing.JTextField TenantProfileName;
     private javax.swing.JTextField TenantProfilePassword;
     private javax.swing.JTextField TenantProfilePhone;
-    private javax.swing.JTextField TenantProfileUsername;
     private javax.swing.JButton TenantUpdateProfile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
