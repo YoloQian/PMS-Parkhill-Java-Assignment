@@ -42,7 +42,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LoginBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,21 +74,12 @@
                       <Group type="102" attributes="0">
                           <Component id="UsernameLabel" min="-2" pref="91" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="UsernameTF" max="32767" attributes="0"/>
+                          <Component id="UserIDTF" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="EmailLabel" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PasswordLabel" alignment="0" pref="92" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="EmailTF" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="PasswordTF" min="-2" pref="204" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="PasswordLabel" min="-2" pref="92" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="PasswordTF" min="-2" pref="204" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -101,19 +92,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="UsernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="UsernameTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="UserIDTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="EmailLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="EmailTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="PasswordLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="PasswordTF" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PasswordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PasswordTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,12 +107,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="UsernameLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Username :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="EmailLabel">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Email :"/>
+            <Property name="text" type="java.lang.String" value="UserID :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="PasswordLabel">
@@ -134,9 +115,10 @@
             <Property name="text" type="java.lang.String" value="Password :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="UsernameTF">
-        </Component>
-        <Component class="javax.swing.JTextField" name="EmailTF">
+        <Component class="javax.swing.JTextField" name="UserIDTF">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UserIDTFActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="PasswordTF">
         </Component>
