@@ -31,7 +31,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="279" max="-2" attributes="0"/>
-                      <Component id="TenantImportStatement" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantViewStatement" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                       <Component id="TenantCloseStatement" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -53,7 +53,7 @@
               <Component id="jScrollPane1" min="-2" pref="249" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TenantImportStatement" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TenantViewStatement" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TenantCloseStatement" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -73,9 +73,9 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
-                <Column editable="true" title="Unit Number" type="java.lang.Object"/>
-                <Column editable="true" title="Date" type="java.lang.Object"/>
-                <Column editable="true" title="Amount" type="java.lang.Object"/>
+                <Column editable="true" title="Name" type="java.lang.Object"/>
+                <Column editable="true" title="Month " type="java.lang.Object"/>
+                <Column editable="true" title="Paid Amount" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
@@ -90,12 +90,12 @@
         <Property name="text" type="java.lang.String" value="Statement"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="TenantImportStatement">
+    <Component class="javax.swing.JButton" name="TenantViewStatement">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Import data"/>
+        <Property name="text" type="java.lang.String" value="View Statement"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantImportStatementActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantViewStatementActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="TenantCloseStatement">

@@ -1,11 +1,14 @@
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -16,29 +19,41 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 
 public class TenantViewProfile extends javax.swing.JFrame {
-
-    Tenant tenant = null;
-    public TenantViewProfile() {
-        initComponents();
+    
+    private User user;
+    private Tenant tenant;
+    public TenantViewProfile(User user) {
         
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantInfo.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line = br.readLine();
-            String [] colHeadings = line.trim().split(":");
-            
-            //TODO : Compare username
-            tenant = new Tenant(Integer.parseInt(colHeadings[0]), colHeadings[1], colHeadings[2], colHeadings[3], colHeadings[4], colHeadings[5], colHeadings[6], colHeadings[7]);
-            TenantID.setText(tenant.getUserId());
-            TenantProfileName.setText(tenant.getName());
-            TenantProfileEmail.setText(tenant.getEmail());
+        this.user = user;
+        initComponents();
+        getInfo("Tenant");
+
+    }
+    
+    private void getInfo(String role) {
+    // Read the text file
+    Scanner sc = null;
+    
+    File file = new File(role + "Info.txt");
+    try {
+        sc = new Scanner(file);
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+
+    // Get the user's info
+    while (sc.hasNextLine()) {
+        String line = sc.nextLine();
+        String[] splitLine = line.split(":");
+        if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+            tenant = new Tenant(user.getUserId(), user.getPassword(), role, user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]);
+            TenantID.setText(Integer.toString(user.getUserId()));
+            TenantProfileName.setText(user.getName());
+            TenantProfileEmail.setText(user.getEmail());
             TenantProfilePhone.setText(tenant.getPhone());
-            TenantProfilePassword.setText(tenant.getPassword());
-            
-            
-        }   catch (Exception ex) { 
-            Logger.getLogger(TenantViewProfile.class.getName()).log(Level.SEVERE, null, ex);
+            TenantProfilePassword.setText(user.getPassword());
         }
+    }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,6 +99,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
             }
         });
 
+        TenantID.setEditable(false);
         TenantID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TenantIDActionPerformed(evt);
@@ -163,9 +179,9 @@ public class TenantViewProfile extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TenantProfilePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(TenantUpdateProfile)
-                .addGap(64, 64, 64))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,15 +208,32 @@ public class TenantViewProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_TenantProfilePasswordActionPerformed
 
     private void TenantUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantUpdateProfileActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantInfo.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            String username = TenantID.getText();
-            String name = TenantProfileName.getText();
-            String email = TenantProfileEmail.getText();
+            String tenantId = tenant.getTenantID();
+            String userid = Integer.toString(user.getUserId());
             String phone = TenantProfilePhone.getText();
+            String unitNumber = tenant.getUnitNumber();
+            String colHeadings = tenantId + ":" + userid + ":" + phone + ":" + unitNumber;
+            
+            bw.write(colHeadings + "\n");
+            showMessageDialog(null, "Update successful");
+            
+            bw.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(TenantViewProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            String userid = Integer.toString(user.getUserId());
+            String name = TenantProfileName.getText();
             String password = TenantProfilePassword.getText();
-            String colHeadings = username + ":" + password + ":" + email + ":" + tenant.getResidentID() + ":" + name + ":" + phone + ":" + tenant.getUnitNumber();
+            String email = TenantProfileEmail.getText();
+            String colHeadings = userid + ":" + name + ":" + password + ":" + email + ":tenant" ;
             
             bw.write(colHeadings + "\n");
             showMessageDialog(null, "Update successful");
@@ -243,7 +276,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantViewProfile().setVisible(true);
+                
             }
         });
     }

@@ -37,7 +37,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TenantPendingFee = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        TenantImportPendingFee = new javax.swing.JButton();
+        TenantViewPendingFee = new javax.swing.JButton();
         TenantClosePendingFee = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +47,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Unit Number", "Date", "Amount", "Description"
+                "PaymnetID", "Unit Number", "Payment Amount", "Paid Date"
             }
         ));
         jScrollPane1.setViewportView(TenantPendingFee);
@@ -55,10 +55,10 @@ public class TenantPendingFee extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Pending Fee");
 
-        TenantImportPendingFee.setText("Import data");
-        TenantImportPendingFee.addActionListener(new java.awt.event.ActionListener() {
+        TenantViewPendingFee.setText("View Pending Fee");
+        TenantViewPendingFee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantImportPendingFeeActionPerformed(evt);
+                TenantViewPendingFeeActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(TenantImportPendingFee)
+                        .addComponent(TenantViewPendingFee)
                         .addGap(127, 127, 127)
                         .addComponent(TenantClosePendingFee))
                     .addGroup(layout.createSequentialGroup()
@@ -97,7 +97,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TenantImportPendingFee)
+                    .addComponent(TenantViewPendingFee)
                     .addComponent(TenantClosePendingFee))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -105,7 +105,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TenantImportPendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportPendingFeeActionPerformed
+    private void TenantViewPendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewPendingFeeActionPerformed
         File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantPendingFee.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -124,7 +124,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(TenantPendingFee.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_TenantImportPendingFeeActionPerformed
+    }//GEN-LAST:event_TenantViewPendingFeeActionPerformed
 
     private void TenantClosePendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantClosePendingFeeActionPerformed
         System.exit(0);
@@ -174,8 +174,8 @@ public class TenantPendingFee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TenantClosePendingFee;
-    private javax.swing.JButton TenantImportPendingFee;
     private javax.swing.JTable TenantPendingFee;
+    private javax.swing.JButton TenantViewPendingFee;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

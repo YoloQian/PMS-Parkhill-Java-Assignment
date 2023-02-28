@@ -70,9 +70,9 @@
                               <Component id="TenantComplaint_subject" min="-2" pref="180" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TenantNew_complaint" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TenantNewComplaint" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TenantView_complaint" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TenantViewComplaint" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -128,8 +128,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TenantNew_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TenantView_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantNewComplaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantViewComplaint" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
@@ -148,8 +148,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TenantComplaint_name">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TenantComplaint_UnitNumber">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -185,12 +191,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="TenantNew_complaint">
+        <Component class="javax.swing.JButton" name="TenantNewComplaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="New"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="TenantView_complaint">
+        <Component class="javax.swing.JButton" name="TenantViewComplaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="View"/>
           </Properties>
@@ -202,7 +208,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="TenantComplaint_status">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Open"/>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

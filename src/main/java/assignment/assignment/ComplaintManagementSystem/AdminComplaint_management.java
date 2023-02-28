@@ -52,6 +52,10 @@ public class AdminComplaint_management extends javax.swing.JFrame {
 
         jLabel2.setText("Unit Number :");
 
+        complaint_name.setEditable(false);
+
+        complaint_unitnumber.setEditable(false);
+
         jLabel3.setText("Date :");
 
         jLabel4.setText("Subject :");
@@ -68,7 +72,7 @@ public class AdminComplaint_management extends javax.swing.JFrame {
 
         jLabel6.setText("Status :");
 
-        complaint_status.setText("Open");
+        complaint_status.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

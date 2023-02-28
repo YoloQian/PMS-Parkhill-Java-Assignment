@@ -1,0 +1,4 @@
+userID:name:password:email:role
+1:ted:ted123:ted@gmail.com:tenant
+2:qian:quial123:qian@gmail.com:vendor
+3:log:log123:log@gmail.com:security

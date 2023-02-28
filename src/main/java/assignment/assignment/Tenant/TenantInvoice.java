@@ -47,7 +47,7 @@ public class TenantInvoice extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Invoice ID", "Date", "Amount", "Description"
+                "Invoice ID", "Date Issued", "Due Date", "Amount Due", "Description"
             }
         ));
         jScrollPane1.setViewportView(TenantInvoice);
@@ -55,7 +55,7 @@ public class TenantInvoice extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Invoice");
 
-        TenantImportInvoice.setText("Import data");
+        TenantImportInvoice.setText("View data");
         TenantImportInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TenantImportInvoiceActionPerformed(evt);

@@ -29,7 +29,6 @@
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                   <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
@@ -38,15 +37,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="VendorUpdateProfile" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="VendorProfileCompanyName" max="32767" attributes="0"/>
-                      <Component id="VnedorProfileName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="VendorID" max="32767" attributes="0"/>
                       <Component id="VendorProfileEmail" alignment="0" max="32767" attributes="0"/>
                       <Component id="VendorProfilePhone" alignment="0" max="32767" attributes="0"/>
                       <Component id="VendorProfilePassword" alignment="0" pref="150" max="32767" attributes="0"/>
-                      <Component id="VendorProfileUsername" alignment="0" max="32767" attributes="0"/>
+                      <Component id="VendorProfileName" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,36 +56,31 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="VendorProfileCompanyName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="VendorID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="VendorProfileUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="VendorProfileName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="VnedorProfileName" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="VendorProfileEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="VendorProfilePhone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="VendorProfilePassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="VendorUpdateProfile" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,7 +88,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Company Name :"/>
+        <Property name="text" type="java.lang.String" value="ID :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -104,11 +97,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Username :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Name :"/>
       </Properties>
@@ -131,9 +119,10 @@
         <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="VendorProfileCompanyName">
-    </Component>
-    <Component class="javax.swing.JTextField" name="VnedorProfileName">
+    <Component class="javax.swing.JTextField" name="VendorID">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="VendorProfileEmail">
     </Component>
@@ -146,7 +135,7 @@
         <Property name="text" type="java.lang.String" value="Password :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="VendorProfileUsername">
+    <Component class="javax.swing.JTextField" name="VendorProfileName">
     </Component>
   </SubComponents>
 </Form>

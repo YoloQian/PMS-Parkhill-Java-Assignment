@@ -10,7 +10,7 @@ public class SecurityGuard extends User {
     private String phone;
     private String securityGuardID;
 
-    public SecurityGuard(String userID, String password, String name, String email, String role, String securityGuardID, String phone) {
+    public SecurityGuard(int userID, String password, String name, String email, String role, String securityGuardID, String phone) {
         super(userID, password, name, email, role);
         this.phone = phone;
         this.securityGuardID = securityGuardID;

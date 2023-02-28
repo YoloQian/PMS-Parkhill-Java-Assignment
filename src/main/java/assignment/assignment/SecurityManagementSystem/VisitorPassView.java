@@ -1,8 +1,6 @@
 package assignment.assignment.SecurityManagementSystem;
 
 import assignment.assignment.Navigation;
-import assignment.assignment.SecurityGuard;
-import assignment.assignment.Tenant;
 import assignment.assignment.User;
 
 
