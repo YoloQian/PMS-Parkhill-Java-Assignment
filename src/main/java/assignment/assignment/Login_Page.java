@@ -129,9 +129,7 @@ public class Login_Page extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(":");
                 if (splitLine[0].equals(UserIDTF.getText())&&splitLine[1].equals(PasswordTF.getText())) {
-                    System.out.println(splitLine[0]);
                     this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
-                    System.out.println(user.getRole());
                     switch (user.getRole()) {
                     case "Tenant" -> {
                         }
