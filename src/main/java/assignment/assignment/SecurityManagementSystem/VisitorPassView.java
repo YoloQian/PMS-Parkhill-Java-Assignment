@@ -1,8 +1,6 @@
 package assignment.assignment.SecurityManagementSystem;
 
-import assignment.assignment.Navigation;
-import assignment.assignment.SecurityGuard;
-import assignment.assignment.Tenant;
+import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;
 
 
@@ -126,7 +124,7 @@ public class VisitorPassView extends javax.swing.JFrame {
          new SecurityGuardMain(user).setVisible(true);
       }
       else if (user.getRole().equals("Tenant")) {
-         new Navigation(user).setVisible(true);
+         new TenantMainFrame(user).setVisible(true);
       }
       this.dispose();
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed

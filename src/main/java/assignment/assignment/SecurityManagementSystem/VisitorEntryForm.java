@@ -1,5 +1,7 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import assignment.assignment.User;
+
 
 
 /*
@@ -12,11 +14,13 @@ package assignment.assignment.SecurityManagementSystem;
  * @author leeyu
  */
 public class VisitorEntryForm extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form VisitorEntryForm
      */
-    public VisitorEntryForm() {
+    public VisitorEntryForm(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -142,7 +146,6 @@ public class VisitorEntryForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisitorEntryForm().setVisible(true);
             }
         });
     }

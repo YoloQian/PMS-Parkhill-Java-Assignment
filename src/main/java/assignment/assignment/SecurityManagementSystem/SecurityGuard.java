@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package assignment.assignment;
+package assignment.assignment.SecurityManagementSystem;
 
 //public class SecurityGuard {
+
+import assignment.assignment.User;
+
 public class SecurityGuard extends User {
 
     private String phone;
