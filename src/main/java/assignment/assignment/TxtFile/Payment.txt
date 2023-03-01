@@ -1,0 +1,2 @@
+PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus
+Payment001;2;2023-03-02;2023-04-01;RM100;Rent;Issued

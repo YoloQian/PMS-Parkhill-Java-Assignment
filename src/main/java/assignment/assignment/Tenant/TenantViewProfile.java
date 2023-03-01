@@ -4,11 +4,9 @@ import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -22,36 +20,46 @@ public class TenantViewProfile extends javax.swing.JFrame {
     
     private User user;
     private Tenant tenant;
+    int count;
+    int correctline;
+    
     public TenantViewProfile(User user) {
         
         
         this.user = user;
-        initComponents();
         getInfo(user);
+        initComponents();
+        setLocationRelativeTo(null);
         String userid = Integer.toString(user.getUserId());
         TenantID.setText(userid);
         TenantProfileName.setText(user.getName());
         TenantProfileEmail.setText(user.getEmail());
         TenantProfilePhone.setText(tenant.getPhone());
         TenantProfilePassword.setText(user.getPassword());
+        
     }
     
     public void getInfo(User user) {
         try {
-            File file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");         
+            File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");         
             BufferedReader br = new BufferedReader(new FileReader(file));    
             String line;            
 
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(";");
-                if (splitLine[1].equals(user.getUserId())) {
-                    Tenant tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(), user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
-                        }
+                if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                    correctline = count;
+                } else {
+                    count++;
+                }
             }
             br.close();
         }catch (IOException e) {
             System.out.println("fail");
             }
+        
     }
     
     /**
@@ -209,17 +217,30 @@ public class TenantViewProfile extends javax.swing.JFrame {
     private void TenantUpdateProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantUpdateProfileActionPerformed
         File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            File temp = File.createTempFile("temp-file", ".tmp");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String tenantId = tenant.getTenantID();
             String userid = Integer.toString(user.getUserId());
             String phone = TenantProfilePhone.getText();
             String unitNumber = tenant.getUnitNumber();
             String colHeadings = tenantId + ";" + userid + ";" + phone + ";" + unitNumber;
             
-            bw.write(colHeadings + "\n");
-            showMessageDialog(null, "Update successful");
+            String line = "";
+            while((line = br.readLine()) != null){
+                if (correctline == 0){
+                    bw.write(colHeadings + "\n");
+                    correctline = 9999;
+                } else {
+                    bw.write(line + "\n");
+                    correctline--;
+                }
+            }
             
             bw.close();
+            br.close();
+            file.delete();
+            temp.renameTo(file);
             
         } catch (IOException ex) {
             Logger.getLogger(TenantViewProfile.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,17 +248,30 @@ public class TenantViewProfile extends javax.swing.JFrame {
         
         file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            File tempfile = File.createTempFile("temp-file1", ".tmp");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(tempfile));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String userid = Integer.toString(user.getUserId());
             String name = TenantProfileName.getText();
             String password = TenantProfilePassword.getText();
             String email = TenantProfileEmail.getText();
-            String colHeadings = userid + ";" + password + ":tenant" + name + ";" + email ;
+            String colHeadings = userid + ";" + password + ";tenant;" + name + ";" + email ;
             
-            bw.write(colHeadings + "\n");
-            showMessageDialog(null, "Update successful");
+            String line = "";
+            while((line = br.readLine()) != null){
+                String[] splitLine = line.split(";");
+                if (splitLine[0].equals(userid)){
+                    bw.write(colHeadings + "\n");
+                } else {
+                    bw.write(line + "\n");
+                }
+            }
             
             bw.close();
+            br.close();
+            file.delete();
+            tempfile.renameTo(file);
+            showMessageDialog(null, "Update successful");
             
         } catch (IOException ex) {
             Logger.getLogger(TenantViewProfile.class.getName()).log(Level.SEVERE, null, ex);
