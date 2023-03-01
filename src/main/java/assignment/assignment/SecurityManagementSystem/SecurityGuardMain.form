@@ -30,16 +30,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="manageVisitorPassBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="manageVisitorEntry" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="manageIncident" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="visitorEntryBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CheckInList" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="recordIncidentBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="manageIncident1" min="-2" max="-2" attributes="0"/>
-                          <Component id="manageVisitorEntry1" min="-2" max="-2" attributes="0"/>
-                          <Component id="manageVisitorPassBtn1" min="-2" max="-2" attributes="0"/>
-                          <Component id="checkpointCheckIn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="updateIncidentBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="visitorDepartBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchVisitorBtn" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkpointCheckInBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -54,23 +54,23 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="manageVisitorPassBtn1" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchVisitorBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="manageVisitorPassBtn" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="manageVisitorEntry" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="manageVisitorEntry1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="visitorEntryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="visitorDepartBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="manageIncident" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="manageIncident1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="recordIncidentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="updateIncidentBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="73" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="checkpointCheckIn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkpointCheckInBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CheckInList" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
@@ -86,30 +86,33 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitorPassBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="manageVisitorEntry">
+    <Component class="javax.swing.JButton" name="visitorEntryBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Visitor Entry Form"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitorEntryActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visitorEntryBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="manageIncident">
+    <Component class="javax.swing.JButton" name="recordIncidentBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Record Incident"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recordIncidentBtnActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="checkpointCheckIn">
+    <Component class="javax.swing.JButton" name="checkpointCheckInBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Checkpoint Check-in"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="manageVisitorPassBtn1">
+    <Component class="javax.swing.JButton" name="searchVisitorBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search Visitor Pass"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitorPassBtn1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchVisitorBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -117,15 +120,15 @@
         <Property name="text" type="java.lang.String" value="Security Guard"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="manageVisitorEntry1">
+    <Component class="javax.swing.JButton" name="visitorDepartBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Visitor Departure Form"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageVisitorEntry1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visitorDepartBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="CheckInList">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -140,12 +143,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="manageIncident1">
+    <Component class="javax.swing.JButton" name="updateIncidentBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Update Incident"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="manageIncident1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateIncidentBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

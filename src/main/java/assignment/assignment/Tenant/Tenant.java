@@ -10,6 +10,8 @@ public class Tenant extends User{
     private String phone;
     private String unitNumber;
 
+    
+    
     public Tenant (int userId, String password, String role, String name, String email, String tenantID, String phone, String unitNumber){
         super (userId, password, role, name, email);
         this.tenantID = tenantID;
@@ -41,27 +43,29 @@ public class Tenant extends User{
         this.unitNumber = unitNumber;
     }
     
-//    public void viewProfile(){
-//        new TenantViewProfile().setVisible(true);
-//    }
-//    
-//    public void makePayment(){
-//        // Code to make payment
-//    }
-//    
-//    public void viewPaymentHistory(){
-//        // Code to view payment history
-//    }
-//    
-//    public void bookFacility(){
-//        // Code to book facility
-//    }
-//    
-//    public void applyVisitorPass(){
-//        // Code to apply visitor pass
-//    }
-//    
-//    public void logComplaints(){
-//        // Code to log complaints
-//    }
+    public void viewProfile(User user){
+        new TenantViewProfile(user).setVisible(true);
+    }
+    
+    public void makePayment(){
+        // Code to make payment
+    }
+    
+    public void viewPaymentHistory(){
+        // Code to view payment history
+    }
+    
+    public void bookFacility(){
+        // Code to book facility
+    }
+    
+    public void applyVisitorPass(){
+        // Code to apply visitor pass
+    }
+    
+    public void logComplaints(){
+        // Code to log complaints
+    }
+    
+    
 }

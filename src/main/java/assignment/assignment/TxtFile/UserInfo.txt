@@ -1,4 +1,5 @@
-userID:name:password:email:role
-1:ted:ted123:ted@gmail.com:tenant
-2:qian:quial123:qian@gmail.com:vendor
-3:log:log123:log@gmail.com:security
+userID;password;role;name;email
+1;guard123;Security Guard;yuwei;yuwei@mail.com
+2;ted123;tenant;ted;ted@gmail.com
+3;qian123;vendor;qian;qian@gmail.com
+4;log123;security;log;log@gmail.com

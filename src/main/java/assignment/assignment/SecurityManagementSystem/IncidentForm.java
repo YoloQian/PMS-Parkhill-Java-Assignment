@@ -1,5 +1,7 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import assignment.assignment.User;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,11 +13,13 @@ package assignment.assignment.SecurityManagementSystem;
  * @author leeyu
  */
 public class IncidentForm extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form IncidentForm
      */
-    public IncidentForm() {
+    public IncidentForm(User user) {
+        this.user = user;
         initComponents();
     }
 
@@ -157,7 +161,6 @@ public class IncidentForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IncidentForm().setVisible(true);
             }
         });
     }

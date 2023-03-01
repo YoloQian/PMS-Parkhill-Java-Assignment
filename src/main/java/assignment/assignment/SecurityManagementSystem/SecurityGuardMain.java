@@ -34,14 +34,14 @@ public class SecurityGuardMain extends javax.swing.JFrame {
     private void initComponents() {
 
         manageVisitorPassBtn = new javax.swing.JButton();
-        manageVisitorEntry = new javax.swing.JButton();
-        manageIncident = new javax.swing.JButton();
-        checkpointCheckIn = new javax.swing.JButton();
-        manageVisitorPassBtn1 = new javax.swing.JButton();
+        visitorEntryBtn = new javax.swing.JButton();
+        recordIncidentBtn = new javax.swing.JButton();
+        checkpointCheckInBtn = new javax.swing.JButton();
+        searchVisitorBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        manageVisitorEntry1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        manageIncident1 = new javax.swing.JButton();
+        visitorDepartBtn = new javax.swing.JButton();
+        CheckInList = new javax.swing.JComboBox<>();
+        updateIncidentBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,39 +52,44 @@ public class SecurityGuardMain extends javax.swing.JFrame {
             }
         });
 
-        manageVisitorEntry.setText("Visitor Entry Form");
-        manageVisitorEntry.addActionListener(new java.awt.event.ActionListener() {
+        visitorEntryBtn.setText("Visitor Entry Form");
+        visitorEntryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageVisitorEntryActionPerformed(evt);
+                visitorEntryBtnActionPerformed(evt);
             }
         });
 
-        manageIncident.setText("Record Incident");
-
-        checkpointCheckIn.setText("Checkpoint Check-in");
-
-        manageVisitorPassBtn1.setText("Search Visitor Pass");
-        manageVisitorPassBtn1.addActionListener(new java.awt.event.ActionListener() {
+        recordIncidentBtn.setText("Record Incident");
+        recordIncidentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageVisitorPassBtn1ActionPerformed(evt);
+                recordIncidentBtnActionPerformed(evt);
+            }
+        });
+
+        checkpointCheckInBtn.setText("Checkpoint Check-in");
+
+        searchVisitorBtn.setText("Search Visitor Pass");
+        searchVisitorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchVisitorBtnActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Security Guard");
 
-        manageVisitorEntry1.setText("Visitor Departure Form");
-        manageVisitorEntry1.addActionListener(new java.awt.event.ActionListener() {
+        visitorDepartBtn.setText("Visitor Departure Form");
+        visitorDepartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageVisitorEntry1ActionPerformed(evt);
+                visitorDepartBtnActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CheckInList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        manageIncident1.setText("Update Incident");
-        manageIncident1.addActionListener(new java.awt.event.ActionListener() {
+        updateIncidentBtn.setText("Update Incident");
+        updateIncidentBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageIncident1ActionPerformed(evt);
+                updateIncidentBtnActionPerformed(evt);
             }
         });
 
@@ -99,15 +104,15 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(manageVisitorPassBtn)
-                            .addComponent(manageVisitorEntry)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(manageIncident))
+                            .addComponent(visitorEntryBtn)
+                            .addComponent(CheckInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(recordIncidentBtn))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(manageIncident1)
-                            .addComponent(manageVisitorEntry1)
-                            .addComponent(manageVisitorPassBtn1)
-                            .addComponent(checkpointCheckIn))))
+                            .addComponent(updateIncidentBtn)
+                            .addComponent(visitorDepartBtn)
+                            .addComponent(searchVisitorBtn)
+                            .addComponent(checkpointCheckInBtn))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,20 +122,20 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageVisitorPassBtn1)
+                    .addComponent(searchVisitorBtn)
                     .addComponent(manageVisitorPassBtn))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageVisitorEntry)
-                    .addComponent(manageVisitorEntry1))
+                    .addComponent(visitorEntryBtn)
+                    .addComponent(visitorDepartBtn))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(manageIncident)
-                    .addComponent(manageIncident1))
+                    .addComponent(recordIncidentBtn)
+                    .addComponent(updateIncidentBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkpointCheckIn)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkpointCheckInBtn)
+                    .addComponent(CheckInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
 
@@ -143,24 +148,35 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_manageVisitorPassBtnActionPerformed
 
-    private void manageVisitorPassBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitorPassBtn1ActionPerformed
+    private void searchVisitorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVisitorBtnActionPerformed
         // TODO add your handling code here:
-        VisitorPassSearch vpSearch = new VisitorPassSearch();
-        vpSearch.setVisible(true);
+        new VisitorPassSearch(user).setVisible(true);
         dispose();
-    }//GEN-LAST:event_manageVisitorPassBtn1ActionPerformed
+    }//GEN-LAST:event_searchVisitorBtnActionPerformed
 
-    private void manageVisitorEntryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitorEntryActionPerformed
+    private void visitorEntryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorEntryBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageVisitorEntryActionPerformed
+        new VisitorEntryForm(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_visitorEntryBtnActionPerformed
 
-    private void manageVisitorEntry1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageVisitorEntry1ActionPerformed
+    private void visitorDepartBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorDepartBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageVisitorEntry1ActionPerformed
+        new VisitorDepartureForm(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_visitorDepartBtnActionPerformed
 
-    private void manageIncident1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageIncident1ActionPerformed
+    private void updateIncidentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateIncidentBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageIncident1ActionPerformed
+        new IncidentUpdateForm(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_updateIncidentBtnActionPerformed
+
+    private void recordIncidentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordIncidentBtnActionPerformed
+        // TODO add your handling code here:
+        new IncidentForm(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_recordIncidentBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,14 +216,14 @@ public class SecurityGuardMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkpointCheckIn;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> CheckInList;
+    private javax.swing.JButton checkpointCheckInBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton manageIncident;
-    private javax.swing.JButton manageIncident1;
-    private javax.swing.JButton manageVisitorEntry;
-    private javax.swing.JButton manageVisitorEntry1;
     private javax.swing.JButton manageVisitorPassBtn;
-    private javax.swing.JButton manageVisitorPassBtn1;
+    private javax.swing.JButton recordIncidentBtn;
+    private javax.swing.JButton searchVisitorBtn;
+    private javax.swing.JButton updateIncidentBtn;
+    private javax.swing.JButton visitorDepartBtn;
+    private javax.swing.JButton visitorEntryBtn;
     // End of variables declaration//GEN-END:variables
 }

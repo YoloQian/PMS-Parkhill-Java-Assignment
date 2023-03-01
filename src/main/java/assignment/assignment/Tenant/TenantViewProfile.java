@@ -24,37 +24,36 @@ public class TenantViewProfile extends javax.swing.JFrame {
     private Tenant tenant;
     public TenantViewProfile(User user) {
         
+        
         this.user = user;
         initComponents();
-        getInfo("Tenant");
-
+        getInfo(user);
+        String userid = Integer.toString(user.getUserId());
+        TenantID.setText(userid);
+        TenantProfileName.setText(user.getName());
+        TenantProfileEmail.setText(user.getEmail());
+        TenantProfilePhone.setText(tenant.getPhone());
+        TenantProfilePassword.setText(user.getPassword());
     }
     
-    private void getInfo(String role) {
-    // Read the text file
-    Scanner sc = null;
-    
-    File file = new File(role + "Info.txt");
-    try {
-        sc = new Scanner(file);
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-    }
+    public void getInfo(User user) {
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
 
-    // Get the user's info
-    while (sc.hasNextLine()) {
-        String line = sc.nextLine();
-        String[] splitLine = line.split(":");
-        if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
-            tenant = new Tenant(user.getUserId(), user.getPassword(), role, user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]);
-            TenantID.setText(Integer.toString(user.getUserId()));
-            TenantProfileName.setText(user.getName());
-            TenantProfileEmail.setText(user.getEmail());
-            TenantProfilePhone.setText(tenant.getPhone());
-            TenantProfilePassword.setText(user.getPassword());
-        }
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(user.getUserId())) {
+                    Tenant tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(), user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                        }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
     }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -215,7 +214,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
             String userid = Integer.toString(user.getUserId());
             String phone = TenantProfilePhone.getText();
             String unitNumber = tenant.getUnitNumber();
-            String colHeadings = tenantId + ":" + userid + ":" + phone + ":" + unitNumber;
+            String colHeadings = tenantId + ";" + userid + ";" + phone + ";" + unitNumber;
             
             bw.write(colHeadings + "\n");
             showMessageDialog(null, "Update successful");
@@ -233,7 +232,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
             String name = TenantProfileName.getText();
             String password = TenantProfilePassword.getText();
             String email = TenantProfileEmail.getText();
-            String colHeadings = userid + ":" + name + ":" + password + ":" + email + ":tenant" ;
+            String colHeadings = userid + ";" + password + ":tenant" + name + ";" + email ;
             
             bw.write(colHeadings + "\n");
             showMessageDialog(null, "Update successful");

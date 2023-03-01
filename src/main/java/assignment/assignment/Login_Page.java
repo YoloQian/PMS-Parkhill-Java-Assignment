@@ -5,6 +5,11 @@
 package assignment.assignment;
 
 import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
+import assignment.assignment.Tenant.TenantMainFrame;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -17,7 +22,6 @@ public class Login_Page extends javax.swing.JFrame {
      * Creates new form Login_Page
      */
     public Login_Page() {
-        this.user = user;
         initComponents();
     }
 
@@ -33,10 +37,8 @@ public class Login_Page extends javax.swing.JFrame {
         LoginBTN = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         UsernameLabel = new javax.swing.JLabel();
-        EmailLabel = new javax.swing.JLabel();
         PasswordLabel = new javax.swing.JLabel();
-        UsernameTF = new javax.swing.JTextField();
-        EmailTF = new javax.swing.JTextField();
+        UserIDTF = new javax.swing.JTextField();
         PasswordTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,11 +52,15 @@ public class Login_Page extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
 
-        UsernameLabel.setText("Username :");
-
-        EmailLabel.setText("Email :");
+        UsernameLabel.setText("UserID :");
 
         PasswordLabel.setText("Password :");
+
+        UserIDTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserIDTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,17 +72,11 @@ public class Login_Page extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(UsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(UsernameTF))
+                        .addComponent(UserIDTF))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(EmailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PasswordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EmailTF)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(PasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -85,16 +85,12 @@ public class Login_Page extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UsernameLabel)
-                    .addComponent(UsernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EmailLabel)
-                    .addComponent(EmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PasswordLabel)
                     .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,7 +113,7 @@ public class Login_Page extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LoginBTN)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,35 +121,39 @@ public class Login_Page extends javax.swing.JFrame {
 
     private void LoginBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBTNActionPerformed
         // TODO add your handling code here:
-        switch (user.getRole()) {
-            case "Tenant":  
-                     break;
-            case "Security Guard":  new SecurityGuardMain(user).setVisible(true);
-                     break;
-//            case 3:  monthString = "March";
-//                     break;
-//            case 4:  monthString = "April";
-//                     break;
-//            case 5:  monthString = "May";
-//                     break;
-//            case 6:  monthString = "June";
-//                     break;
-//            case 7:  monthString = "July";
-//                     break;
-//            case 8:  monthString = "August";
-//                     break;
-//            case 9:  monthString = "September";
-//                     break;
-//            case 10: monthString = "October";
-//                     break;
-//            case 11: monthString = "November";
-//                     break;
-//            case 12: monthString = "December";
-//                     break;
-//            default: monthString = "Invalid month";
-//                     break;
-        }
+        // Read the text file            
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[0].equals(UserIDTF.getText())&&splitLine[1].equals(PasswordTF.getText())) {
+                    this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
+                    switch (user.getRole()) {
+                    case "tenant" -> {
+                        new TenantMainFrame(user).setVisible(true);
+                        dispose();
+                        break;
+                        }
+                    case "security" -> {
+                        new SecurityGuardMain(user).setVisible(true);                        
+                        dispose();
+                        break;
+                        }
+                    }
+                } 
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
     }//GEN-LAST:event_LoginBTNActionPerformed
+
+    private void UserIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIDTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserIDTFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,13 +191,11 @@ public class Login_Page extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel EmailLabel;
-    private javax.swing.JTextField EmailTF;
     private javax.swing.JButton LoginBTN;
     private javax.swing.JLabel PasswordLabel;
     private javax.swing.JTextField PasswordTF;
+    private javax.swing.JTextField UserIDTF;
     private javax.swing.JLabel UsernameLabel;
-    private javax.swing.JTextField UsernameTF;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

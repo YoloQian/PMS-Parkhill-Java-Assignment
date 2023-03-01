@@ -5,6 +5,10 @@
 package assignment.assignment.Tenant;
 
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -116,13 +120,19 @@ public class TenantMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileBTNActionPerformed
+        
         new TenantViewProfile(user).setVisible(true);
+        
     }//GEN-LAST:event_ProfileBTNActionPerformed
 
     private void VisitorPassBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitorPassBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_VisitorPassBTNActionPerformed
-
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -149,11 +159,14 @@ public class TenantMainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TenantMainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new TenantMainFrame().setVisible(true);
+                
             }
         });
     }
