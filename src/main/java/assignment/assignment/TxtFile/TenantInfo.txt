@@ -1,4 +1,4 @@
 tenantID;userId;phone;unitNumber
 Tenant001;1;012345;A1-01
-Tenant002;2;01234;A1-03
-Tenant003;3;0123;A1-02
+Tenant002;2;012345;A1-03
+Tenant003;3;012345;A1-02

@@ -1,5 +1,5 @@
 userID;password;role;name;email
-1;guard123;Security Guard;yuwei;yuwei@mail.com
+1;guard123;security;yuwei;yuwei@mail.com
 2;ted123;tenant;ted;ted@gmail.com
 3;qian123;vendor;qian;qian@gmail.com
 4;log123;security;log;log@gmail.com

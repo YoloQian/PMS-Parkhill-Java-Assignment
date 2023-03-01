@@ -12,7 +12,8 @@ public class Tenant extends User{
 
     
     
-    public Tenant (int userId, String password, String role, String name, String email, String tenantID, String phone, String unitNumber){
+    public Tenant (int userId, String password, String role, String name, String email, 
+            String tenantID, String phone, String unitNumber){
         super (userId, password, role, name, email);
         this.tenantID = tenantID;
         this.phone= phone;
@@ -43,8 +44,8 @@ public class Tenant extends User{
         this.unitNumber = unitNumber;
     }
     
-    public void viewProfile(User user){
-        new TenantViewProfile(user).setVisible(true);
+    public void viewProfile(){
+//        new TenantViewProfile(user).setVisible(true);
     }
     
     public void makePayment(){

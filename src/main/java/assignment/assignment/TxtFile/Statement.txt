@@ -1,0 +1,1 @@
+StatementID;UserID;IssuedDate;PaidDate;PaidAmount;Description
