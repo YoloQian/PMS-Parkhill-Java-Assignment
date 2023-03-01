@@ -38,7 +38,6 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         visitorEntryBtn = new javax.swing.JButton();
         recordIncidentBtn = new javax.swing.JButton();
         checkpointCheckInBtn = new javax.swing.JButton();
-        searchVisitorBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         visitorDepartBtn = new javax.swing.JButton();
         CheckInList = new javax.swing.JComboBox<>();
@@ -53,7 +52,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
             }
         });
 
-        visitorEntryBtn.setText("Visitor Entry Form");
+        visitorEntryBtn.setText("Visitor Check In");
         visitorEntryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visitorEntryBtnActionPerformed(evt);
@@ -69,16 +68,9 @@ public class SecurityGuardMain extends javax.swing.JFrame {
 
         checkpointCheckInBtn.setText("Checkpoint Check-in");
 
-        searchVisitorBtn.setText("Search Visitor Pass");
-        searchVisitorBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchVisitorBtnActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Security Guard");
 
-        visitorDepartBtn.setText("Visitor Departure Form");
+        visitorDepartBtn.setText("Visitor Check Out");
         visitorDepartBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 visitorDepartBtnActionPerformed(evt);
@@ -112,9 +104,8 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(updateIncidentBtn)
                             .addComponent(visitorDepartBtn)
-                            .addComponent(searchVisitorBtn)
                             .addComponent(checkpointCheckInBtn))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,9 +113,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchVisitorBtn)
-                    .addComponent(manageVisitorPassBtn))
+                .addComponent(manageVisitorPassBtn)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(visitorEntryBtn)
@@ -148,12 +137,6 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         new VisitorPassView(user).setVisible(true);
         dispose();
     }//GEN-LAST:event_manageVisitorPassBtnActionPerformed
-
-    private void searchVisitorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVisitorBtnActionPerformed
-        // TODO add your handling code here:
-        new VisitorPassSearch(user).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_searchVisitorBtnActionPerformed
 
     private void visitorEntryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorEntryBtnActionPerformed
         // TODO add your handling code here:
@@ -222,7 +205,6 @@ public class SecurityGuardMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageVisitorPassBtn;
     private javax.swing.JButton recordIncidentBtn;
-    private javax.swing.JButton searchVisitorBtn;
     private javax.swing.JButton updateIncidentBtn;
     private javax.swing.JButton visitorDepartBtn;
     private javax.swing.JButton visitorEntryBtn;
