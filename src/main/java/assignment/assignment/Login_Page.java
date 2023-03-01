@@ -5,6 +5,7 @@
 package assignment.assignment;
 
 import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
+import assignment.assignment.Tenant.TenantMainFrame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,6 +23,7 @@ public class Login_Page extends javax.swing.JFrame {
      */
     public Login_Page() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -122,18 +124,21 @@ public class Login_Page extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Read the text file            
         try {
-            File file = new File("src/main/java/assignment/assignment/TxtFile/userInfo.txt");         
+            File file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");         
             BufferedReader br = new BufferedReader(new FileReader(file));    
             String line;            
 
             while ((line = br.readLine()) != null) {
-                String[] splitLine = line.split(":");
+                String[] splitLine = line.split(";");
                 if (splitLine[0].equals(UserIDTF.getText())&&splitLine[1].equals(PasswordTF.getText())) {
                     this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
                     switch (user.getRole()) {
-                    case "Tenant" -> {
+                    case "tenant" -> {
+                        new TenantMainFrame(user).setVisible(true);
+                        dispose();
+                        break;
                         }
-                    case "Security Guard" -> {
+                    case "security" -> {
                         new SecurityGuardMain(user).setVisible(true);                        
                         dispose();
                         break;

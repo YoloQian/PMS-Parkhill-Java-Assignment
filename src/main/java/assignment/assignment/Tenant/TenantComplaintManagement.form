@@ -70,29 +70,19 @@
                               <Component id="TenantComplaint_subject" min="-2" pref="180" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="TenantNew_complaint" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TenantNewComplaint" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TenantView_complaint" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="TenantComplaint_status" min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="TenantViewComplaint" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel1" max="32767" attributes="0"/>
-                              <Component id="jLabel2" pref="110" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel1" min="-2" pref="110" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="TenantComplaint_name" min="-2" pref="180" max="-2" attributes="0"/>
-                              <Component id="TenantComplaint_UnitNumber" min="-2" pref="180" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="TenantComplaint_name" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="194" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,13 +93,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TenantComplaint_name" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TenantComplaint_status" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TenantComplaint_UnitNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -126,12 +109,12 @@
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TenantNew_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TenantView_complaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantNewComplaint" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantViewComplaint" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,14 +125,10 @@
             <Property name="text" type="java.lang.String" value="Name :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Unit Number :"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="TenantComplaint_name">
-        </Component>
-        <Component class="javax.swing.JTextField" name="TenantComplaint_UnitNumber">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -167,7 +146,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Complaint Details :"/>
+            <Property name="text" type="java.lang.String" value="Description"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -177,7 +156,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="TenantComplaint_details">
+            <Component class="javax.swing.JTextArea" name="TenantComplaintDescription">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -185,24 +164,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="TenantNew_complaint">
+        <Component class="javax.swing.JButton" name="TenantNewComplaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="New"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="TenantView_complaint">
+        <Component class="javax.swing.JButton" name="TenantViewComplaint">
           <Properties>
             <Property name="text" type="java.lang.String" value="View"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Status :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="TenantComplaint_status">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Open"/>
           </Properties>
         </Component>
       </SubComponents>

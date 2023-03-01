@@ -37,7 +37,7 @@ public class TenantStatement extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TenantStatement = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        TenantImportStatement = new javax.swing.JButton();
+        TenantViewStatement = new javax.swing.JButton();
         TenantCloseStatement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +47,7 @@ public class TenantStatement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Unit Number", "Date", "Amount"
+                "Name", "Month ", "Paid Amount"
             }
         ));
         jScrollPane1.setViewportView(TenantStatement);
@@ -55,10 +55,10 @@ public class TenantStatement extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Statement");
 
-        TenantImportStatement.setText("Import data");
-        TenantImportStatement.addActionListener(new java.awt.event.ActionListener() {
+        TenantViewStatement.setText("View Statement");
+        TenantViewStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantImportStatementActionPerformed(evt);
+                TenantViewStatementActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class TenantStatement extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(TenantImportStatement)
+                        .addComponent(TenantViewStatement)
                         .addGap(127, 127, 127)
                         .addComponent(TenantCloseStatement))
                     .addGroup(layout.createSequentialGroup()
@@ -97,7 +97,7 @@ public class TenantStatement extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TenantImportStatement)
+                    .addComponent(TenantViewStatement)
                     .addComponent(TenantCloseStatement))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -105,7 +105,7 @@ public class TenantStatement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TenantImportStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportStatementActionPerformed
+    private void TenantViewStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewStatementActionPerformed
         File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantStatement.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -123,7 +123,7 @@ public class TenantStatement extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(TenantStatement.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_TenantImportStatementActionPerformed
+    }//GEN-LAST:event_TenantViewStatementActionPerformed
 
     private void TenantCloseStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantCloseStatementActionPerformed
         System.exit(0);
@@ -181,8 +181,8 @@ public class TenantStatement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton TenantCloseStatement;
-    private javax.swing.JButton TenantImportStatement;
     private javax.swing.JTable TenantStatement;
+    private javax.swing.JButton TenantViewStatement;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

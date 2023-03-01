@@ -47,7 +47,7 @@ public class TenantReceipt extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Unit Number", "Date", "Amount"
+                "Payment Description", "Amount Paid", "Paid Date"
             }
         ));
         jScrollPane1.setViewportView(TenantReceipt);

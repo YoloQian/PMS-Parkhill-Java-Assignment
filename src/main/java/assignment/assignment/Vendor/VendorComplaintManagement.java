@@ -52,6 +52,10 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
 
         jLabel2.setText("Unit Number :");
 
+        VendorComplaint_name.setEditable(false);
+
+        VendorComplaint_UnitNumber.setEditable(false);
+
         jLabel3.setText("Date :");
 
         jLabel4.setText("Subject :");
@@ -68,7 +72,7 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
 
         jLabel6.setText("Status :");
 
-        VendorComplaint_status.setText("Open");
+        VendorComplaint_status.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

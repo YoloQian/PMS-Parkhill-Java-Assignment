@@ -6,19 +6,22 @@ package assignment.assignment.Tenant;
 import assignment.assignment.User;
 
 public class Tenant extends User{
-    private String residentID;
+    private String tenantID;
     private String phone;
     private String unitNumber;
 
-    public Tenant (int userId, String password, String role, String name, String email, String residentID, String phone, String unitNumber){
+    
+    
+    public Tenant (int userId, String password, String role, String name, String email, 
+            String tenantID, String phone, String unitNumber){
         super (userId, password, role, name, email);
-        this.residentID = residentID;
+        this.tenantID = tenantID;
         this.phone= phone;
         this.unitNumber= unitNumber;
     }
     
-    public String getResidentID(){
-        return residentID;
+    public String getTenantID(){
+        return tenantID;
     }
     
     public String getPhone(){
@@ -29,8 +32,8 @@ public class Tenant extends User{
         return unitNumber;
     }
     
-    public void setResidentID(String residentID){
-        this.residentID = residentID;
+    public void setTenantID(String tenantID){
+        this.tenantID = tenantID;
     }
     
     public void setPhone(String phone){
@@ -42,7 +45,7 @@ public class Tenant extends User{
     }
     
     public void viewProfile(){
-        new TenantViewProfile().setVisible(true);
+//        new TenantViewProfile(user).setVisible(true);
     }
     
     public void makePayment(){
@@ -64,4 +67,6 @@ public class Tenant extends User{
     public void logComplaints(){
         // Code to log complaints
     }
+    
+    
 }

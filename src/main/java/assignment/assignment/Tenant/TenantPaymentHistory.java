@@ -37,8 +37,8 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TenantPaymentHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        TenantImportPaymentHistory = new javax.swing.JButton();
-        TenantClosePaymentHistory = new javax.swing.JButton();
+        ImportPaymentHistory = new javax.swing.JButton();
+        ClosePaymentHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +47,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Unit Number", "Name ", "Amount", "Date"
+                "Payment History ID", "Unit Number", "Payment Amount", "Paid Date"
             }
         ));
         jScrollPane1.setViewportView(TenantPaymentHistory);
@@ -55,17 +55,17 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Payment History");
 
-        TenantImportPaymentHistory.setText("Import data");
-        TenantImportPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
+        ImportPaymentHistory.setText("View Payment History");
+        ImportPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantImportPaymentHistoryActionPerformed(evt);
+                ImportPaymentHistoryActionPerformed(evt);
             }
         });
 
-        TenantClosePaymentHistory.setText("Close");
-        TenantClosePaymentHistory.addActionListener(new java.awt.event.ActionListener() {
+        ClosePaymentHistory.setText("Close");
+        ClosePaymentHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantClosePaymentHistoryActionPerformed(evt);
+                ClosePaymentHistoryActionPerformed(evt);
             }
         });
 
@@ -79,10 +79,10 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                         .addGap(114, 114, 114)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(TenantImportPaymentHistory)
-                        .addGap(127, 127, 127)
-                        .addComponent(TenantClosePaymentHistory))
+                        .addGap(254, 254, 254)
+                        .addComponent(ImportPaymentHistory)
+                        .addGap(130, 130, 130)
+                        .addComponent(ClosePaymentHistory))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -97,15 +97,15 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TenantImportPaymentHistory)
-                    .addComponent(TenantClosePaymentHistory))
+                    .addComponent(ImportPaymentHistory)
+                    .addComponent(ClosePaymentHistory))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TenantImportPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportPaymentHistoryActionPerformed
+    private void ImportPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportPaymentHistoryActionPerformed
         File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantPaymentHistory.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -124,11 +124,11 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(TenantPaymentHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_TenantImportPaymentHistoryActionPerformed
+    }//GEN-LAST:event_ImportPaymentHistoryActionPerformed
 
-    private void TenantClosePaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantClosePaymentHistoryActionPerformed
+    private void ClosePaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosePaymentHistoryActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_TenantClosePaymentHistoryActionPerformed
+    }//GEN-LAST:event_ClosePaymentHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,8 +167,8 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton TenantClosePaymentHistory;
-    private javax.swing.JButton TenantImportPaymentHistory;
+    private javax.swing.JButton ClosePaymentHistory;
+    private javax.swing.JButton ImportPaymentHistory;
     private javax.swing.JTable TenantPaymentHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
