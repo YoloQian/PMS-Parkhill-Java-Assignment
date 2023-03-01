@@ -13,20 +13,22 @@ import java.time.LocalDate;
 public class Statement extends User {
     
     private int statementId;
-    private LocalDate issuedDate;
-    private LocalDate paidDate;
+    private String issuedDate;
+    private String paidDate;
     private int paidAmount;
     private String description;
-    private String StatementStatus;
+    private String statementstatus;
     
     public Statement(int userId, String password, String role, String name, String email,
-            int statementId, LocalDate issuedDate, LocalDate paidDate, int paidAmount, String description) {
+            int statementId, String issuedDate, String paidDate, int paidAmount, String description,
+                String statementstatus) {
         super(userId, password, role, name, email);
         this.statementId = statementId;
         this.issuedDate = issuedDate;
         this.paidDate = paidDate;
         this.paidAmount = paidAmount;
         this.description = description;
+        this.statementstatus = statementstatus;
     }
     
     public int getStatementId() {
@@ -37,19 +39,19 @@ public class Statement extends User {
         this.statementId = statementId;
     }
 
-    public LocalDate getIssuedDate() {
+    public String getIssuedDate() {
         return issuedDate;
     }
 
-    public void setIssuedDate(LocalDate issuedDate) {
+    public void setIssuedDate(String issuedDate) {
         this.issuedDate = issuedDate;
     }
 
-    public LocalDate getPaidDate() {
+    public String getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(LocalDate paidDate) {
+    public void setPaidDate(String paidDate) {
         this.paidDate = paidDate;
     }
 
@@ -67,5 +69,13 @@ public class Statement extends User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatementStatus() {
+        return statementstatus;
+    }
+
+    public void setStatementStatus(String statementstatus) {
+        this.statementstatus = statementstatus;
     }
 }

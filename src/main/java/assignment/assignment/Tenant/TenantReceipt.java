@@ -47,7 +47,7 @@ public class TenantReceipt extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Payment Description", "Amount Paid", "Paid Date"
+                "Receipt ID", "Issued Date", "Paid Date", "Paid Amount", "Description"
             }
         ));
         jScrollPane1.setViewportView(TenantReceipt);
@@ -106,18 +106,23 @@ public class TenantReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TenantImportReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportReceiptActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantReceipt.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Receipt.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             DefaultTableModel model = (DefaultTableModel) TenantReceipt.getModel();
             
             Object [] dataRows = br.lines().toArray();
-//            System.out.println("No. of records: " + dataRows.length);
-            for (int i = 0; i < dataRows.length; i++){
+            for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(":");
-                model.addRow(dataRow);
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[5];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
             }
             br.close();
         } catch (IOException ex) {
@@ -190,7 +195,7 @@ public class TenantReceipt extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantReceipt().setVisible(true);
+                
             }
         });
     }

@@ -1,2 +1,4 @@
-PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus
-Payment001;2;2023-03-02;2023-04-01;RM100;Rent;Issued
+PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus;InvoiceStatus;StatementStatus;
+Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued
+Payment002;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued
+Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued

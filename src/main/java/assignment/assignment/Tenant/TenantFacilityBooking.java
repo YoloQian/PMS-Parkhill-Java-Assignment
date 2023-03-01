@@ -45,7 +45,7 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Facility Booking Management"));
 
-        jLabel9.setText("Tenant Name :");
+        jLabel9.setText("Name :");
 
         jLabel10.setText("Facility Name :");
 

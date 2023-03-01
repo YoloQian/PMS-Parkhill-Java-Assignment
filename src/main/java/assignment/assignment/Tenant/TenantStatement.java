@@ -47,7 +47,7 @@ public class TenantStatement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Month ", "Paid Amount"
+                "Statement ID", "Issued Date", "Paid Date", "Paid Amount", "Description", "Statement Status"
             }
         ));
         jScrollPane1.setViewportView(TenantStatement);
@@ -106,18 +106,23 @@ public class TenantStatement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TenantViewStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewStatementActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantStatement.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Statement.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             DefaultTableModel model = (DefaultTableModel) TenantStatement.getModel();
             
             Object [] dataRows = br.lines().toArray();
-//            System.out.println("No. of records: " + dataRows.length);
-            for (int i = 0; i < dataRows.length; i++){
+            for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(":");
-                model.addRow(dataRow);
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[6];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
             }
             br.close();
         } catch (IOException ex) {
@@ -174,7 +179,7 @@ public class TenantStatement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantStatement().setVisible(true);
+                
             }
         });
     }

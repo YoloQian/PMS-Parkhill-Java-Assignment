@@ -4,8 +4,6 @@
  */
 package assignment.assignment;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author TeD
@@ -13,19 +11,22 @@ import java.time.LocalDate;
 public class Receipt extends User {
     
     private int receiptId;
-    private LocalDate issuedDate;
-    private LocalDate paidDate;
+    private String issuedDate;
+    private String paidDate;
     private int paidAmount;
     private String description;
+    private String receiptstatus;
     
     public Receipt(int userId, String password, String role, String name, String email,
-            int receiptId, LocalDate issuedDate, LocalDate paidDate, int paidAmount, String description) {
+            int receiptId, String issuedDate, String paidDate, int paidAmount, String description, 
+                String receiptstatus) {
         super(userId, password, role, name, email);
         this.receiptId = receiptId;
         this.issuedDate = issuedDate;
         this.paidDate = paidDate;
         this.paidAmount = paidAmount;
         this.description = description;
+        this.receiptstatus = receiptstatus;
     }
     
     public int getReceiptId() {
@@ -36,19 +37,19 @@ public class Receipt extends User {
         this.receiptId = receiptId;
     }
 
-    public LocalDate getIssuedDate() {
+    public String getIssuedDate() {
         return issuedDate;
     }
 
-    public void setIssuedDate(LocalDate issuedDate) {
+    public void setIssuedDate(String issuedDate) {
         this.issuedDate = issuedDate;
     }
 
-    public LocalDate getPaidDate() {
+    public String getPaidDate() {
         return paidDate;
     }
 
-    public void setPaidDate(LocalDate paidDate) {
+    public void setPaidDate(String paidDate) {
         this.paidDate = paidDate;
     }
 
@@ -66,5 +67,13 @@ public class Receipt extends User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getReceiptstatus() {
+        return receiptstatus;
+    }
+
+    public void setReceiptstatus(String receiptstatus) {
+        this.receiptstatus = receiptstatus;
     }
 }

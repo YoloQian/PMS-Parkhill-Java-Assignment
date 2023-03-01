@@ -4,54 +4,57 @@
  */
 package assignment.assignment;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author TeD
  */
 public class Payment extends User {
 
-    private int paymentId;
-    private LocalDate recordDate;
-    private LocalDate dueDate;
+    private String paymentId;
+    private String recordDate;
+    private String dueDate;
     private int paymentAmount;
     private String description;
-    private String receiptStatus;
+    private String receiptstatus;
+    private String invoicestatus;
+    private String statementstatus;
     
 
     public Payment(int userId, String password, String role, String name, String email, 
-            int paymentId, LocalDate recordDate, LocalDate dueDate, int paymentAmount, String description, String receiptStatus) {
+            String paymentId, String recordDate, String dueDate, int paymentAmount, String description, String receiptstatus
+                ,String invoicestatus, String statementstatus) {
         super(userId, password, role, name, email);
         this.paymentId = paymentId;
         this.recordDate = recordDate;
         this.dueDate = dueDate;
         this.paymentAmount = paymentAmount;
         this.description = description;
-        this.receiptStatus = receiptStatus;
+        this.receiptstatus = receiptstatus;
+        this.invoicestatus = invoicestatus;
+        this.statementstatus = statementstatus;
     }
 
-    public int getPaymentId() {
+    public String getPaymentId() {
         return paymentId;
     }
 
-    public void setPaymentId(int paymentId) {
+    public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
 
-    public LocalDate getRecordDate() {
+    public String getRecordDate() {
         return recordDate;
     }
 
-    public void setRecordDate(LocalDate recordDate) {
+    public void setRecordDate(String recordDate) {
         this.recordDate = recordDate;
     }
 
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -72,10 +75,28 @@ public class Payment extends User {
     }
 
     public String getReceiptStatus() {
-        return receiptStatus;
+        return receiptstatus;
     }
 
-    public void setReceiptStatus(String receiptStatus) {
-        this.receiptStatus = receiptStatus;
+    public void setReceiptStatus(String receiptstatus) {
+        this.receiptstatus = receiptstatus;
     }
+    
+    public String getInvoicestatus() {
+        return invoicestatus;
+    }
+
+    public void setInvoicestatus(String invoicestatus) {
+        this.invoicestatus = invoicestatus;
+    }
+
+    public String getStatementstatus() {
+        return statementstatus;
+    }
+
+    public void setStatementstatus(String statementstatus) {
+        this.statementstatus = statementstatus;
+    }
+    
+    
 }

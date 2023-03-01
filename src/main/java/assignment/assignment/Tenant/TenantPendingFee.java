@@ -113,11 +113,15 @@ public class TenantPendingFee extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) TenantPendingFee.getModel();
             
             Object [] dataRows = br.lines().toArray();
-//            System.out.println("No. of records: " + dataRows.length);
-            for (int i = 0; i < dataRows.length; i++){
+            for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
                 String [] dataRow = rec.split(";");
-                model.addRow(dataRow);
+                String [] tempArray = new String[4];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                model.addRow(tempArray);
             }
             br.close();
             
@@ -167,7 +171,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantPendingFee().setVisible(true);
+                
             }
         });
     }

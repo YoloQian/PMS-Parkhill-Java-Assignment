@@ -116,7 +116,7 @@ public class TenantInvoice extends javax.swing.JFrame {
             for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
                 String [] dataRow = rec.split(";");
-                String [] tempArray = new String[5];
+                String [] tempArray = new String[6];
                 tempArray[0] = dataRow[0];
                 tempArray[1] = dataRow[2];
                 tempArray[2] = dataRow[3];

@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -47,7 +48,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Payment History ID", "Unit Number", "Payment Amount", "Paid Date"
+                "Payment History ID", "RecordDate", "Due Date", "Payment Amount", "Description"
             }
         ));
         jScrollPane1.setViewportView(TenantPaymentHistory);
@@ -106,19 +107,28 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImportPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportPaymentHistoryActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantPaymentHistory.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             DefaultTableModel model = (DefaultTableModel) TenantPaymentHistory.getModel();
             
             Object [] dataRows = br.lines().toArray();
-//            System.out.println("No. of records: " + dataRows.length);
-            for (int i = 0; i < dataRows.length; i++){
+            for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(":");
-                
-                model.addRow(dataRow);
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[8];
+                System.out.println(Arrays.toString(dataRow));
+                System.out.println(Arrays.toString(tempArray));
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                tempArray[5] = dataRow[6];
+                tempArray[6] = dataRow[7];
+                tempArray[7] = dataRow[8];
+                model.addRow(tempArray);
             }
             br.close();
         } catch (IOException ex) {
