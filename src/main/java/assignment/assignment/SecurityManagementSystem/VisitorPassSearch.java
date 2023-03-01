@@ -23,6 +23,7 @@ public class VisitorPassSearch extends javax.swing.JFrame {
     public VisitorPassSearch(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,10 +37,8 @@ public class VisitorPassSearch extends javax.swing.JFrame {
 
         visitorPassSearchLabel = new javax.swing.JLabel();
         visitorNameLabel = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JLabel();
         residentIDLabel = new javax.swing.JLabel();
         vNameTextField = new javax.swing.JTextField();
-        vDateTextField = new javax.swing.JTextField();
         residentIDTextField = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
         visitorPassTableBackBtn = new javax.swing.JButton();
@@ -50,15 +49,14 @@ public class VisitorPassSearch extends javax.swing.JFrame {
 
         visitorNameLabel.setText("Visitor Name");
 
-        dateLabel.setText("Date");
-
         residentIDLabel.setText("Resident ID");
 
-        vNameTextField.setText("jTextField1");
+        vNameTextField.setPreferredSize(new java.awt.Dimension(100, 22));
+        vNameTextField.setRequestFocusEnabled(false);
 
-        vDateTextField.setText("jTextField2");
-
-        residentIDTextField.setText("jTextField3");
+        residentIDTextField.setMinimumSize(new java.awt.Dimension(150, 22));
+        residentIDTextField.setName(""); // NOI18N
+        residentIDTextField.setPreferredSize(new java.awt.Dimension(100, 22));
         residentIDTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 residentIDTextFieldActionPerformed(evt);
@@ -93,15 +91,11 @@ public class VisitorPassSearch extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(visitorNameLabel)
                                     .addComponent(vNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(51, 51, 51)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateLabel)
-                                    .addComponent(vDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
+                                .addGap(151, 151, 151)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(residentIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(residentIDLabel))))
-                        .addContainerGap(89, Short.MAX_VALUE))
+                        .addContainerGap(56, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(visitorPassSearchLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,12 +115,10 @@ public class VisitorPassSearch extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(visitorNameLabel)
-                    .addComponent(dateLabel)
                     .addComponent(residentIDLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(vNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(vDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(residentIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(searchBtn)
@@ -148,13 +140,14 @@ public class VisitorPassSearch extends javax.swing.JFrame {
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
-        if (user instanceof SecurityGuard) {
+        if (user.getRole().equals("security")) {
             new SecurityGuardMain(user).setVisible(true);
+            dispose();
         }
-        else if (user.getRole().equals("Tenant")) {
+        else if (user.getRole().equals("tenant")) {
 //            new TenantMainFrame(user).setVisible(true); <------
+            dispose();
         }
-        this.dispose();
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
 
     /**
@@ -193,11 +186,9 @@ public class VisitorPassSearch extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel residentIDLabel;
     private javax.swing.JTextField residentIDTextField;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JTextField vDateTextField;
     private javax.swing.JTextField vNameTextField;
     private javax.swing.JLabel visitorNameLabel;
     private javax.swing.JLabel visitorPassSearchLabel;

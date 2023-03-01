@@ -23,6 +23,7 @@ public class VisitorPassView extends javax.swing.JFrame {
     public VisitorPassView(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -120,13 +121,14 @@ public class VisitorPassView extends javax.swing.JFrame {
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
-        if (user.getRole().equals("Security Guard")) {
+        if (user.getRole().equals("security")) {
          new SecurityGuardMain(user).setVisible(true);
-      }
-      else if (user.getRole().equals("Tenant")) {
-         new TenantMainFrame(user).setVisible(true);
-      }
-      this.dispose();
+         dispose();
+        }
+        else if (user.getRole().equals("tenant")) {
+           new TenantMainFrame(user).setVisible(true);
+           dispose();
+        }
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
     
     /**

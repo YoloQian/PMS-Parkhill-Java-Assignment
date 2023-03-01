@@ -32,8 +32,8 @@ public class VisitorEntryForm extends javax.swing.JFrame {
      */
     public VisitorEntryForm(User user) {
         this.user = user;
-        setLocationRelativeTo(null);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -22,6 +22,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
     public SecurityGuardMain(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

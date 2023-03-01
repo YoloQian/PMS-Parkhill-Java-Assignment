@@ -21,6 +21,7 @@ public class IncidentForm extends javax.swing.JFrame {
     public IncidentForm(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,10 +42,11 @@ public class IncidentForm extends javax.swing.JFrame {
         statusLabel = new javax.swing.JLabel();
         descriptionTF = new javax.swing.JTextField();
         statusTF = new javax.swing.JTextField();
-        dateTF = new javax.swing.JTextField();
         locationTF = new javax.swing.JTextField();
         titleTF = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        dateTimeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +60,7 @@ public class IncidentForm extends javax.swing.JFrame {
 
         descriptionLabel.setText("Description");
 
-        dateLabel.setText("Date");
+        dateLabel.setText("DateTime");
 
         statusLabel.setText("Status");
 
@@ -68,19 +70,21 @@ public class IncidentForm extends javax.swing.JFrame {
         statusTF.setPreferredSize(new java.awt.Dimension(150, 22));
         statusTF.setRequestFocusEnabled(false);
 
-        dateTF.setPreferredSize(new java.awt.Dimension(150, 22));
-        dateTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateTFActionPerformed(evt);
-            }
-        });
-
         locationTF.setPreferredSize(new java.awt.Dimension(150, 22));
 
         titleTF.setMinimumSize(new java.awt.Dimension(150, 64));
         titleTF.setPreferredSize(new java.awt.Dimension(150, 22));
 
         backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("DateTime");
+
+        dateTimeLabel.setText("No Time Selected");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,20 +99,22 @@ public class IncidentForm extends javax.swing.JFrame {
                     .addComponent(locationLabel)
                     .addComponent(titleLabel)
                     .addComponent(incidentFormLabel))
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(descriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(locationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(titleTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(statusTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(117, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backBtn)
-                        .addGap(33, 33, 33))))
+                        .addGap(53, 53, 53))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(dateTimeLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(submitButton)
@@ -131,11 +137,12 @@ public class IncidentForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(descriptionLabel)
                             .addComponent(descriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dateLabel)
-                            .addComponent(dateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1)
+                            .addComponent(dateTimeLabel))
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(locationLabel)
                             .addComponent(locationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,11 +157,11 @@ public class IncidentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTFActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         new SecurityGuardMain(user).setVisible(true);
         dispose();
-    }//GEN-LAST:event_dateTFActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,10 +200,11 @@ public class IncidentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel dateLabel;
-    private javax.swing.JTextField dateTF;
+    private javax.swing.JLabel dateTimeLabel;
     private javax.swing.JLabel descriptionLabel;
     private javax.swing.JTextField descriptionTF;
     private javax.swing.JLabel incidentFormLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel locationLabel;
     private javax.swing.JTextField locationTF;
     private javax.swing.JLabel statusLabel;
