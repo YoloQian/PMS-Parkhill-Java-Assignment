@@ -47,7 +47,7 @@ public class TenantInvoice extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Invoice ID", "Date Issued", "Due Date", "Amount Due", "Description"
+                "Invoice ID", "Issued Date", "Due Date", "Issued Amount", "Description"
             }
         ));
         jScrollPane1.setViewportView(TenantInvoice);
@@ -106,17 +106,16 @@ public class TenantInvoice extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TenantImportInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantImportInvoiceActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantInvoice.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Invoice.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             
             DefaultTableModel model = (DefaultTableModel) TenantInvoice.getModel();
             
             Object [] dataRows = br.lines().toArray();
-//            System.out.println("No. of records: " + dataRows.length);
             for (int i = 0; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(":");
+                String [] dataRow = rec.split(";");
                 model.addRow(dataRow);
             }
             br.close();

@@ -106,7 +106,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TenantViewPendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewPendingFeeActionPerformed
-        File file = new File("C:\\Users\\User\\Desktop\\UNI\\Degree\\SEM 1\\Object oriented with JAVA\\Assignment\\Answer\\TenantPendingFee.txt");
+        File file = new File("src/main/java/assignment/assignment/TxtFile/PendingFee.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             
@@ -116,7 +116,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
 //            System.out.println("No. of records: " + dataRows.length);
             for (int i = 0; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(":");
+                String [] dataRow = rec.split(";");
                 model.addRow(dataRow);
             }
             br.close();
