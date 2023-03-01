@@ -17,6 +17,7 @@ public class Statement extends User {
     private LocalDate paidDate;
     private int paidAmount;
     private String description;
+    private String StatementStatus;
     
     public Statement(int userId, String password, String role, String name, String email,
             int statementId, LocalDate issuedDate, LocalDate paidDate, int paidAmount, String description) {

@@ -1,4 +1,4 @@
-InvoiceID;UserID;IssuedDate;DueDate;IssuedAmount;Description
+InvoiceID;UserID;IssuedDate;DueDate;IssuedAmount;Description;InvoiceStatus
 Invoice001;2;2023-03-01;2023-04-01;RM100;Rent
 Invoice002;2;2023-03-02;2023-04-02;RM100;Utilities
 Invoice003;2;2023-03-03;2023-04-03;RM100;Rent

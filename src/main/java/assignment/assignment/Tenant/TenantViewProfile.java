@@ -4,11 +4,9 @@ import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.swing.JOptionPane.showMessageDialog;
@@ -50,7 +48,8 @@ public class TenantViewProfile extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(";");
                 if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
-                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(), user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
                     correctline = count;
                 } else {
                     count++;

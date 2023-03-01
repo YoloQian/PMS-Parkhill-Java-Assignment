@@ -16,15 +16,17 @@ public class Invoice extends User {
     private LocalDate dueDate;
     private int issuedAmount;
     private String description;
+    private String InvoiceStatus;
 
     public Invoice(int userId, String password, String role, String name, String email, 
-            int invoiceId, LocalDate issuedDate, LocalDate dueDate, int issuedAmount, String description) {
+            int invoiceId, LocalDate issuedDate, LocalDate dueDate, int issuedAmount, String description, String InvoiceStatus) {
         super(userId, password, role, name, email);
         this.invoiceId = invoiceId;
         this.issuedDate = issuedDate;
         this.dueDate = dueDate;
         this.issuedAmount = issuedAmount;
         this.description = description;
+        this.InvoiceStatus = InvoiceStatus;
     }
 
     public int getInvoiceId() {
@@ -65,5 +67,13 @@ public class Invoice extends User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    
+    public String getInvoiceStatus() {
+        return InvoiceStatus;
+    }
+
+    public void setInvoiceStatus(String InvoiceStatus) {
+        this.InvoiceStatus = InvoiceStatus;
     }
 }
