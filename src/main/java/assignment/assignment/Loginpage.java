@@ -15,13 +15,13 @@ import java.io.IOException;
  *
  * @author user
  */
-public class Login_Page extends javax.swing.JFrame {
+public class Loginpage extends javax.swing.JFrame {
     private User user;
 
     /**
      * Creates new form Login_Page
      */
-    public Login_Page() {
+    public Loginpage() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -41,6 +41,8 @@ public class Login_Page extends javax.swing.JFrame {
         PasswordLabel = new javax.swing.JLabel();
         UserIDTF = new javax.swing.JTextField();
         PasswordTF = new javax.swing.JTextField();
+        visitorpassBTN = new javax.swing.JButton();
+        parkhillLABEL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,26 +96,46 @@ public class Login_Page extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        visitorpassBTN.setText("Visitor Pass");
+        visitorpassBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visitorpassBTNActionPerformed(evt);
+            }
+        });
+
+        parkhillLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        parkhillLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        parkhillLABEL.setText("PARKHILL");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(LoginBTN)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(visitorpassBTN)
+                        .addGap(44, 44, 44)
+                        .addComponent(LoginBTN)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(parkhillLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(45, 45, 45)
+                .addComponent(parkhillLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LoginBTN)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginBTN)
+                    .addComponent(visitorpassBTN))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -156,6 +178,10 @@ public class Login_Page extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserIDTFActionPerformed
 
+    private void visitorpassBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorpassBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_visitorpassBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -173,20 +199,21 @@ public class Login_Page extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Loginpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login_Page().setVisible(true);
+                new Loginpage().setVisible(true);
             }
         });
     }
@@ -198,5 +225,7 @@ public class Login_Page extends javax.swing.JFrame {
     private javax.swing.JTextField UserIDTF;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel parkhillLABEL;
+    private javax.swing.JButton visitorpassBTN;
     // End of variables declaration//GEN-END:variables
 }
