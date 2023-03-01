@@ -23,6 +23,7 @@ public class Login_Page extends javax.swing.JFrame {
      */
     public Login_Page() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

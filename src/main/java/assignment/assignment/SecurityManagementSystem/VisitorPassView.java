@@ -2,6 +2,11 @@ package assignment.assignment.SecurityManagementSystem;
 
 import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -23,6 +28,7 @@ public class VisitorPassView extends javax.swing.JFrame {
     public VisitorPassView(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -45,16 +51,26 @@ public class VisitorPassView extends javax.swing.JFrame {
 
         visitorPassLabel.setText("Visitor Pass");
 
-        visitorPassTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Visitor Name", "Phone No.", "Visit Date", "Resident ID"
+        // Read data from text file and create Object[][] data
+        List<Object[]> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/UserInfo.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                Object[] row = new Object[4];
+                row[0] = splitLine[0];
+                row[1] = splitLine[1];
+                row[2] = splitLine[2];
+                row[3] = splitLine[3];
+                data.add(row);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] columnNames = {"Visitor Name", "Phone No.", "Visit Date", "Resident ID"};
+        Object[][] tableData = data.toArray(new Object[data.size()][4]);
+        visitorPassTable.setModel(new javax.swing.table.DefaultTableModel(tableData, columnNames
         ));
         jScrollPane1.setViewportView(visitorPassTable);
 
@@ -120,13 +136,14 @@ public class VisitorPassView extends javax.swing.JFrame {
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
-        if (user.getRole().equals("Security Guard")) {
+        if (user.getRole().equals("security")) {
          new SecurityGuardMain(user).setVisible(true);
-      }
-      else if (user.getRole().equals("Tenant")) {
-         new TenantMainFrame(user).setVisible(true);
-      }
-      this.dispose();
+         dispose();
+        }
+        else if (user.getRole().equals("tenant")) {
+           new TenantMainFrame(user).setVisible(true);
+           dispose();
+        }
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
     
     /**
