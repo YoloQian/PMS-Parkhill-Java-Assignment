@@ -79,13 +79,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="visitorPassTable">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Visitor Name" type="java.lang.Object"/>
-                <Column editable="true" title="Phone No." type="java.lang.Object"/>
-                <Column editable="true" title="Visit Date" type="java.lang.Object"/>
-                <Column editable="true" title="Resident ID" type="java.lang.Object"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(tableData, columnNames&#xa;)" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -115,6 +110,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="// Read data from text file and create Object[][] data&#xa;List&lt;Object[]&gt; data = new ArrayList&lt;&gt;();&#xa;try (BufferedReader br = new BufferedReader(new FileReader(&quot;src/main/java/assignment/assignment/TxtFile/UserInfo.txt&quot;))) {&#xa;    String line;&#xa;    while ((line = br.readLine()) != null) {&#xa;        String[] splitLine = line.split(&quot;;&quot;);&#xa;        Object[] row = new Object[4];&#xa;        row[0] = splitLine[0];&#xa;        row[1] = splitLine[1];&#xa;        row[2] = splitLine[2];&#xa;        row[3] = splitLine[3];&#xa;        data.add(row);&#xa;    }&#xa;} catch (IOException e) {&#xa;    e.printStackTrace();&#xa;}&#xa;&#xa;String[] columnNames = {&quot;Visitor Name&quot;, &quot;Phone No.&quot;, &quot;Visit Date&quot;, &quot;Resident ID&quot;};&#xa;Object[][] tableData = data.toArray(new Object[data.size()][4]);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
