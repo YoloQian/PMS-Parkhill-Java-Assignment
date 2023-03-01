@@ -113,10 +113,16 @@ public class TenantInvoice extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) TenantInvoice.getModel();
             
             Object [] dataRows = br.lines().toArray();
-            for (int i = 0; i < dataRows.length; i++){
+            for (int i = 1; i < dataRows.length; i++){
                 String rec = dataRows[i].toString();
                 String [] dataRow = rec.split(";");
-                model.addRow(dataRow);
+                String [] tempArray = new String[5];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
             }
             br.close();
         } catch (IOException ex) {
