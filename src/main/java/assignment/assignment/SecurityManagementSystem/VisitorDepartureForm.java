@@ -1,6 +1,13 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.*;
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import static java.util.Objects.isNull;
+import javax.swing.JOptionPane;
 
 
 
@@ -22,6 +29,7 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
     public VisitorDepartureForm(User user) {
         this.user = user;
         initComponents();
+        setComboBox(nameComboBox, 5, "VisitorEntry.txt");
         setLocationRelativeTo(null);
     }
 
@@ -37,16 +45,17 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
         checkInLabel = new javax.swing.JLabel();
         phoneLabel = new javax.swing.JLabel();
         reasonLabel = new javax.swing.JLabel();
-        phoneTF = new javax.swing.JTextField();
-        reasonTF = new javax.swing.JTextField();
-        checkInTF = new javax.swing.JTextField();
         visitorDepartureFormLabel = new javax.swing.JLabel();
         submitBtn = new javax.swing.JButton();
         nameLabel = new javax.swing.JLabel();
-        nameList = new javax.swing.JComboBox<>();
+        nameComboBox = new javax.swing.JComboBox<>();
         checkoutLabel = new javax.swing.JLabel();
-        checkoutTF = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
+        phoneValueLabel = new javax.swing.JLabel();
+        checkInDateTimeValue = new javax.swing.JLabel();
+        reasonValueLabel = new javax.swing.JLabel();
+        dateTimeBtn = new javax.swing.JButton();
+        dateTimeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,29 +65,25 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
 
         reasonLabel.setText("Reason");
 
-        phoneTF.setPreferredSize(new java.awt.Dimension(150, 22));
-
-        reasonTF.setPreferredSize(new java.awt.Dimension(150, 22));
-
-        checkInTF.setPreferredSize(new java.awt.Dimension(150, 22));
-
         visitorDepartureFormLabel.setText("Visitor Departure Form");
 
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         nameLabel.setText("Name");
 
-        nameList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        nameList.setPreferredSize(new java.awt.Dimension(150, 22));
-        nameList.addActionListener(new java.awt.event.ActionListener() {
+        nameComboBox.setPreferredSize(new java.awt.Dimension(150, 22));
+        nameComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameListActionPerformed(evt);
+                nameComboBoxActionPerformed(evt);
             }
         });
 
         checkoutLabel.setText("Checkout Datetime");
-
-        checkoutTF.setPreferredSize(new java.awt.Dimension(150, 22));
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,14 +92,29 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
             }
         });
 
+        phoneValueLabel.setText("phoneValue");
+
+        checkInDateTimeValue.setText("checkInDateTime");
+
+        reasonValueLabel.setText("reasonValue");
+
+        dateTimeBtn.setText("Set DateTime");
+        dateTimeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateTimeBtnActionPerformed(evt);
+            }
+        });
+
+        dateTimeLabel.setText("No Time Selected");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(submitBtn)
                             .addComponent(reasonLabel)
@@ -102,20 +122,28 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
                             .addComponent(checkInLabel)
                             .addComponent(nameLabel)
                             .addComponent(visitorDepartureFormLabel))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reasonTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(checkInTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(checkoutLabel)
-                        .addGap(41, 41, 41)
-                        .addComponent(checkoutTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(backBtn)
-                .addGap(58, 58, 58))
+                        .addGap(42, 42, 42)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkInDateTimeValue)
+                            .addComponent(reasonValueLabel))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(phoneValueLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(backBtn)
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dateTimeBtn)
+                        .addGap(34, 34, 34)
+                        .addComponent(dateTimeLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,40 +155,118 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
-                    .addComponent(nameList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneLabel)
-                    .addComponent(phoneTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phoneValueLabel))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(reasonLabel)
-                    .addComponent(reasonTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reasonValueLabel))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkInLabel)
-                    .addComponent(checkInTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(checkInDateTimeValue))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(checkoutLabel)
-                    .addComponent(checkoutTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dateTimeBtn)
+                        .addComponent(dateTimeLabel)))
+                .addGap(20, 20, 20)
                 .addComponent(submitBtn)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameListActionPerformed
+    private void nameComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameComboBoxActionPerformed
+// TODO add your handling code here:
+        String visitorName = (String) nameComboBox.getSelectedItem();
+        if (visitorName != null) {
+            // Find the line in the file that corresponds to the selected visitor
+            try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorEntry.txt"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(";");
+                    if (parts[0].equals(visitorName)) {
+                        // Update the labels with the data from the selected line
+                        phoneValueLabel.setText(parts[1]);
+                        reasonValueLabel.setText(parts[2]);
+                        checkInDateTimeValue.setText(parts[3]);
+                        dateTimeLabel.setText("No Time Selected");
+                        reader.close();
+                        break;
+                    }
+                }
+            } catch (IOException ex) {
+            }
+        }
+    }//GEN-LAST:event_nameComboBoxActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         new SecurityGuardMain(user).setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void dateTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTimeBtnActionPerformed
+        // TODO add your handling code here:
+        showDateTimeDialog(dateTimeLabel);  
+    }//GEN-LAST:event_dateTimeBtnActionPerformed
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        String visitorName = (String) nameComboBox.getSelectedItem();
+        String checkOutDateTime = dateTimeLabel.getText();
+
+        if (isNull(visitorName) || checkOutDateTime.equals("No Time Selected")) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Read input file and store in StringBuffer
+            BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorEntry.txt"));
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                String lineVisitorName = parts[0];
+
+                if (lineVisitorName.equals(visitorName)) {
+                    if (parts.length >= 5) {
+                        parts[4] = checkOutDateTime;
+                        line = String.join(";", parts);
+                    } else {
+                        line = line + checkOutDateTime;
+                    }
+                }
+
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/VisitorEntry.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Visitor checkout recorded successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error updating file", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }  
+
+        // update the combo box selection
+        setComboBox(nameComboBox, 5, "VisitorEntry.txt");   
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    
 
     /**
      * @param args the command line arguments
@@ -198,16 +304,17 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel checkInDateTimeValue;
     private javax.swing.JLabel checkInLabel;
-    private javax.swing.JTextField checkInTF;
     private javax.swing.JLabel checkoutLabel;
-    private javax.swing.JTextField checkoutTF;
+    private javax.swing.JButton dateTimeBtn;
+    private javax.swing.JLabel dateTimeLabel;
+    private javax.swing.JComboBox<String> nameComboBox;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JComboBox<String> nameList;
     private javax.swing.JLabel phoneLabel;
-    private javax.swing.JTextField phoneTF;
+    private javax.swing.JLabel phoneValueLabel;
     private javax.swing.JLabel reasonLabel;
-    private javax.swing.JTextField reasonTF;
+    private javax.swing.JLabel reasonValueLabel;
     private javax.swing.JButton submitBtn;
     private javax.swing.JLabel visitorDepartureFormLabel;
     // End of variables declaration//GEN-END:variables

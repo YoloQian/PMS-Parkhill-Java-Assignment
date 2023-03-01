@@ -6,10 +6,20 @@ import java.awt.FlowLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
@@ -46,5 +56,46 @@ public class DateTimeDialog extends JDialog {
 
     public Date getSelectedDate() {
         return selectedDate;
+    }
+    
+    public static void showDateTimeDialog(JLabel Label) {
+        DateTimeDialog dialog = new DateTimeDialog(null);
+        dialog.setVisible(true);
+        Date selectedDate = dialog.getSelectedDate();
+        if (selectedDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Label.setText(format.format(selectedDate));
+        }
+    }
+    public static void setComboBox(JComboBox comboBox, int integer, String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/" + filename))) {
+            List<String> Names = new ArrayList<>();
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(";");
+                String Name = parts[0];
+                String checkOutDateTime = "";
+
+                if (parts.length >= integer) {
+                    checkOutDateTime = parts[integer-1];
+                }
+
+                if (filename.equals("VisitorEntry.txt")) {
+                    if (checkOutDateTime.isEmpty()) {
+                        Names.add(Name);
+                    }
+                } else if (parts[4].equals("Open")) {
+                    Names.add(Name);
+                }
+            }
+
+            // populate the combo box with visitor names that do not have a check-out date and time
+            comboBox.setModel(new DefaultComboBoxModel<>(Names.toArray(String[]::new)));
+
+        } catch (IOException e) {
+            // handle exception
+        }
+        comboBox.setSelectedItem(null);
     }
 }

@@ -1,6 +1,12 @@
 package assignment.assignment.SecurityManagementSystem;
 
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.*;
+import java.io.FileOutputStream;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -21,6 +27,7 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
     public IncidentUpdateForm(User user) {
         this.user = user;
         initComponents();
+        setComboBox(incidentList, 6, "IncidentForm.txt");
         setLocationRelativeTo(null);
     }
 
@@ -40,14 +47,14 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
         descriptionLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         statusLabel = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        descriptionTF = new javax.swing.JTextField();
         incidentFormLabel = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        locationTF = new javax.swing.JTextField();
         submitBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         incidentList = new javax.swing.JComboBox<>();
+        statusComboBox = new javax.swing.JComboBox<>();
+        dateTimeLabel = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -61,31 +68,27 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
 
         descriptionLabel.setText("Description");
 
-        dateLabel.setText("Date");
+        dateLabel.setText("DateTime");
 
         statusLabel.setText("Status");
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(150, 22));
-
-        jTextField6.setPreferredSize(new java.awt.Dimension(150, 22));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-
-        jTextField3.setPreferredSize(new java.awt.Dimension(150, 22));
+        descriptionTF.setPreferredSize(new java.awt.Dimension(150, 22));
 
         incidentFormLabel.setText("Incident Update Form");
 
-        jTextField4.setPreferredSize(new java.awt.Dimension(150, 22));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        locationTF.setPreferredSize(new java.awt.Dimension(150, 22));
+        locationTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                locationTFActionPerformed(evt);
             }
         });
 
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +98,15 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
         });
 
         incidentList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        incidentList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incidentListActionPerformed(evt);
+            }
+        });
+
+        statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open", "Resolved" }));
+
+        dateTimeLabel.setText("DateTime");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,18 +126,19 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
                     .addComponent(incidentFormLabel)
                     .addComponent(statusLabel))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(incidentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                         .addComponent(backBtn)
-                        .addGap(59, 59, 59))))
+                        .addGap(59, 59, 59))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incidentList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateTimeLabel)
+                            .addComponent(locationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,19 +154,19 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descriptionLabel)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateLabel)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(locationLabel)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(descriptionTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusLabel))
+                    .addComponent(locationLabel)
+                    .addComponent(locationTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateLabel)
+                    .addComponent(dateTimeLabel))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusLabel)
+                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(submitBtn)
                 .addContainerGap(64, Short.MAX_VALUE))
@@ -162,19 +175,87 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void locationTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_locationTFActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
         new SecurityGuardMain(user).setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void incidentListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incidentListActionPerformed
+        // TODO add your handling code here:
+        String incidentName = (String) incidentList.getSelectedItem();
+        if (incidentName != null) {
+            // Find the line in the file that corresponds to the selected visitor
+            try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/IncidentForm.txt"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(";");
+                    if (parts[0].equals(incidentName)) {
+                        // Update the labels with the data from the selected line
+                        descriptionTF.setText(parts[1]);
+                        locationTF.setText(parts[2]);
+                        dateTimeLabel.setText(parts[3]);                        
+                        reader.close();
+                        break;
+                    }
+                }
+            } catch (IOException ex) {
+            }
+        }
+    }//GEN-LAST:event_incidentListActionPerformed
+
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+        String title = (String) incidentList.getSelectedItem();
+        String description = descriptionTF.getText();
+        String location = locationTF.getText();
+        String DateTime = dateTimeLabel.getText();
+        String status = (String) statusComboBox.getSelectedItem();
+
+        if (title.isEmpty() || description.isEmpty() || location.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Read input file and store in StringBuffer
+            BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/IncidentForm.txt"));
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                String lineTitle = parts[0];
+
+                if (lineTitle.equals(title)) {
+                   line = title + ";" + description + ";" + location + ";" + DateTime + ";" + status;
+                }
+                    
+
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/IncidentForm.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Visitor checkout recorded successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error updating file", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }  
+
+        // update the combo box selection
+        setComboBox(incidentList, 5, "IncidentForm.txt");                                            
+
+    }//GEN-LAST:event_submitBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,16 +294,16 @@ public class IncidentUpdateForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JLabel dateTimeLabel;
     private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JTextField descriptionTF;
     private javax.swing.JLabel incidentFormLabel;
     private javax.swing.JComboBox<String> incidentList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel locationLabel;
+    private javax.swing.JTextField locationTF;
+    private javax.swing.JComboBox<String> statusComboBox;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JButton submitBtn;
     private javax.swing.JLabel titleLabel;
