@@ -1,20 +1,12 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.*;
 import assignment.assignment.User;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import static java.util.Objects.isNull;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 
@@ -37,7 +29,7 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
     public VisitorDepartureForm(User user) {
         this.user = user;
         initComponents();
-        setNameComboBox();
+        setComboBox(nameComboBox, 5, "VisitorEntry.txt");
         setLocationRelativeTo(null);
     }
 
@@ -84,7 +76,6 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
 
         nameLabel.setText("Name");
 
-        nameComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Visitor", "Item 2", "Item 3", "Item 4" }));
         nameComboBox.setPreferredSize(new java.awt.Dimension(150, 22));
         nameComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +214,7 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
 
     private void dateTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateTimeBtnActionPerformed
         // TODO add your handling code here:
-        showDateTimeDialog();  
+        showDateTimeDialog(dateTimeLabel);  
     }//GEN-LAST:event_dateTimeBtnActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
@@ -251,7 +242,7 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
                         parts[4] = checkOutDateTime;
                         line = String.join(";", parts);
                     } else {
-                        line = line + ";" + checkOutDateTime;
+                        line = line + checkOutDateTime;
                     }
                 }
 
@@ -271,47 +262,12 @@ public class VisitorDepartureForm extends javax.swing.JFrame {
             return;
         }  
 
-        // clear the combo box selection
-        setNameComboBox();   
+        // update the combo box selection
+        setComboBox(nameComboBox, 5, "VisitorEntry.txt");   
     }//GEN-LAST:event_submitBtnActionPerformed
-    private void showDateTimeDialog() {
-        DateTimeDialog dialog = new DateTimeDialog(null);
-        dialog.setVisible(true);
-        Date selectedDate = dialog.getSelectedDate();
-        if (selectedDate != null) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            dateTimeLabel.setText(format.format(selectedDate));
-        }
-    }
+
     
-    private void setNameComboBox() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorEntry.txt"))) {
-            List<String> visitorNames = new ArrayList<>();
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
-                String visitorName = parts[0];
-                String checkOutDateTime = "";
-
-                if (parts.length >= 5) {
-                    checkOutDateTime = parts[4];
-                }
-
-                if (checkOutDateTime.isEmpty()) {
-                    visitorNames.add(visitorName);
-                }
-            }
-
-            // populate the combo box with visitor names that do not have a check-out date and time
-            nameComboBox.setModel(new DefaultComboBoxModel<>(visitorNames.toArray(new String[0])));
-
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        nameComboBox.setSelectedItem(null);
-
-    }
     /**
      * @param args the command line arguments
      */

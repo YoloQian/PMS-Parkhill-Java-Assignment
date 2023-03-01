@@ -1,11 +1,13 @@
 package assignment.assignment.SecurityManagementSystem;
 
+import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.showDateTimeDialog;
 import assignment.assignment.User;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -48,7 +50,7 @@ public class VisitorEntryForm extends javax.swing.JFrame {
         nameTextField = new javax.swing.JTextField();
         phoneTextField = new javax.swing.JTextField();
         reasonTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        submitBtn = new javax.swing.JButton();
         setDTBtn = new javax.swing.JButton();
         dateTimeLabel = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
@@ -76,10 +78,10 @@ public class VisitorEntryForm extends javax.swing.JFrame {
 
         reasonTextField.setPreferredSize(new java.awt.Dimension(150, 22));
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submitBtnActionPerformed(evt);
             }
         });
 
@@ -106,7 +108,7 @@ public class VisitorEntryForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(submitBtn)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
@@ -155,7 +157,7 @@ public class VisitorEntryForm extends javax.swing.JFrame {
                         .addComponent(setDTBtn)
                         .addComponent(dateTimeLabel)))
                 .addGap(34, 34, 34)
-                .addComponent(jButton1)
+                .addComponent(submitBtn)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -164,7 +166,7 @@ public class VisitorEntryForm extends javax.swing.JFrame {
 
     private void setDTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDTBtnActionPerformed
         // TODO add your handling code here:
-        showDateTimeDialog();
+        showDateTimeDialog(dateTimeLabel);
     }//GEN-LAST:event_setDTBtnActionPerformed
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
@@ -177,9 +179,8 @@ public class VisitorEntryForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
-        // Get form data
         // Get form data
         String name = nameTextField.getText();
         String phone = phoneTextField.getText();
@@ -206,22 +207,14 @@ public class VisitorEntryForm extends javax.swing.JFrame {
             nameTextField.setText("");
             phoneTextField.setText("");
             reasonTextField.setText("");
+            dateTimeLabel.setText("No Time Selected");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_submitBtnActionPerformed
     
-    private void showDateTimeDialog() {
-        DateTimeDialog dialog = new DateTimeDialog(null);
-        dialog.setVisible(true);
-        Date selectedDate = dialog.getSelectedDate();
-        if (selectedDate != null) {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            dateTimeLabel.setText(format.format(selectedDate));
-        }
-    }
     /**
      * @param args the command line arguments
      */
@@ -259,7 +252,6 @@ public class VisitorEntryForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel dateTimeLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -269,5 +261,6 @@ public class VisitorEntryForm extends javax.swing.JFrame {
     private javax.swing.JTextField phoneTextField;
     private javax.swing.JTextField reasonTextField;
     private javax.swing.JButton setDTBtn;
+    private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
 }
