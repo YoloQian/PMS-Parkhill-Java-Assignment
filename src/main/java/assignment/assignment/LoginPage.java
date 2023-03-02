@@ -45,7 +45,7 @@ public class LoginPage extends javax.swing.JFrame {
         PasswordLabel = new javax.swing.JLabel();
         UserIDTF = new javax.swing.JTextField();
         PasswordTF = new javax.swing.JTextField();
-        visitorpassBTN = new javax.swing.JButton();
+        generalInfoBTN = new javax.swing.JButton();
         parkhillLABEL = new javax.swing.JLabel();
         exitBTN = new javax.swing.JButton();
 
@@ -101,10 +101,10 @@ public class LoginPage extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        visitorpassBTN.setText("Visitor Pass");
-        visitorpassBTN.addActionListener(new java.awt.event.ActionListener() {
+        generalInfoBTN.setText("General Info");
+        generalInfoBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visitorpassBTNActionPerformed(evt);
+                generalInfoBTNActionPerformed(evt);
             }
         });
 
@@ -127,7 +127,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addContainerGap(49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(visitorpassBTN)
+                        .addComponent(generalInfoBTN)
                         .addGap(44, 44, 44)
                         .addComponent(LoginBTN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,7 +146,7 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LoginBTN)
-                    .addComponent(visitorpassBTN)
+                    .addComponent(generalInfoBTN)
                     .addComponent(exitBTN))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -210,9 +210,9 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_UserIDTFActionPerformed
 
-    private void visitorpassBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorpassBTNActionPerformed
+    private void generalInfoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalInfoBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_visitorpassBTNActionPerformed
+    }//GEN-LAST:event_generalInfoBTNActionPerformed
 
     private void exitBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBTNActionPerformed
         // TODO add your handling code here:
@@ -269,8 +269,8 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JTextField UserIDTF;
     private javax.swing.JLabel UsernameLabel;
     private javax.swing.JButton exitBTN;
+    private javax.swing.JButton generalInfoBTN;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel parkhillLABEL;
-    private javax.swing.JButton visitorpassBTN;
     // End of variables declaration//GEN-END:variables
 }

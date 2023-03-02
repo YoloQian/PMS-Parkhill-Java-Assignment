@@ -27,7 +27,7 @@
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="visitorpassBTN" min="-2" max="-2" attributes="0"/>
+                      <Component id="generalInfoBTN" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="LoginBTN" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -50,7 +50,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="LoginBTN" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="visitorpassBTN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="generalInfoBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="exitBTN" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -135,12 +135,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="visitorpassBTN">
+    <Component class="javax.swing.JButton" name="generalInfoBTN">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visitor Pass"/>
+        <Property name="text" type="java.lang.String" value="General Info"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visitorpassBTNActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generalInfoBTNActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="parkhillLABEL">
