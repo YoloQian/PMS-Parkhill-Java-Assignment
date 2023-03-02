@@ -1,9 +1,5 @@
 package assignment.assignment.Tenant;
 
-import assignment.assignment.ReportMangementSystem.*;
-import assignment.assignment.BuildingMangementSystem.*;
-import assignment.assignment.SecurityManagementSystem.*;
-
 
 
 /*
