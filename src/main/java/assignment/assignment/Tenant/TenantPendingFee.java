@@ -49,7 +49,15 @@ public class TenantPendingFee extends javax.swing.JFrame {
             new String [] {
                 "PaymnetID", "Unit Number", "Payment Amount", "Paid Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TenantPendingFee);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N

@@ -49,7 +49,15 @@ public class TenantStatement extends javax.swing.JFrame {
             new String [] {
                 "Statement ID", "Issued Date", "Paid Date", "Paid Amount", "Description", "Statement Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TenantStatement);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N

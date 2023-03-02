@@ -50,7 +50,15 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
             new String [] {
                 "Payment History ID", "RecordDate", "Due Date", "Payment Amount", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TenantPaymentHistory);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N

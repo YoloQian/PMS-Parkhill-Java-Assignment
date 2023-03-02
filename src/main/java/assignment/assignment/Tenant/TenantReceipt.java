@@ -49,7 +49,15 @@ public class TenantReceipt extends javax.swing.JFrame {
             new String [] {
                 "Receipt ID", "Issued Date", "Paid Date", "Paid Amount", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TenantReceipt);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N

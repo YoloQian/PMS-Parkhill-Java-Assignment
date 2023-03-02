@@ -1,0 +1,2 @@
+FacilityBookingID;FacilityType;FacilityName;Location
+FBooking001;Indoor;Badminton court;Block B

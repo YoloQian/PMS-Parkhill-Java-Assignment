@@ -97,7 +97,7 @@
                 <Column editable="false" title="FacilityBookingID" type="java.lang.Integer"/>
                 <Column editable="true" title="FacilityID" type="java.lang.String"/>
                 <Column editable="true" title="FacilityName" type="java.lang.String"/>
-                <Column editable="true" title="TenantName" type="java.lang.String"/>
+                <Column editable="true" title="TenantID" type="java.lang.String"/>
                 <Column editable="true" title="BookingDate" type="java.lang.String"/>
                 <Column editable="true" title="StartTime" type="java.lang.String"/>
                 <Column editable="true" title="EndTime" type="java.lang.String"/>
