@@ -47,11 +47,11 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Facility Booking ID", "Facility ID", "Facility Name", "Booking Date", "Start Time", "End Time"
+                "Facility Booking ID", "Facility ID", "Facility Name", "Tenant ID", "Booking Date", "Start Time", "End Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true
+                false, false, true, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
