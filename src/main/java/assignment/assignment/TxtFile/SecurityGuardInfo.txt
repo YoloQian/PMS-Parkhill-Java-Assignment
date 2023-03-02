@@ -1,2 +1,2 @@
-guardID;email;phone
-Guard001;yuwei@mail.com;012-3456789
+guardID;phone;userID
+Guard001;012-3456789;1

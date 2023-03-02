@@ -70,7 +70,7 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
 
     private void managePatrolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePatrolBtnActionPerformed
         // TODO add your handling code here:
-        new PatrolScheduleForm().setVisible(true);
+        new PatrolScheduleView().setVisible(true);
         dispose();
     }//GEN-LAST:event_managePatrolBtnActionPerformed
 

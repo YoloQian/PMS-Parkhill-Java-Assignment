@@ -1,5 +1,22 @@
 package assignment.assignment.BuildingExecutive;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 
 /*
@@ -12,11 +29,30 @@ package assignment.assignment.BuildingExecutive;
  * @author leeyu
  */
 public class PatrolScheduleView extends javax.swing.JFrame {
+    private String[] columnNames = {"Checkpoint", "Schedule Time"};
+    private Object[][] tableData;
 
     /**
      * Creates new form PatrolScheduleTable
      */
     public PatrolScheduleView() {
+        List<Object[]> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt"))) {
+            String line;
+            int lineNumber = 0;
+            while ((line = br.readLine()) != null) {
+                if (lineNumber > 0) { // Skip first line (header row)
+                    String[] splitLine = line.split(";");
+                    Object[] row = new Object[2];
+                    row[0] = splitLine[0];
+                    row[1] = splitLine[1];
+                    data.add(row);
+                }
+                lineNumber++;
+            }
+        } catch (IOException e) {
+        }
+        tableData = data.toArray(new Object[data.size()][2]);
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -72,25 +108,8 @@ public class PatrolScheduleView extends javax.swing.JFrame {
             }
         });
 
-        patrolScheduleTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Checkpoint", "Schedule Time"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        patrolScheduleTable.setModel(new javax.swing.table.DefaultTableModel(tableData, columnNames
+        ));
         jScrollPane2.setViewportView(patrolScheduleTable);
 
         deleteBtn.setText("Delete");
@@ -101,6 +120,11 @@ public class PatrolScheduleView extends javax.swing.JFrame {
         });
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -158,10 +182,70 @@ public class PatrolScheduleView extends javax.swing.JFrame {
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         // TODO add your handling code here:
+        new PatrolScheduleForm().setVisible(true);
+        dispose();
     }//GEN-LAST:event_newBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
+        // get the index of the selected row
+        int selectedRow = patrolScheduleTable.getSelectedRow();
+
+        // check if a row is selected
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // confirm deletion
+        int confirmDelete = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this entry?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        if (confirmDelete == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        // create a new temporary file
+        File tempFile = new File("src/main/java/assignment/assignment/TxtFile/temp.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt"));
+             FileOutputStream fos = new FileOutputStream(tempFile);
+             PrintWriter writer = new PrintWriter(fos)) {
+
+            String line;
+            int currentRow = 0;
+            while ((line = reader.readLine()) != null) {
+                // check if this is the selected row to delete
+                if (currentRow == selectedRow) {
+                    // skip this line
+                    currentRow++;
+                    continue;
+                }
+                // write the line to the temporary file
+                writer.println(line);
+                currentRow++;
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // delete the original file
+        File originalFile = new File("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt");
+        if (!originalFile.delete()) {
+            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // rename the temporary file to the original file
+        if (!tempFile.renameTo(originalFile)) {
+            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // update the table model
+        DefaultTableModel model = (DefaultTableModel) patrolScheduleTable.getModel();
+        model.removeRow(selectedRow);
+
+        JOptionPane.showMessageDialog(this, "Entry deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -169,6 +253,72 @@ public class PatrolScheduleView extends javax.swing.JFrame {
         new BuildingExecutiveMainFrame().setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        // Get selected row index
+        int row = patrolScheduleTable.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Get the data from the selected row in the table
+        String checkpoint = (String) patrolScheduleTable.getValueAt(row, 0);
+        String dateTime = (String) patrolScheduleTable.getValueAt(row, 1);
+
+        // Display a dialog to allow the user to update the data
+        String updatedCheckpoint = JOptionPane.showInputDialog(this, "Update checkpoint", checkpoint);
+        if (updatedCheckpoint == null || updatedCheckpoint.isEmpty()) {
+            return; // User clicked cancel or entered empty input, do nothing
+        }
+
+        // Validate the updated data
+        if (updatedCheckpoint.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String updatedDateTime = JOptionPane.showInputDialog(this, "Update date and time (yyyy-MM-dd HH:mm:ss)", dateTime);
+        if (updatedDateTime == null || updatedDateTime.isEmpty()) {
+            return; // User clicked cancel or entered empty input, do nothing
+        }
+
+        // Validate the updated datetime
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime.parse(updatedDateTime, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Please enter datetime in the format: yyyy-MM-dd HH:mm:ss", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt"))) {
+            DefaultTableModel model = (DefaultTableModel) patrolScheduleTable.getModel();
+
+            // Write the first row 
+            writer.write("Checkpoint;ScheduleTime;PatrolTime;SecurityGuardID");
+            writer.newLine();
+
+            // Loop through the other rows and write them to the file
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (i == row) {
+                    // Update the selected row with the new data
+                    writer.write(updatedCheckpoint + ";" + updatedDateTime);
+                    model.setValueAt(updatedCheckpoint, i, 0); // Update the table cell with the new data
+                    model.setValueAt(updatedDateTime, i, 1); // Update the table cell with the new data
+                } else {
+                    // Write the other rows back to the file unchanged
+                    String rowCheckpoint = (String) model.getValueAt(i, 0);
+                    String rowDateTime = (String) model.getValueAt(i, 1);
+                    writer.write(rowCheckpoint + ";" + rowDateTime);
+                }
+                writer.newLine();
+            }
+            JOptionPane.showMessageDialog(this, "Patrol Schedule updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
      * @param args the command line arguments

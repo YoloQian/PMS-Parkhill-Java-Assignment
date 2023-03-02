@@ -125,6 +125,8 @@ public class PatrolScheduleForm extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
+        new PatrolScheduleView().setVisible(true);
+        dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void setDateTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateTimeBtnActionPerformed

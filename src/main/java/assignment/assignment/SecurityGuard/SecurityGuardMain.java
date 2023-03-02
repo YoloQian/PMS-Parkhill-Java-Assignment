@@ -1,6 +1,15 @@
 package assignment.assignment.SecurityGuard;
 
+import static assignment.assignment.SecurityGuard.DateTimeDialog.setComboBox;
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 
 
@@ -15,13 +24,31 @@ import assignment.assignment.User;
  */
 public class SecurityGuardMain extends javax.swing.JFrame {
     private User user;
+    private SecurityGuard security;
 
     /**
      * Creates new form SecuritySystem
      */
     public SecurityGuardMain(User user) {
         this.user = user;
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/SecurityGuardInfo.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[2].equals(Integer.toString(user.getUserId()))) {
+                    this.security = new SecurityGuard(user.getUserId(), user.getPassword(), user.getName(),
+                            user.getEmail(), user.getRole(), splitLine[0], splitLine[1]) {};
+                }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
         initComponents();
+        setComboBox(checkInList, 3, "PatrolSchedule.txt");
         setLocationRelativeTo(null);
     }
 
@@ -40,7 +67,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         checkpointCheckInBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         visitorDepartBtn = new javax.swing.JButton();
-        CheckInList = new javax.swing.JComboBox<>();
+        checkInList = new javax.swing.JComboBox<>();
         updateIncidentBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,6 +94,11 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         });
 
         checkpointCheckInBtn.setText("Checkpoint Check-in");
+        checkpointCheckInBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkpointCheckInBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Security Guard");
 
@@ -77,7 +109,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
             }
         });
 
-        CheckInList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        checkInList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         updateIncidentBtn.setText("Update Incident");
         updateIncidentBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +130,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(manageVisitorPassBtn)
                             .addComponent(visitorEntryBtn)
-                            .addComponent(CheckInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(recordIncidentBtn))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +157,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkpointCheckInBtn)
-                    .addComponent(CheckInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkInList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -161,6 +193,56 @@ public class SecurityGuardMain extends javax.swing.JFrame {
         new IncidentForm(user).setVisible(true);
         dispose();
     }//GEN-LAST:event_recordIncidentBtnActionPerformed
+
+    private void checkpointCheckInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkpointCheckInBtnActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        String checkPoint = (String) checkInList.getSelectedItem();
+        String guardID = security.getSecurityGuardID();
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        if (checkPoint == null) {
+            JOptionPane.showMessageDialog(this, "Please fill in Checkpoint", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            // Read input file and store in StringBuffer
+            BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt"));
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                String lineTitle = parts[0];
+
+                if (lineTitle.equals(checkPoint)) {
+                   line = checkPoint + ";" + parts[1] + ";" + formattedDateTime + ";" + guardID;
+                }
+                    
+
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Checkpoint Checkin recorded successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error updating file", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }  
+
+        // update the combo box selection
+        setComboBox(checkInList, 3, "PatrolSchedule.txt");                                            
+
+    }//GEN-LAST:event_checkpointCheckInBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,7 +282,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CheckInList;
+    private javax.swing.JComboBox<String> checkInList;
     private javax.swing.JButton checkpointCheckInBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageVisitorPassBtn;
