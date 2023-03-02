@@ -5,6 +5,7 @@
 package assignment.assignment.AccountExecutives;
 
 import assignment.assignment.LoginPage;
+import assignment.assignment.User;
 
 /**
  *
@@ -18,6 +19,10 @@ public class AccountExecutiveMenu extends javax.swing.JFrame {
     public AccountExecutiveMenu() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    public AccountExecutiveMenu(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

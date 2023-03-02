@@ -4,6 +4,9 @@
  */
 package assignment.assignment;
 
+import assignment.assignment.AccountExecutives.AccountExecutiveMenu;
+import assignment.assignment.AdminExecutives.AdminExecutiveMenu;
+import assignment.assignment.BuildingManagers.BuildingManagerMenu;
 import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
 import assignment.assignment.Tenant.TenantMainFrame;
 import java.io.BufferedReader;
@@ -109,6 +112,11 @@ public class LoginPage extends javax.swing.JFrame {
         parkhillLABEL.setText("PARKHILL");
 
         exitBTN.setText("Exit");
+        exitBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,9 +131,8 @@ public class LoginPage extends javax.swing.JFrame {
                         .addComponent(LoginBTN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitBTN))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(parkhillLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(parkhillLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -159,6 +166,21 @@ public class LoginPage extends javax.swing.JFrame {
                 if (splitLine[0].equals(UserIDTF.getText())&&splitLine[1].equals(PasswordTF.getText())) {
                     this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
                     switch (user.getRole()) {
+                    case "accountexecutive" -> {
+                        new AccountExecutiveMenu(user).setVisible(true);
+                        dispose();
+                        break;
+                        }   
+                    case "adminexecutive" -> {
+                        new AdminExecutiveMenu(user).setVisible(true);
+                        dispose();
+                        break;
+                        }   
+                    case "buildingmanager" -> {
+                        new BuildingManagerMenu(user).setVisible(true);
+                        dispose();
+                        break;
+                        }    
                     case "tenant" -> {
                         new TenantMainFrame(user).setVisible(true);
                         dispose();
@@ -185,6 +207,12 @@ public class LoginPage extends javax.swing.JFrame {
     private void visitorpassBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorpassBTNActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_visitorpassBTNActionPerformed
+
+    private void exitBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBTNActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Thank You, See You Soon!");
+        this.dispose();
+    }//GEN-LAST:event_exitBTNActionPerformed
 
     /**
      * @param args the command line arguments
