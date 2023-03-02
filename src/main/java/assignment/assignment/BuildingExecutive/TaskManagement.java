@@ -5,17 +5,24 @@
 package assignment.assignment.BuildingExecutive;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author leeyu
  */
 public class TaskManagement extends javax.swing.JFrame {    
-    private String[] columnNames = {"Employee ID", "Phone No.", "Visit Date", "Tenant ID"};
+    private String[] columnNames = {"Employee ID", "Task/Job"};
     private Object[][] tableData;
 
     /**
@@ -23,24 +30,22 @@ public class TaskManagement extends javax.swing.JFrame {
      */
     public TaskManagement() {
         List<Object[]> data = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
             String line;
             int lineNumber = 0;
             while ((line = br.readLine()) != null) {
                 if (lineNumber > 0) { // Skip first line (header row)
                     String[] splitLine = line.split(";");
-                    Object[] row = new Object[4];
+                    Object[] row = new Object[2];
                     row[0] = splitLine[0];
                     row[1] = splitLine[1];
-                    row[2] = splitLine[2];
-                    row[3] = splitLine[3];
                     data.add(row);
                 }
                 lineNumber++;
             }
         } catch (IOException e) {
         }
-        tableData = data.toArray(new Object[data.size()][4]);
+        tableData = data.toArray(new Object[data.size()][2]);
         initComponents();        
         setLocationRelativeTo(null);
     }
@@ -70,13 +75,30 @@ public class TaskManagement extends javax.swing.JFrame {
 
         taskManagementTable.setModel(new javax.swing.table.DefaultTableModel(tableData, columnNames
         ));
+        taskManagementTable.setDefaultEditor(Object.class, null); // this makes the table non-editable
+        taskManagementTable.setRowSelectionAllowed(true); // this allows the rows to be selected
         jScrollPane1.setViewportView(taskManagementTable);
 
         deleteBtn.setText("Delete Task");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         assignBtn.setText("Assign ");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBtnActionPerformed(evt);
+            }
+        });
 
         searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         taskLabel.setText("Task");
 
@@ -160,6 +182,80 @@ public class TaskManagement extends javax.swing.JFrame {
         new BuildingExecutiveMainFrame().setVisible(true);
         dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+        String task = taskTF.getText();
+        List<Object[]> filteredData = new ArrayList<>();
+        for (Object[] row : tableData) {
+            if ((task.isEmpty() || row[1].toString().toLowerCase().contains(task.toLowerCase()))
+          ) {
+                filteredData.add(row);
+            }
+        }
+        Object[][] filteredTableData = filteredData.toArray(new Object[filteredData.size()][2]);
+        taskManagementTable.setModel(new javax.swing.table.DefaultTableModel(
+                filteredTableData,
+                columnNames
+        ));
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
+        // TODO add your handling code here:
+        // Get selected row index
+        int selectedRow = taskManagementTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String task = taskTF.getText();
+            taskManagementTable.setValueAt(task, selectedRow, 1);
+            List<String> data = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    data.add(line);
+                }
+                br.close();
+                String[] row = data.get(selectedRow + 1).split(";");
+                row[1] = task;
+                data.set(selectedRow + 1, String.join(";", row));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"));
+                for (String updatedLine : data) {
+                    writer.write(updatedLine);
+                    writer.newLine();
+                }
+                writer.close();
+            } catch (IOException e) {
+            }
+        }
+    }//GEN-LAST:event_assignBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        // Get selected row index
+        int selectedRow = taskManagementTable.getSelectedRow();
+        if (selectedRow != -1) {
+            String task = "";
+            taskManagementTable.setValueAt(task, selectedRow, 1);
+            List<String> data = new ArrayList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    data.add(line);
+                }
+                br.close();
+                String[] row = data.get(selectedRow + 1).split(";");
+                row[1] = task;
+                data.set(selectedRow + 1, String.join(";", row));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"));
+                for (String updatedLine : data) {
+                    writer.write(updatedLine);
+                    writer.newLine();
+                }
+                writer.close();
+            } catch (IOException e) {
+            }
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments

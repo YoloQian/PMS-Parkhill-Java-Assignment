@@ -1,2 +1,3 @@
 EmployeeID;Task;UserID
-Employee001;Stripper
+Employee001;Stripper;9
+Employee002;;10
