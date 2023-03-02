@@ -183,9 +183,6 @@
           <Dimension value="[100, 22]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchVisitorNameTFActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="searchTenantIDTF">
       <Properties>

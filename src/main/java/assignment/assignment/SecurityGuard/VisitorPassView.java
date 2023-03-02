@@ -1,4 +1,4 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;
@@ -105,11 +105,6 @@ public class VisitorPassView extends javax.swing.JFrame {
         jLabel2.setText("Tenant ID:");
 
         searchVisitorNameTF.setPreferredSize(new java.awt.Dimension(100, 22));
-        searchVisitorNameTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchVisitorNameTFActionPerformed(evt);
-            }
-        });
 
         searchTenantIDTF.setPreferredSize(new java.awt.Dimension(100, 22));
 
@@ -218,10 +213,6 @@ public class VisitorPassView extends javax.swing.JFrame {
                 columnNames
         ));
     }//GEN-LAST:event_searchBtnActionPerformed
-
-    private void searchVisitorNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVisitorNameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchVisitorNameTFActionPerformed
     
     /**
      * @param args the command line arguments
