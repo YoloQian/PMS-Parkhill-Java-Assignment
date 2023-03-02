@@ -4,6 +4,12 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -31,6 +37,7 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         outstandingfeesTABLE = new javax.swing.JTable();
         viewoutstandingfeesLABEL = new javax.swing.JLabel();
+        viewoutstandingfeesBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,20 +80,32 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
         viewoutstandingfeesLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         viewoutstandingfeesLABEL.setText("View Outstanding Fees For Resident/Tenant/Vendor");
 
+        viewoutstandingfeesBTN.setText("View Outstanding Fees");
+        viewoutstandingfeesBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewoutstandingfeesBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(viewoutstandingfeesLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(backBTN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewoutstandingfeesLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(backBTN))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewoutstandingfeesBTN)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -98,7 +117,9 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
                     .addComponent(backBTN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewoutstandingfeesBTN)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,6 +131,29 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
         this.dispose();
         ViewOutstandingFeesMenu.setVisible(true);
     }//GEN-LAST:event_backBTNActionPerformed
+
+    private void viewoutstandingfeesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewoutstandingfeesBTNActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/PendingFee.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            DefaultTableModel model = (DefaultTableModel) outstandingfeesTABLE.getModel();
+            model.setRowCount(0);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    Object[] row = { data[0], data[1],data[2],data[3], data[4]};
+                    model.addRow(row);
+                
+            }
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_viewoutstandingfeesBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +197,7 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
     private javax.swing.JButton backBTN;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable outstandingfeesTABLE;
+    private javax.swing.JButton viewoutstandingfeesBTN;
     private javax.swing.JLabel viewoutstandingfeesLABEL;
     // End of variables declaration//GEN-END:variables
 }

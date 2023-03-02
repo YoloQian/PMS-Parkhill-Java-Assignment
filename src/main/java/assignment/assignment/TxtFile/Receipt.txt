@@ -1,4 +1,15 @@
-ReceiptID;UserID;IssuedDate;PaidDate;PaidAmount;Description
-Receipt001;2;2023-03-02;2023-03-05;100;Water bill
-Receipt002;2;2023-03-02;2023-03-05;100;electric bill
-Receipt003;2;2023-03-10;2023-03-16;100;rent
+ReceiptID;UserID;IssuedDate;PaidDate;PaidAmount;Description;ReceiptStatus;PaymentID
+Receipt001;1;2023-03-02;2020-22-22;100;testing 1;Issued;1
+Receipt002;2;2023-03-02;3030-33-33;200;testing 2;Issued;1
+Receipt003;2;2023-03-02;2;2;2;Issued;2
+Receipt004;1;2023-03-02;121121;3131321;test;Issued;Payment006
+Receipt005;1;2023-03-02;121121;3131321;test;Issued;Payment006
+Receipt006;;2023-03-02;;;;Issued;PaymentID006
+Receipt007;;2023-03-02;;;;Issued;Payment006
+Receipt008;;2023-03-02;;;;Issued;Payment005
+Receipt009;;2023-03-02;;;;Issued;Payment005
+Receipt010;;2023-03-02;;;;Issued;Payment005
+Receipt011;;2023-03-02;;;;Issued;Payment005
+Receipt012;;2023-03-02;;;;Issued;Payment006
+Receipt013;2;2023-03-02;3333-33-33;200;casdfsafa;Issued;Payment005
+Receipt014;2;2023-03-02;3333-33-33;200;casdfsafa;Issued;Payment005

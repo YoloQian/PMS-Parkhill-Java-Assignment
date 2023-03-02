@@ -4,6 +4,17 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -52,17 +63,17 @@ public class RecordPayment extends javax.swing.JFrame {
             }
         });
 
-        recordpaymentLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         recordpaymentLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         recordpaymentLABEL.setText("Payment");
+        recordpaymentLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         recordpaymentPANEL.setBorder(javax.swing.BorderFactory.createTitledBorder("Record Payment"));
 
         useridLABEL.setText("UserID :");
 
-        duedateLABEL.setText("Due Date :");
+        duedateLABEL.setText("Due Date (YY-MM-DD) :");
 
-        paymentamountLABEL.setText("Payment Amount :");
+        paymentamountLABEL.setText("Payment Amount (RM) :");
 
         descriptionLABEL.setText("Description :");
 
@@ -152,7 +163,7 @@ public class RecordPayment extends javax.swing.JFrame {
                     .addComponent(recordpaymentPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(recordpaymentLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backBTN)))
                 .addContainerGap())
         );
@@ -180,6 +191,44 @@ public class RecordPayment extends javax.swing.JFrame {
 
     private void recordBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordBTNActionPerformed
         // TODO add your handling code here:
+        try{
+            File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+            FileWriter fw = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            //This will add a new line to the file content
+            /* Below three statements would add three
+             * mentioned Strings to the file in new lines.
+             */
+            
+            String fileName = "src/main/java/assignment/assignment/TxtFile/Payment.txt";
+            String paymentID = generateNewPaymentID(fileName);
+            String userid = useridTF.getText();
+            LocalDate recorddate = java.time.LocalDate.now();
+            String duedate = duedateTF.getText();
+            String paymentamount = paymentamountTF.getText();
+            String description = descriptionTA.getText();
+            
+            String message = "Are you sure you want to record this payment?\n\n"
+                    + "User ID : " + userid + "\n"
+                    + "Record Date : " + recorddate + "\n"
+                    + "Due Date (YY-MM-DD) : " + duedate + "\n"
+                    + "Payment Amount (RM) : " + paymentamount + "\n"
+                    + "Description : " + description;
+            
+            int confirmation = JOptionPane.showConfirmDialog((Component) null, message, "Confirm Issuance", JOptionPane.YES_NO_OPTION);
+            
+            if (confirmation == JOptionPane.YES_OPTION) {
+                try (PrintWriter pw = new PrintWriter(bw)) {
+                    pw.println(paymentID + ";" + userid + ";" + recorddate + ";" + duedate + ";" + paymentamount + ";" + description + ";Not Issue;Not Issue;Not Issue");
+                }
+                System.out.println("Success");  
+            } else {
+                System.out.println("Cancelled by user");
+            }
+            
+        } catch (IOException e) {
+            System.out.println("Fail");
+        }
     }//GEN-LAST:event_recordBTNActionPerformed
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
@@ -233,6 +282,28 @@ public class RecordPayment extends javax.swing.JFrame {
                 new RecordPayment().setVisible(true);
             }
         });
+    }
+    
+    public static String generateNewPaymentID(String fileName) {
+        String lastPaymentID = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                lastPaymentID = line;
+            }
+        } catch (IOException e) {
+        }
+        
+        String NewPaymentID;
+        if (lastPaymentID == null) {
+            NewPaymentID = "Payment001";
+        } else {
+            int num = Integer.parseInt(lastPaymentID.substring(7,10));
+            num++;
+            NewPaymentID = "Payment" + String.format("%03d", num);
+        }
+        return NewPaymentID;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,6 +4,20 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import static assignment.assignment.AccountExecutives.IssueInvoice.IssueNavigate;
+import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -40,6 +54,9 @@ public class IssueStatement extends javax.swing.JFrame {
         descriptionTA = new javax.swing.JTextArea();
         issueBTN = new javax.swing.JButton();
         viewusersBTN = new javax.swing.JButton();
+        viewpaymentsBTN = new javax.swing.JButton();
+        paymentidLABEL = new javax.swing.JLabel();
+        paymentidTF = new javax.swing.JTextField();
         statementLABEL = new javax.swing.JLabel();
         backBTN = new javax.swing.JButton();
 
@@ -49,9 +66,9 @@ public class IssueStatement extends javax.swing.JFrame {
 
         useridLABEL.setText("UserID :");
 
-        paiddateLABEL.setText("Paid Date :");
+        paiddateLABEL.setText("Paid Date (YY-MM-DD) :");
 
-        paidamountLABEL.setText("Paid Amount :");
+        paidamountLABEL.setText("Paid Amount (RM) :");
 
         descriptionLABEL.setText("Description :");
 
@@ -79,56 +96,81 @@ public class IssueStatement extends javax.swing.JFrame {
             }
         });
 
+        viewpaymentsBTN.setText("View Payments");
+        viewpaymentsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewpaymentsBTNActionPerformed(evt);
+            }
+        });
+
+        paymentidLABEL.setText("PaymentID :");
+
         javax.swing.GroupLayout issuestatementPANELLayout = new javax.swing.GroupLayout(issuestatementPANEL);
         issuestatementPANEL.setLayout(issuestatementPANELLayout);
         issuestatementPANELLayout.setHorizontalGroup(
             issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(issuestatementPANELLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(issuestatementPANELLayout.createSequentialGroup()
-                        .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(descriptionLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(useridLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(paiddateLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paidamountLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                            .addGroup(issuestatementPANELLayout.createSequentialGroup()
+                                .addComponent(paidamountLABEL)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, issuestatementPANELLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(descriptionLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(paymentidLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(useridLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(useridTF)
                             .addComponent(jScrollPane1)
                             .addComponent(paiddateTF)
-                            .addComponent(paidamountTF))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(paidamountTF)
+                            .addComponent(paymentidTF))
+                        .addGap(6, 6, 6))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, issuestatementPANELLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(viewusersBTN)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(issueBTN)
-                        .addContainerGap())))
+                        .addComponent(viewpaymentsBTN)
+                        .addGap(84, 84, 84)
+                        .addComponent(issueBTN)))
+                .addContainerGap())
         );
         issuestatementPANELLayout.setVerticalGroup(
             issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(issuestatementPANELLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(useridLABEL)
-                    .addComponent(useridTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(useridTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(useridLABEL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paiddateLABEL)
-                    .addComponent(paiddateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paidamountLABEL)
-                    .addComponent(paidamountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(descriptionLABEL)
                     .addGroup(issuestatementPANELLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(issueBTN)
-                            .addComponent(viewusersBTN))))
+                            .addComponent(paymentidLABEL)
+                            .addComponent(paymentidTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, issuestatementPANELLayout.createSequentialGroup()
+                        .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(paiddateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paiddateLABEL))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(paidamountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paidamountLABEL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionLABEL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(issueBTN)
+                    .addGroup(issuestatementPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(viewpaymentsBTN)
+                        .addComponent(viewusersBTN)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,7 +195,7 @@ public class IssueStatement extends javax.swing.JFrame {
                     .addComponent(issuestatementPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(statementLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backBTN)))
                 .addContainerGap())
         );
@@ -181,6 +223,68 @@ public class IssueStatement extends javax.swing.JFrame {
 
     private void issueBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueBTNActionPerformed
         // TODO add your handling code here:
+        try{
+            File statementFile = new File("src/main/java/assignment/assignment/TxtFile/Statement.txt");
+            File paymentFile = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+            
+            String fileName = "src/main/java/assignment/assignment/TxtFile/Statement.txt";
+            String statementID = generateNewStatementID(fileName);
+            String userid = useridTF.getText();
+            String paymentID = paymentidTF.getText();
+            LocalDate issueddate = java.time.LocalDate.now();
+            String paiddata = paiddateTF.getText();
+            String paidamount = paidamountTF.getText();
+            String description = descriptionTA.getText();
+            
+            String message = "Are you sure you want to issue this statement?\n\n"
+                    + "User ID : " + userid + "\n"
+                    + "Payment ID : " + paymentID + "\n"
+                    + "Issued Date : " + issueddate + "\n"
+                    + "Paid Date (YY-MM-DD) : " + paiddata + "\n"
+                    + "Paid Amount (RM) : " + paidamount + "\n"
+                    + "Description : " + description;
+            
+            int confirmation = JOptionPane.showConfirmDialog((Component) null, message, "Confirma Statement", JOptionPane.YES_NO_OPTION);
+                
+            if (confirmation == JOptionPane.YES_OPTION) {
+                // Write receipt data to Receipt.txt
+                try (FileWriter fw = new FileWriter(statementFile, true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter pw = new PrintWriter(bw)) {
+                    pw.println(statementID + ";" + userid + ";" + issueddate + ";" + paiddata + ";" + paidamount + ";" + description + ";Issued;" + paymentID);
+                }
+                System.out.println("Success");  
+                
+                // Overwrite Payment.txt data if payment ID matches
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/Payment.txt"));
+                    List<String> lines = new ArrayList<>();
+                    String line = reader.readLine();
+                    while (line != null) {
+                        String[] fields = line.split(";");
+                        if (fields[0].equals(paymentID)) {
+                            fields[8] = "Issued";
+                            line = String.join(";", fields);
+                        }
+                        lines.add(line);
+                        line = reader.readLine();
+                    }
+                    reader.close();
+                    FileWriter writer = new FileWriter("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+                    for (String outputLine : lines) {
+                        writer.write(outputLine + "\n");
+                    }
+                    writer.close();
+                    System.out.println("Payment status updated successfully.");
+                } catch (IOException e) {
+                    System.out.println("Error updating payment status: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Cancelled by user");
+            }
+        } catch (IOException e) {
+            System.out.println("Fail");
+        }
     }//GEN-LAST:event_issueBTNActionPerformed
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
@@ -197,6 +301,14 @@ public class IssueStatement extends javax.swing.JFrame {
         this.dispose();
         ViewIssueUsers.setVisible(true);
     }//GEN-LAST:event_viewusersBTNActionPerformed
+
+    private void viewpaymentsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpaymentsBTNActionPerformed
+        // TODO add your handling code here:
+        IssueNavigate = 3;
+        ViewPaymentInfo ViewPaymentInfo = new ViewPaymentInfo(IssueNavigate);
+        this.dispose();
+        ViewPaymentInfo.setVisible(true);
+    }//GEN-LAST:event_viewpaymentsBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,6 +347,28 @@ public class IssueStatement extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static String generateNewStatementID(String fileName) {
+        String lastStatementID = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                lastStatementID = line;
+            }
+        } catch (IOException e) {
+        }
+        
+        String NewStatementID;
+        if (lastStatementID == null) {
+            NewStatementID = "Statement001";
+        } else {
+            int num = Integer.parseInt(lastStatementID.substring(9,12));
+            num++;
+            NewStatementID = "Statement" + String.format("%03d", num);
+        }
+        return NewStatementID;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBTN;
@@ -247,9 +381,12 @@ public class IssueStatement extends javax.swing.JFrame {
     private javax.swing.JTextField paidamountTF;
     private javax.swing.JLabel paiddateLABEL;
     private javax.swing.JTextField paiddateTF;
+    private javax.swing.JLabel paymentidLABEL;
+    private javax.swing.JTextField paymentidTF;
     private javax.swing.JLabel statementLABEL;
     private javax.swing.JLabel useridLABEL;
     private javax.swing.JTextField useridTF;
+    private javax.swing.JButton viewpaymentsBTN;
     private javax.swing.JButton viewusersBTN;
     // End of variables declaration//GEN-END:variables
 }

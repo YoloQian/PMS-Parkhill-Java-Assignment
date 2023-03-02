@@ -4,6 +4,7 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import static assignment.assignment.AccountExecutives.ViewIssueUsers.IssueNavigate;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,14 +15,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author user
  */
-public class ViewPayment extends javax.swing.JFrame {
+public class ViewPaymentInfo extends javax.swing.JFrame {
 
+    static int IssueNavigate;
     /**
-     * Creates new form Viewpayment
+     * Creates new form ViewPaymentInfo
      */
-    public ViewPayment() {
+    public ViewPaymentInfo(int issueNavigate) {
         initComponents();
         setLocationRelativeTo(null);
+        IssueNavigate = issueNavigate;
     }
 
     /**
@@ -33,19 +36,29 @@ public class ViewPayment extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        viewpaymentLABEL = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        paymentmodifyTABLE = new javax.swing.JTable();
-        backBTN = new javax.swing.JButton();
         showpaymentsBTN = new javax.swing.JButton();
+        backBTN = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        paymentviewTABLE = new javax.swing.JTable();
+        viewpaymentLABEL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        viewpaymentLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        viewpaymentLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        viewpaymentLABEL.setText("View/Update Payment");
+        showpaymentsBTN.setText("Show Payments");
+        showpaymentsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showpaymentsBTNActionPerformed(evt);
+            }
+        });
 
-        paymentmodifyTABLE.setModel(new javax.swing.table.DefaultTableModel(
+        backBTN.setText("Back");
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBTNActionPerformed(evt);
+            }
+        });
+
+        paymentviewTABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -60,7 +73,7 @@ public class ViewPayment extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -71,21 +84,11 @@ public class ViewPayment extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(paymentmodifyTABLE);
+        jScrollPane1.setViewportView(paymentviewTABLE);
 
-        backBTN.setText("Back");
-        backBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBTNActionPerformed(evt);
-            }
-        });
-
-        showpaymentsBTN.setText("Show Payments");
-        showpaymentsBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showpaymentsBTNActionPerformed(evt);
-            }
-        });
+        viewpaymentLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        viewpaymentLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewpaymentLABEL.setText("View Payment");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,18 +122,11 @@ public class ViewPayment extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showpaymentsBTN)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
-        // TODO add your handling code here:
-        ManagePaymentsMenu ManagePaymentsMenu = new ManagePaymentsMenu();
-        this.dispose();
-        ManagePaymentsMenu.setVisible(true);
-    }//GEN-LAST:event_backBTNActionPerformed
 
     private void showpaymentsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showpaymentsBTNActionPerformed
         // TODO add your handling code here:
@@ -139,14 +135,14 @@ public class ViewPayment extends javax.swing.JFrame {
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
-            DefaultTableModel model = (DefaultTableModel) paymentmodifyTABLE.getModel();
+            DefaultTableModel model = (DefaultTableModel) paymentviewTABLE.getModel();
             model.setRowCount(0);
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(";");
-                    Object[] row = { data[0], data[1],data[2], data[3], data[4], data[5], data[6], data[7], data[8] };
-                    model.addRow(row);
-                
+                Object[] row = { data[0], data[1],data[2], data[3], data[4], data[5], data[6], data[7], data[8] };
+                model.addRow(row);
+
             }
             br.close();
             fr.close();
@@ -154,6 +150,30 @@ public class ViewPayment extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_showpaymentsBTNActionPerformed
+
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
+        // TODO add your handling code here:
+        IssueInvoice IssueInvoice = new IssueInvoice();
+        IssueReceipt IssueReceipt = new IssueReceipt();
+        IssueStatement IssueStatement = new IssueStatement();
+        RecordPayment RecordPayment = new RecordPayment();
+        this.dispose();
+        if(IssueNavigate == 1){
+            IssueInvoice.setVisible(true);
+        }
+        
+        if(IssueNavigate == 2){
+            IssueReceipt.setVisible(true);
+        }
+        
+        if(IssueNavigate == 3){
+            IssueStatement.setVisible(true);
+        }
+        
+        if(IssueNavigate == 4){
+            RecordPayment.setVisible(true);
+        }
+    }//GEN-LAST:event_backBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,23 +192,20 @@ public class ViewPayment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPaymentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPaymentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPaymentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPaymentInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewPayment().setVisible(true);
+                new ViewPaymentInfo(IssueNavigate).setVisible(true);
             }
         });
     }
@@ -196,7 +213,7 @@ public class ViewPayment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBTN;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable paymentmodifyTABLE;
+    private javax.swing.JTable paymentviewTABLE;
     private javax.swing.JButton showpaymentsBTN;
     private javax.swing.JLabel viewpaymentLABEL;
     // End of variables declaration//GEN-END:variables

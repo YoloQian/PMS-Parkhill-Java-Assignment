@@ -4,6 +4,21 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import static assignment.assignment.AccountExecutives.IssueInvoice.IssueNavigate;
+import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -40,6 +55,9 @@ public class IssueReceipt extends javax.swing.JFrame {
         descriptionTA = new javax.swing.JTextArea();
         issueBTN = new javax.swing.JButton();
         viewusersBTN = new javax.swing.JButton();
+        viewpaymentsBTN = new javax.swing.JButton();
+        paymentidTF = new javax.swing.JTextField();
+        paymentidLABEL = new javax.swing.JLabel();
         receiptLABEL = new javax.swing.JLabel();
         backBTN = new javax.swing.JButton();
 
@@ -49,9 +67,9 @@ public class IssueReceipt extends javax.swing.JFrame {
 
         useridLABEL.setText("UserID :");
 
-        paiddateLABEL.setText("Paid Date :");
+        paiddateLABEL.setText("Paid Date (YY-MM-DD) :");
 
-        paidamountLABEL.setText("Paid Amount :");
+        paidamountLABEL.setText("Paid Amount (RM) :");
 
         descriptionLABEL.setText("Description :");
 
@@ -66,6 +84,11 @@ public class IssueReceipt extends javax.swing.JFrame {
         jScrollPane1.setViewportView(descriptionTA);
 
         issueBTN.setText("Issue");
+        issueBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                issueBTNActionPerformed(evt);
+            }
+        });
 
         viewusersBTN.setText("View Users");
         viewusersBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +97,15 @@ public class IssueReceipt extends javax.swing.JFrame {
             }
         });
 
+        viewpaymentsBTN.setText("View Payments");
+        viewpaymentsBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewpaymentsBTNActionPerformed(evt);
+            }
+        });
+
+        paymentidLABEL.setText("PaymentID :");
+
         javax.swing.GroupLayout issuereceiptPANELLayout = new javax.swing.GroupLayout(issuereceiptPANEL);
         issuereceiptPANEL.setLayout(issuereceiptPANELLayout);
         issuereceiptPANELLayout.setHorizontalGroup(
@@ -81,24 +113,28 @@ public class IssueReceipt extends javax.swing.JFrame {
             .addGroup(issuereceiptPANELLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, issuereceiptPANELLayout.createSequentialGroup()
+                        .addComponent(viewusersBTN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(viewpaymentsBTN)
+                        .addGap(80, 80, 80)
+                        .addComponent(issueBTN))
                     .addGroup(issuereceiptPANELLayout.createSequentialGroup()
                         .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(descriptionLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(useridLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(paiddateLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paidamountLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                            .addComponent(paidamountLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(paymentidLABEL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(useridTF)
                             .addComponent(jScrollPane1)
-                            .addComponent(paiddateTF)
-                            .addComponent(paidamountTF))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, issuereceiptPANELLayout.createSequentialGroup()
-                        .addComponent(viewusersBTN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(issueBTN)
-                        .addContainerGap())))
+                            .addComponent(paidamountTF)
+                            .addComponent(paymentidTF)
+                            .addComponent(paiddateTF))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         issuereceiptPANELLayout.setVerticalGroup(
             issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,23 +143,31 @@ public class IssueReceipt extends javax.swing.JFrame {
                 .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(useridLABEL)
                     .addComponent(useridTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(issuereceiptPANELLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(paymentidTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(issuereceiptPANELLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(paymentidLABEL)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(paiddateLABEL)
                     .addComponent(paiddateTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paidamountLABEL)
-                    .addComponent(paidamountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(paidamountTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paidamountLABEL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(descriptionLABEL)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(issuereceiptPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(issueBTN)
+                    .addComponent(viewpaymentsBTN)
                     .addComponent(viewusersBTN))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         receiptLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -147,7 +191,7 @@ public class IssueReceipt extends javax.swing.JFrame {
                     .addComponent(issuereceiptPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(receiptLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backBTN)))
                 .addContainerGap())
         );
@@ -188,6 +232,80 @@ public class IssueReceipt extends javax.swing.JFrame {
         ViewIssueUsers.setVisible(true);
     }//GEN-LAST:event_viewusersBTNActionPerformed
 
+    private void issueBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_issueBTNActionPerformed
+        // TODO add your handling code here:
+            try {
+            File receiptFile = new File("src/main/java/assignment/assignment/TxtFile/Receipt.txt");
+            File paymentFile = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+
+            String fileName = "src/main/java/assignment/assignment/TxtFile/Receipt.txt";
+            String receiptID = generateNewReceiptID(fileName);
+            String userid = useridTF.getText();
+            String paymentID = paymentidTF.getText();
+            LocalDate issueddate = java.time.LocalDate.now();
+            String paiddata = paiddateTF.getText();
+            String paidamount = paidamountTF.getText();
+            String description = descriptionTA.getText();
+
+            String message = "Are you sure you want to issue this receipt?\n\n"
+                + "User ID : " + userid + "\n"
+                + "Payment ID : " + paymentID + "\n"
+                + "Issued Date : " + issueddate + "\n"
+                + "Paid Date (YY-MM-DD) : " + paiddata + "\n"
+                + "Paid Amount (RM) : " + paidamount + "\n"
+                + "Description : " + description;
+
+            int confirmation = JOptionPane.showConfirmDialog((Component) null, message, "Confirm Receipt", JOptionPane.YES_NO_OPTION);
+
+            if (confirmation == JOptionPane.YES_OPTION) {
+                // Write receipt data to Receipt.txt
+                try (FileWriter fw = new FileWriter(receiptFile, true);
+                     BufferedWriter bw = new BufferedWriter(fw);
+                     PrintWriter pw = new PrintWriter(bw)) {
+                    pw.println(receiptID + ";" + userid + ";" + issueddate + ";" + paiddata + ";" + paidamount + ";" + description + ";Issued;" + paymentID);
+                }
+                System.out.println("Success");  
+
+                // Overwrite Payment.txt data if payment ID matches
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/Payment.txt"));
+                    List<String> lines = new ArrayList<>();
+                    String line = reader.readLine();
+                    while (line != null) {
+                        String[] fields = line.split(";");
+                        if (fields[0].equals(paymentID)) {
+                            fields[7] = "Issued";
+                            line = String.join(";", fields);
+                        }
+                        lines.add(line);
+                        line = reader.readLine();
+                    }
+                    reader.close();
+                    FileWriter writer = new FileWriter("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+                    for (String outputLine : lines) {
+                        writer.write(outputLine + "\n");
+                    }
+                    writer.close();
+                    System.out.println("Payment status updated successfully.");
+                } catch (IOException e) {
+                    System.out.println("Error updating payment status: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Cancelled by user");
+            }
+        } catch (IOException e) {
+            System.out.println("Fail");
+        }
+    }//GEN-LAST:event_issueBTNActionPerformed
+
+    private void viewpaymentsBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewpaymentsBTNActionPerformed
+        // TODO add your handling code here:
+        IssueNavigate = 2;
+        ViewPaymentInfo ViewPaymentInfo = new ViewPaymentInfo(IssueNavigate);
+        this.dispose();
+        ViewPaymentInfo.setVisible(true);
+    }//GEN-LAST:event_viewpaymentsBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -224,6 +342,30 @@ public class IssueReceipt extends javax.swing.JFrame {
                 new IssueReceipt().setVisible(true);
             }
         });
+        
+        
+    }
+    
+    public static String generateNewReceiptID(String fileName) {
+        String lastReceiptID = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                lastReceiptID = line;
+            }
+        } catch (IOException e) {
+        }
+        
+        String NewReceiptID;
+        if (lastReceiptID == null) {
+            NewReceiptID = "Receipt001";
+        } else {
+            int num = Integer.parseInt(lastReceiptID.substring(7,10));
+            num++;
+            NewReceiptID = "Receipt" + String.format("%03d", num);
+        }
+        return NewReceiptID;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -237,9 +379,12 @@ public class IssueReceipt extends javax.swing.JFrame {
     private javax.swing.JTextField paidamountTF;
     private javax.swing.JLabel paiddateLABEL;
     private javax.swing.JTextField paiddateTF;
+    private javax.swing.JLabel paymentidLABEL;
+    private javax.swing.JTextField paymentidTF;
     private javax.swing.JLabel receiptLABEL;
     private javax.swing.JLabel useridLABEL;
     private javax.swing.JTextField useridTF;
+    private javax.swing.JButton viewpaymentsBTN;
     private javax.swing.JButton viewusersBTN;
     // End of variables declaration//GEN-END:variables
 }

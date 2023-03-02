@@ -23,25 +23,25 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="viewoutstandingfeesLABEL" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="backBTN" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="1044" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="743" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="viewpaymentLABEL" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="backBTN" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="viewoutstandingfeesBTN" min="-2" max="-2" attributes="0"/>
+                      <Component id="showpaymentsBTN" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -53,19 +53,27 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="viewoutstandingfeesLABEL" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="viewpaymentLABEL" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="backBTN" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="viewoutstandingfeesBTN" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <Component id="showpaymentsBTN" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JButton" name="showpaymentsBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show Payments"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showpaymentsBTNActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JButton" name="backBTN">
       <Properties>
         <Property name="text" type="java.lang.String" value="Back"/>
@@ -81,37 +89,33 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="outstandingfeesTABLE">
+        <Component class="javax.swing.JTable" name="paymentviewTABLE">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="4">
-                <Column editable="false" title="PendingID" type="java.lang.String"/>
+              <Table columnCount="9" rowCount="4">
+                <Column editable="false" title="PaymentID" type="java.lang.String"/>
                 <Column editable="false" title="UserID" type="java.lang.Integer"/>
-                <Column editable="false" title="UserType" type="java.lang.String"/>
-                <Column editable="false" title="Pending Amount" type="java.lang.Integer"/>
+                <Column editable="false" title="RecordDate" type="java.lang.String"/>
+                <Column editable="false" title="DueDate" type="java.lang.String"/>
+                <Column editable="false" title="PaymentAmount" type="java.lang.Integer"/>
                 <Column editable="false" title="Description" type="java.lang.String"/>
+                <Column editable="false" title="InvoiceStatus" type="java.lang.String"/>
+                <Column editable="false" title="ReceiptStatus" type="java.lang.String"/>
+                <Column editable="false" title="StatementStatus" type="java.lang.String"/>
               </Table>
             </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="viewoutstandingfeesLABEL">
+    <Component class="javax.swing.JLabel" name="viewpaymentLABEL">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="View Outstanding Fees For Resident/Tenant/Vendor"/>
+        <Property name="text" type="java.lang.String" value="View Payment"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="viewoutstandingfeesBTN">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Outstanding Fees"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewoutstandingfeesBTNActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

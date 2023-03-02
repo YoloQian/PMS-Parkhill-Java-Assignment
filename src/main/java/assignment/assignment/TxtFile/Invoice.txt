@@ -1,4 +1,7 @@
-InvoiceID;UserID;IssuedDate;DueDate;IssuedAmount;Description;InvoiceStatus
-Invoice001;2;2023-03-01;2023-04-01;RM100;Rent;Issued
-Invoice002;2;2023-03-02;2023-04-02;RM100;Utilities;Issued
-Invoice003;2;2023-03-03;2023-04-03;RM100;Rent;Issued
+InvoiceID;UserID;IssuedDate;DueDate;IssuedAmount;Description;InvoiceStatus;PaymentID
+Invoice001;1;2023-03-02;2020-22-22;100;testing 1;Issued;
+Invoice002;2;2023-03-02;3030-33-3;200;testing 2;Issued;
+Invoice003;1;2023-03-02;1;1;test;Issued;1
+Invoice004;3;2023-03-02;3;3;3;Issued;3
+Invoice005;1;2023-03-02;2222-22-22;100;testing;Issued;Payment005
+Invoice006;1;2023-03-02;2222-22-22;100;testing;Issued;Payment005

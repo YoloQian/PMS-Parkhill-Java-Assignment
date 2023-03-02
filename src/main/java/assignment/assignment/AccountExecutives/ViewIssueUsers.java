@@ -4,6 +4,13 @@
  */
 package assignment.assignment.AccountExecutives;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -32,10 +39,12 @@ public class ViewIssueUsers extends javax.swing.JFrame {
         accountexecutivesearchPANEL = new javax.swing.JPanel();
         searchidLABEL = new javax.swing.JLabel();
         searchidTF = new javax.swing.JTextField();
+        searchidBTN = new javax.swing.JButton();
         issueusersLABEL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         issueusersTABLE = new javax.swing.JTable();
         backBTN = new javax.swing.JButton();
+        showusersBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,15 +52,27 @@ public class ViewIssueUsers extends javax.swing.JFrame {
 
         searchidLABEL.setText("Search ID:");
 
+        searchidBTN.setText("Search ID");
+        searchidBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchidBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout accountexecutivesearchPANELLayout = new javax.swing.GroupLayout(accountexecutivesearchPANEL);
         accountexecutivesearchPANEL.setLayout(accountexecutivesearchPANELLayout);
         accountexecutivesearchPANELLayout.setHorizontalGroup(
             accountexecutivesearchPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accountexecutivesearchPANELLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(searchidLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchidTF, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addGroup(accountexecutivesearchPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(accountexecutivesearchPANELLayout.createSequentialGroup()
+                        .addComponent(searchidLABEL, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchidTF, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, accountexecutivesearchPANELLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(searchidBTN)))
                 .addContainerGap())
         );
         accountexecutivesearchPANELLayout.setVerticalGroup(
@@ -61,12 +82,14 @@ public class ViewIssueUsers extends javax.swing.JFrame {
                 .addGroup(accountexecutivesearchPANELLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchidLABEL)
                     .addComponent(searchidTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchidBTN)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         issueusersLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         issueusersLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        issueusersLABEL.setText("Resident/Tenant/Vendor");
+        issueusersLABEL.setText("View Resident/Tenant/Vendor");
 
         issueusersTABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,6 +126,13 @@ public class ViewIssueUsers extends javax.swing.JFrame {
             }
         });
 
+        showusersBTN.setText("Show Users");
+        showusersBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showusersBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,9 +145,12 @@ public class ViewIssueUsers extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(backBTN))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showusersBTN)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -131,7 +164,9 @@ public class ViewIssueUsers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(showusersBTN))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -161,6 +196,48 @@ public class ViewIssueUsers extends javax.swing.JFrame {
             RecordPayment.setVisible(true);
         }
     }//GEN-LAST:event_backBTNActionPerformed
+
+    private void showusersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showusersBTNActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            DefaultTableModel model = (DefaultTableModel) issueusersTABLE.getModel();
+            model.setRowCount(0);
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                String role = data[2].toLowerCase();
+                if (role.equals("tenant") || role.equals("vendor")) {
+                    Object[] row = { data[0], data[3], data[4], data[1], data[2] };
+                    model.addRow(row);
+                }
+            }
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_showusersBTNActionPerformed
+
+    private void searchidBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchidBTNActionPerformed
+        // TODO add your handling code here:
+        String searchUserID = searchidTF.getText();
+        DefaultTableModel model = (DefaultTableModel) issueusersTABLE.getModel();
+        int rowCount = model.getRowCount();
+        boolean userFound = false;
+        for (int i = 0; i < rowCount; i++) {
+            if (model.getValueAt(i, 0).equals(searchUserID)) {
+                issueusersTABLE.setRowSelectionInterval(i, i);
+                userFound = true;
+                break;
+            }
+        }
+        if (!userFound) {
+            JOptionPane.showMessageDialog(this, "User with ID " + searchUserID + " not found!");
+        }
+    }//GEN-LAST:event_searchidBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,7 +287,9 @@ public class ViewIssueUsers extends javax.swing.JFrame {
     private javax.swing.JLabel issueusersLABEL;
     private javax.swing.JTable issueusersTABLE;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton searchidBTN;
     private javax.swing.JLabel searchidLABEL;
     private javax.swing.JTextField searchidTF;
+    private javax.swing.JButton showusersBTN;
     // End of variables declaration//GEN-END:variables
 }

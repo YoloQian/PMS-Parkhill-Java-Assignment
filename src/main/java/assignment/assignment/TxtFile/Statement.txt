@@ -1,5 +1,6 @@
-StatementID;UserID;IssuedDate;PaidDate;PaidAmount;Description;StatementStatus
-Statement001;2;2023-03-02;2023-03-10;100;Water bill;Issued
-Statement002;2;2023-03-03;2023-03-11;110;Electric bill;Not Issued
-Statement003;2;2023-03-04;2023-03-12;120;Water bill;Issued
-Statement004;2;2023-03-05;2023-03-13;130;Rent;Not Issued
+StatementID;UserID;IssuedDate;PaidDate;PaidAmount;Description;StatementStatus;PaymentID
+Statement001;1;2023-03-02;2020-22-22;100;testing 1;Issued
+Statement002;2;2023-03-02;3030-33-33;200;testing 2;Issued
+Statement003;1;2023-03-02;1;1;1;Issued;1
+Statement004;3;2023-03-02;4444-44-44;300;asfsfaa;Issued;Payment005
+Statement005;3;2023-03-02;4444-44-44;300;asfsfaa;Issued;Payment005
