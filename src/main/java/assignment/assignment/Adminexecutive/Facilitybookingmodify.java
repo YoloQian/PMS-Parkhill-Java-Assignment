@@ -50,7 +50,7 @@ public class Facilitybookingmodify extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "FacilityBookingID", "FacilityID", "FacilityName", "TenantName", "BookingDate", "StartTime", "EndTime"
+                "FacilityBookingID", "FacilityID", "FacilityName", "TenantID", "BookingDate", "StartTime", "EndTime"
             }
         ) {
             Class[] types = new Class [] {

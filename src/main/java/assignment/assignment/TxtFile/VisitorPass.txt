@@ -1,2 +1,2 @@
 name;phone;visitDate;tenantID
-yuwei;012-3456789; yyyy-MM-dd HH:mm:ss;Tenanat001
+yuwei;012-3456789;yyyy-MM-dd HH:mm:ss;Tenant001

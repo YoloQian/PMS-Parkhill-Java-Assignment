@@ -1,1 +1,5 @@
 StatementID;UserID;IssuedDate;PaidDate;PaidAmount;Description;StatementStatus
+Statement001;2;2023-03-02;2023-03-10;100;Water bill;Issued
+Statement002;2;2023-03-03;2023-03-11;110;Electric bill;Not Issued
+Statement003;2;2023-03-04;2023-03-12;120;Water bill;Issued
+Statement004;2;2023-03-05;2023-03-13;130;Rent;Not Issued

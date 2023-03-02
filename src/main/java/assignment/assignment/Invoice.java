@@ -4,22 +4,20 @@
  */
 package assignment.assignment;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author TeD
  */
 public class Invoice extends User {
     private int invoiceId;
-    private LocalDate issuedDate;
-    private LocalDate dueDate;
+    private String issuedDate;
+    private String dueDate;
     private int issuedAmount;
     private String description;
     private String InvoiceStatus;
 
     public Invoice(int userId, String password, String role, String name, String email, 
-            int invoiceId, LocalDate issuedDate, LocalDate dueDate, int issuedAmount, String description, String InvoiceStatus) {
+            int invoiceId, String issuedDate, String dueDate, int issuedAmount, String description, String InvoiceStatus) {
         super(userId, password, role, name, email);
         this.invoiceId = invoiceId;
         this.issuedDate = issuedDate;
@@ -37,19 +35,19 @@ public class Invoice extends User {
         this.invoiceId = invoiceId;
     }
 
-    public LocalDate getIssuedDate() {
+    public String getIssuedDate() {
         return issuedDate;
     }
 
-    public void setIssuedDate(LocalDate issuedDate) {
+    public void setIssuedDate(String issuedDate) {
         this.issuedDate = issuedDate;
     }
 
-    public LocalDate getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(LocalDate dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 

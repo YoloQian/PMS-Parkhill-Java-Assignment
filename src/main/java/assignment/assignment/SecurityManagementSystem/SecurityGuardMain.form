@@ -38,12 +38,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="updateIncidentBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="visitorDepartBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="searchVisitorBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="checkpointCheckInBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,10 +52,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="searchVisitorBtn" min="-2" max="-2" attributes="0"/>
-                  <Component id="manageVisitorPassBtn" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="manageVisitorPassBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="visitorEntryBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -88,7 +84,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="visitorEntryBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visitor Entry Form"/>
+        <Property name="text" type="java.lang.String" value="Visitor Check In"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visitorEntryBtnActionPerformed"/>
@@ -107,14 +103,6 @@
         <Property name="text" type="java.lang.String" value="Checkpoint Check-in"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="searchVisitorBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Search Visitor Pass"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchVisitorBtnActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Security Guard"/>
@@ -122,7 +110,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="visitorDepartBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visitor Departure Form"/>
+        <Property name="text" type="java.lang.String" value="Visitor Check Out"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="visitorDepartBtnActionPerformed"/>
