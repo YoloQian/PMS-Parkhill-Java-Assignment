@@ -5,7 +5,7 @@
 package assignment.assignment;
 
 /**
- *
+ *QIAN HERE
  * @author leeyu
  */
 public abstract class User {
