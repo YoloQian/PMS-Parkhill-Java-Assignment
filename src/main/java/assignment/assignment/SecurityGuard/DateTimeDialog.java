@@ -86,15 +86,23 @@ public class DateTimeDialog extends JDialog {
                     checkOutDateTime = parts[integer-1];
                 }
 
-                if (filename.equals("PatrolSchedule.txt")) {
-                    if (patrolTime.isEmpty()) {
-                        Names.add(Name);
+                switch (filename) {
+                    case "PatrolSchedule.txt" -> {
+                        if (patrolTime.isEmpty()) {
+                            Names.add(Name);
+                        }
                     }
-                } else if (parts[4].equals("Open")) {
-                    Names.add(Name);
-                } else if (filename.equals("VisitorEntry.txt")) {
-                    if (checkOutDateTime.isEmpty()) {
-                        Names.add(Name);
+                    case "IncidentForm.txt" -> {
+                        if (parts[4].equals("Open")) {
+                            Names.add(Name);
+                        }
+                    }
+                    case "VisitorEntry.txt" -> {
+                        if (checkOutDateTime.isEmpty()) {
+                            Names.add(Name);
+                        }
+                    }
+                    default -> {
                     }
                 }
             }
