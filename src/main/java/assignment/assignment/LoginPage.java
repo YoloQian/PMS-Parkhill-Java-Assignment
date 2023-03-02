@@ -218,6 +218,8 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void generalInfoBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generalInfoBTNActionPerformed
         // TODO add your handling code here:
+        new GeneralInfoFrame().setVisible(true);
+        dispose();
     }//GEN-LAST:event_generalInfoBTNActionPerformed
 
     private void exitBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBTNActionPerformed

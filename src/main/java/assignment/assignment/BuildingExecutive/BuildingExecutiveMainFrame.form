@@ -37,7 +37,7 @@
                   <Component id="taskBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="managePatrolBtn" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="180" max="32767" attributes="0"/>
+              <EmptySpace pref="158" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,8 +92,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="statusBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View &amp; Update Status"/>
+        <Property name="text" type="java.lang.String" value="View &amp; Update Complaint Status"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
