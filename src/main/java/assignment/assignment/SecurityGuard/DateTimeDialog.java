@@ -1,4 +1,4 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
 import java.awt.BorderLayout;
 import java.awt.Dialog;
@@ -76,17 +76,26 @@ public class DateTimeDialog extends JDialog {
                 String[] parts = line.split(";");
                 String Name = parts[0];
                 String checkOutDateTime = "";
+                String patrolTime = "";
+                
+                if (parts.length >= 3) {
+                    patrolTime = parts[2];
+                }
 
                 if (parts.length >= integer) {
                     checkOutDateTime = parts[integer-1];
                 }
 
-                if (filename.equals("VisitorEntry.txt")) {
-                    if (checkOutDateTime.isEmpty()) {
+                if (filename.equals("PatrolSchedule.txt")) {
+                    if (patrolTime.isEmpty()) {
                         Names.add(Name);
                     }
                 } else if (parts[4].equals("Open")) {
                     Names.add(Name);
+                } else if (filename.equals("VisitorEntry.txt")) {
+                    if (checkOutDateTime.isEmpty()) {
+                        Names.add(Name);
+                    }
                 }
             }
 

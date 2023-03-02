@@ -6,8 +6,9 @@ package assignment.assignment;
 
 import assignment.assignment.AccountExecutives.AccountExecutiveMenu;
 import assignment.assignment.AdminExecutives.AdminExecutiveMenu;
+import assignment.assignment.BuildingExecutive.BuildingExecutiveMainFrame;
 import assignment.assignment.BuildingManagers.BuildingManagerMenu;
-import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
+import assignment.assignment.SecurityGuard.SecurityGuardMain;
 import assignment.assignment.Tenant.TenantMainFrame;
 import java.io.BufferedReader;
 import java.io.File;
@@ -188,6 +189,11 @@ public class LoginPage extends javax.swing.JFrame {
                         }
                     case "security" -> {
                         new SecurityGuardMain(user).setVisible(true);                        
+                        dispose();
+                        break;
+                        }
+                    case "buildingexecutive" -> {
+                        new BuildingExecutiveMainFrame().setVisible(true);                        
                         dispose();
                         break;
                         }
