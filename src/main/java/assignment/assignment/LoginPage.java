@@ -7,7 +7,7 @@ package assignment.assignment;
 import assignment.assignment.AccountExecutives.AccountExecutiveMenu;
 import assignment.assignment.AdminExecutives.AdminExecutiveMenu;
 import assignment.assignment.BuildingManagers.BuildingManagerMenu;
-import assignment.assignment.SecurityManagementSystem.SecurityGuardMain;
+import assignment.assignment.SecurityGuard.SecurityGuardMain;
 import assignment.assignment.Tenant.TenantMainFrame;
 import java.io.BufferedReader;
 import java.io.File;

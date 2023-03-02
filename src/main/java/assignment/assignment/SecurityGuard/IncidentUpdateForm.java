@@ -1,10 +1,10 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.*;
+import static assignment.assignment.SecurityGuard.DateTimeDialog.*;
 import java.io.FileOutputStream;
 import javax.swing.JOptionPane;
 

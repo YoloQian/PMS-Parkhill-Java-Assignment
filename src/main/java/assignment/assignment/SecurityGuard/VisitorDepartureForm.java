@@ -1,6 +1,6 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
-import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.*;
+import static assignment.assignment.SecurityGuard.DateTimeDialog.*;
 import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;

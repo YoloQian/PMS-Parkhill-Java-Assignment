@@ -1,4 +1,4 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;

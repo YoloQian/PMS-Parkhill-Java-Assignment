@@ -1,4 +1,4 @@
-package assignment.assignment.SecurityManagementSystem;
+package assignment.assignment.SecurityGuard;
 
 import java.awt.BorderLayout;
 import java.awt.Dialog;
