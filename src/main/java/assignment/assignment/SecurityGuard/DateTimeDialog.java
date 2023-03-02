@@ -115,4 +115,14 @@ public class DateTimeDialog extends JDialog {
         }
         comboBox.setSelectedItem(null);
     }
+    
+    public static void showDateDialog(JLabel Label) {
+        DateTimeDialog dialog = new DateTimeDialog(null);
+        dialog.setVisible(true);
+        Date selectedDate = dialog.getSelectedDate();
+        if (selectedDate != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Label.setText(format.format(selectedDate));
+        }
+    }
 }

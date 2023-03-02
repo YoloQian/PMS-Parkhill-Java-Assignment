@@ -1,6 +1,5 @@
 package assignment.assignment.SecurityGuard;
 
-import assignment.assignment.LoginPage;
 import static assignment.assignment.SecurityGuard.DateTimeDialog.setComboBox;
 import assignment.assignment.User;
 import java.io.BufferedReader;
@@ -261,7 +260,7 @@ public class SecurityGuardMain extends javax.swing.JFrame {
 
     private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
         // TODO add your handling code here:
-        LoginPage LoginPage = new LoginPage();
+        Loginpage LoginPage = new Loginpage();
         this.dispose();
         LoginPage.setVisible(true);
     }//GEN-LAST:event_LogOutBTNActionPerformed

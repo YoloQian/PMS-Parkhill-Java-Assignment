@@ -5,7 +5,7 @@
 package assignment.assignment.Tenant;
 
 import assignment.assignment.Payment;
-import static assignment.assignment.SecurityManagementSystem.DateTimeDialog.showDateDialog;
+import static assignment.assignment.SecurityGuard.DateTimeDialog.showDateDialog;
 import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
