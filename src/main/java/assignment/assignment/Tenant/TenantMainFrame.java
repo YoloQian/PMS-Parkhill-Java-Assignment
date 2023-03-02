@@ -65,6 +65,11 @@ public class TenantMainFrame extends javax.swing.JFrame {
         });
 
         FacilityBookingBTN.setText("FACILITY BOOKING");
+        FacilityBookingBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacilityBookingBTNActionPerformed(evt);
+            }
+        });
 
         VisitorPassBTN.setText("VISITOR PASS");
         VisitorPassBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +138,10 @@ public class TenantMainFrame extends javax.swing.JFrame {
     private void PaymentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBTNActionPerformed
         new TenantPaymentPage(user).setVisible(true);
     }//GEN-LAST:event_PaymentBTNActionPerformed
+
+    private void FacilityBookingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacilityBookingBTNActionPerformed
+        new TenantFacilityBooking().setVisible(true);
+    }//GEN-LAST:event_FacilityBookingBTNActionPerformed
     
     
     

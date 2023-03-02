@@ -4,6 +4,16 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.TenantStatement;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -13,8 +23,10 @@ public class VendorStatement extends javax.swing.JFrame {
     /**
      * Creates new form VendorStatement
      */
-    public VendorStatement() {
+    private User user;
+    public VendorStatement(User user) {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +53,7 @@ public class VendorStatement extends javax.swing.JFrame {
             }
         });
 
-        VendorCloseStatement.setText("Close");
+        VendorCloseStatement.setText("Back");
         VendorCloseStatement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VendorCloseStatementActionPerformed(evt);
@@ -53,9 +65,17 @@ public class VendorStatement extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Month ", "Paid Amount"
+                "Statement ID", "Issued Date", "Paid Date", "Paid Amount", "Description", "Statement Status"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(VendorStatement);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -98,11 +118,33 @@ public class VendorStatement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VendorViewStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorViewStatementActionPerformed
-        
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Statement.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) VendorStatement.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[6];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
+            }
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantStatement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_VendorViewStatementActionPerformed
 
     private void VendorCloseStatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorCloseStatementActionPerformed
-        System.exit(0);
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_VendorCloseStatementActionPerformed
 
     /**
@@ -135,7 +177,7 @@ public class VendorStatement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorStatement().setVisible(true);
+//                new VendorStatement().setVisible(true);
             }
         });
     }

@@ -4,6 +4,20 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Payment;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author TeD
@@ -13,8 +27,46 @@ public class VendorMakePayment extends javax.swing.JFrame {
     /**
      * Creates new form TenantMakePayment
      */
-    public VendorMakePayment() {
+    
+    private User user;
+    private Payment payment;
+    int count;
+    int correctline;
+    
+    public VendorMakePayment(User user) {
+        
+        this.user = user;
+        getInfo(user);
         initComponents();
+        setLocationRelativeTo(null);
+        String amount = Integer.toString(payment.getPaymentAmount());
+        VendorPaymentName.setText(user.getName());
+        VendorPaymentAmount.setText(payment.getDescription());
+        VendorPaymentAmount.setText(amount);
+        DatePicker.setText(payment.getDueDate());
+    }
+    
+    public void getInfo(User user) {
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+                    this.payment = new Payment(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3],
+                            Integer.parseInt(splitLine[4]), splitLine[5], splitLine[6], splitLine[7], splitLine[8]) {};
+                    correctline = count;
+                } else {
+                    count++;
+                }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
     }
 
     /**
@@ -29,41 +81,46 @@ public class VendorMakePayment extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        VendorPaymentUnitNumber = new javax.swing.JTextField();
         VendorPaymentName = new javax.swing.JTextField();
-        VendorPaymentRent = new javax.swing.JTextField();
-        VendorPaymentUtilities = new javax.swing.JTextField();
+        VendorPaymentDescription = new javax.swing.JTextField();
         VendorPay = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        PaymentDescription = new javax.swing.JTextField();
+        VendorPaymentAmount = new javax.swing.JTextField();
+        DatePicker = new com.github.lgooddatepicker.components.DatePicker();
+        BackBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Make Payment\n"));
 
-        jLabel1.setText("Payment ID :");
+        jLabel1.setText("Name :");
 
-        jLabel2.setText("Unit Number :");
-
-        jLabel3.setText("Payment Amount :");
+        jLabel2.setText("Description :");
 
         jLabel4.setText("Due Date :");
 
-        VendorPaymentUnitNumber.setEditable(false);
-
         VendorPaymentName.setEditable(false);
 
-        VendorPaymentRent.setEditable(false);
-
-        VendorPaymentUtilities.setEditable(false);
+        VendorPaymentDescription.setEditable(false);
 
         VendorPay.setText("Pay Now");
+        VendorPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VendorPayActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Description :");
+        jLabel5.setText("Payment Amount(RM) :");
 
-        PaymentDescription.setEditable(false);
+        VendorPaymentAmount.setEditable(false);
+
+        BackBTN.setText("Back");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,18 +130,18 @@ public class VendorMakePayment extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(VendorPay)
-                    .addComponent(VendorPaymentName)
-                    .addComponent(VendorPaymentUnitNumber)
-                    .addComponent(VendorPaymentRent)
-                    .addComponent(VendorPaymentUtilities, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                    .addComponent(PaymentDescription))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BackBTN)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(VendorPay)
+                        .addComponent(VendorPaymentDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                        .addComponent(VendorPaymentName)
+                        .addComponent(VendorPaymentAmount))
+                    .addComponent(DatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,26 +150,24 @@ public class VendorMakePayment extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(VendorPaymentUnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VendorPaymentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorPaymentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VendorPaymentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(PaymentDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VendorPaymentAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorPaymentRent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorPaymentUtilities, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(DatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
                 .addComponent(VendorPay)
-                .addGap(23, 23, 23))
+                .addGap(18, 18, 18)
+                .addComponent(BackBTN)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,18 +177,96 @@ public class VendorMakePayment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VendorPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorPayActionPerformed
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+        try {
+            File temp = File.createTempFile("temp-file", ".tmp");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(temp));
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String paymentid = payment.getPaymentId();
+            String userid = Integer.toString(user.getUserId());
+            String recorddate = payment.getRecordDate();
+            LocalDate date = DatePicker.getDate();
+            String pattern = "yyyy-MM-dd";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            String duedate = formatter.format(date);
+            String paymentamount = Integer.toString(payment.getPaymentAmount());
+            String description = VendorPaymentDescription.getText();
+            String receiptstatus = payment.getReceiptStatus();
+            String invoicestatus = payment.getInvoicestatus();
+            String statementstatus = payment.getStatementstatus();
+            String colHeadings = paymentid + ";" + userid + ";" + recorddate + ";" + duedate + ";" + paymentamount + ";" + description + ";" + receiptstatus
+                                    + ";" + invoicestatus + ";" + statementstatus;
+           
+            String line = "";
+            while((line = br.readLine()) != null){
+                if (correctline == 0){
+                    bw.write(colHeadings + "\n");
+                    correctline = 9999;
+                } else {
+                    bw.write(line + "\n");
+                    correctline--;
+                }
+            }
+            
+            bw.close();
+            br.close();
+            file.delete();
+            temp.renameTo(file);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VendorMakePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        file = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");
+        try {
+            File tempfile = File.createTempFile("temp-file1", ".tmp");
+            BufferedWriter bw = new BufferedWriter(new FileWriter(tempfile));
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String userid = Integer.toString(user.getUserId());
+            String name = user.getName();
+            String password = user.getPassword();
+            String email = user.getEmail();
+            String colHeadings = userid + ";" + password + ";vendor;" + name + ";" + email ;
+            
+            String line = "";
+            while((line = br.readLine()) != null){
+                String[] splitLine = line.split(";");
+                if (splitLine[0].equals(userid)){
+                    bw.write(colHeadings + "\n");
+                } else {
+                    bw.write(line + "\n");
+                }
+            }
+            
+            bw.close();
+            br.close();
+            file.delete();
+            tempfile.renameTo(file);
+            showMessageDialog(null, "Payment successful");
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VendorMakePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_VendorPayActionPerformed
+
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,25 +295,30 @@ public class VendorMakePayment extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorMakePayment().setVisible(true);
+//                new VendorMakePayment().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField PaymentDescription;
+    private javax.swing.JButton BackBTN;
+    private com.github.lgooddatepicker.components.DatePicker DatePicker;
     private javax.swing.JButton VendorPay;
+    private javax.swing.JTextField VendorPaymentAmount;
+    private javax.swing.JTextField VendorPaymentDescription;
     private javax.swing.JTextField VendorPaymentName;
-    private javax.swing.JTextField VendorPaymentRent;
-    private javax.swing.JTextField VendorPaymentUnitNumber;
-    private javax.swing.JTextField VendorPaymentUtilities;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;

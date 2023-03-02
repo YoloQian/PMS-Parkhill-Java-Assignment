@@ -4,6 +4,16 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.TenantReceipt;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -13,8 +23,10 @@ public class VendorReceipt extends javax.swing.JFrame {
     /**
      * Creates new form VendorStatement
      */
-    public VendorReceipt() {
+    private User user;
+    public VendorReceipt(User user) {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +42,7 @@ public class VendorReceipt extends javax.swing.JFrame {
         VendorReceipt = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         VendorImportReceipt = new javax.swing.JButton();
-        VendorCloseReceipt = new javax.swing.JButton();
+        VendorBackReceipt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,25 +51,33 @@ public class VendorReceipt extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Payment Description", "Amount Paid", "Paid Date"
+                "Receipt ID", "Issued Date", "Paid Date", "Paid Amount", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(VendorReceipt);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Receipt");
 
-        VendorImportReceipt.setText("Import data");
+        VendorImportReceipt.setText("View Receipt");
         VendorImportReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VendorImportReceiptActionPerformed(evt);
             }
         });
 
-        VendorCloseReceipt.setText("Close");
-        VendorCloseReceipt.addActionListener(new java.awt.event.ActionListener() {
+        VendorBackReceipt.setText("Back");
+        VendorBackReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorCloseReceiptActionPerformed(evt);
+                VendorBackReceiptActionPerformed(evt);
             }
         });
 
@@ -74,7 +94,7 @@ public class VendorReceipt extends javax.swing.JFrame {
                         .addGap(279, 279, 279)
                         .addComponent(VendorImportReceipt)
                         .addGap(127, 127, 127)
-                        .addComponent(VendorCloseReceipt))
+                        .addComponent(VendorBackReceipt))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -90,7 +110,7 @@ public class VendorReceipt extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VendorImportReceipt)
-                    .addComponent(VendorCloseReceipt))
+                    .addComponent(VendorBackReceipt))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -98,12 +118,34 @@ public class VendorReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VendorImportReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorImportReceiptActionPerformed
-        
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Receipt.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) VendorReceipt.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[5];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
+            }
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantReceipt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_VendorImportReceiptActionPerformed
 
-    private void VendorCloseReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorCloseReceiptActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_VendorCloseReceiptActionPerformed
+    private void VendorBackReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorBackReceiptActionPerformed
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VendorBackReceiptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,13 +178,13 @@ public class VendorReceipt extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorReceipt().setVisible(true);
+//                new VendorReceipt().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VendorCloseReceipt;
+    private javax.swing.JButton VendorBackReceipt;
     private javax.swing.JButton VendorImportReceipt;
     private javax.swing.JTable VendorReceipt;
     private javax.swing.JLabel jLabel1;

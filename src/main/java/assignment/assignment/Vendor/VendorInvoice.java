@@ -4,6 +4,16 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.TenantInvoice;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -13,8 +23,11 @@ public class VendorInvoice extends javax.swing.JFrame {
     /**
      * Creates new form VendorInvoice
      */
-    public VendorInvoice() {
+    private User user;
+    
+    public VendorInvoice(User user) {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,37 +40,45 @@ public class VendorInvoice extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        VendorReceipt = new javax.swing.JTable();
+        VendorInvoice = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        VendorImportReceipt = new javax.swing.JButton();
-        VendorCloseReceipt = new javax.swing.JButton();
+        VendorImportInvoice = new javax.swing.JButton();
+        VendorCloseInvoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        VendorReceipt.setModel(new javax.swing.table.DefaultTableModel(
+        VendorInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Payment Description", "Amount Paid", "Paid Date"
+                "Invoice ID", "Issued Date", "Due Date", "Issued Amount", "Description"
             }
-        ));
-        jScrollPane1.setViewportView(VendorReceipt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(VendorInvoice);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Receipt");
+        jLabel1.setText("Invoice");
 
-        VendorImportReceipt.setText("Import data");
-        VendorImportReceipt.addActionListener(new java.awt.event.ActionListener() {
+        VendorImportInvoice.setText("View Invoice");
+        VendorImportInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorImportReceiptActionPerformed(evt);
+                VendorImportInvoiceActionPerformed(evt);
             }
         });
 
-        VendorCloseReceipt.setText("Close");
-        VendorCloseReceipt.addActionListener(new java.awt.event.ActionListener() {
+        VendorCloseInvoice.setText("Back");
+        VendorCloseInvoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorCloseReceiptActionPerformed(evt);
+                VendorCloseInvoiceActionPerformed(evt);
             }
         });
 
@@ -72,9 +93,9 @@ public class VendorInvoice extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(VendorImportReceipt)
+                        .addComponent(VendorImportInvoice)
                         .addGap(127, 127, 127)
-                        .addComponent(VendorCloseReceipt))
+                        .addComponent(VendorCloseInvoice))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -89,21 +110,43 @@ public class VendorInvoice extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorImportReceipt)
-                    .addComponent(VendorCloseReceipt))
+                    .addComponent(VendorImportInvoice)
+                    .addComponent(VendorCloseInvoice))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VendorImportReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorImportReceiptActionPerformed
-        
-    }//GEN-LAST:event_VendorImportReceiptActionPerformed
+    private void VendorImportInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorImportInvoiceActionPerformed
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Invoice.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) VendorInvoice.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[6];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                model.addRow(tempArray);
+            }
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantInvoice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_VendorImportInvoiceActionPerformed
 
-    private void VendorCloseReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorCloseReceiptActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_VendorCloseReceiptActionPerformed
+    private void VendorCloseInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorCloseInvoiceActionPerformed
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VendorCloseInvoiceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,15 +178,15 @@ public class VendorInvoice extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorInvoice().setVisible(true);
+//                new VendorInvoice().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton VendorCloseReceipt;
-    private javax.swing.JButton VendorImportReceipt;
-    private javax.swing.JTable VendorReceipt;
+    private javax.swing.JButton VendorCloseInvoice;
+    private javax.swing.JButton VendorImportInvoice;
+    private javax.swing.JTable VendorInvoice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

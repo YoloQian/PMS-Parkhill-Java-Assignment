@@ -59,7 +59,6 @@ public class TenantViewProfile extends javax.swing.JFrame {
         }catch (IOException e) {
             System.out.println("fail");
             }
-        
     }
     
     /**
@@ -303,6 +302,12 @@ public class TenantViewProfile extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TenantViewProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

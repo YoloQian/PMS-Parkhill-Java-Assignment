@@ -4,6 +4,16 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.TenantPendingFee;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -13,8 +23,10 @@ public class VendorPendingFee extends javax.swing.JFrame {
     /**
      * Creates new form VendorPendingFee
      */
-    public VendorPendingFee() {
+    private User user;
+    public VendorPendingFee(User user) {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +53,15 @@ public class VendorPendingFee extends javax.swing.JFrame {
             new String [] {
                 "PaymnetID", "Unit Number", "Payment Amount", "Paid Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(VendorPendingFee);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -54,7 +74,7 @@ public class VendorPendingFee extends javax.swing.JFrame {
             }
         });
 
-        VendorClosePendingFee.setText("Close");
+        VendorClosePendingFee.setText("Back");
         VendorClosePendingFee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VendorClosePendingFeeActionPerformed(evt);
@@ -98,11 +118,33 @@ public class VendorPendingFee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VendorViewPendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorViewPendingFeeActionPerformed
-        
+        File file = new File("src/main/java/assignment/assignment/TxtFile/PendingFee.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) VendorPendingFee.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[4];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                model.addRow(tempArray);
+            }
+            br.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(TenantPendingFee.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_VendorViewPendingFeeActionPerformed
 
     private void VendorClosePendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorClosePendingFeeActionPerformed
-        System.exit(0);
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_VendorClosePendingFeeActionPerformed
 
     /**
@@ -135,7 +177,7 @@ public class VendorPendingFee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorPendingFee().setVisible(true);
+//                new VendorPendingFee().setVisible(true);
             }
         });
     }

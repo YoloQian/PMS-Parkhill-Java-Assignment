@@ -72,7 +72,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="VendorCloseStatement">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Close"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VendorCloseStatementActionPerformed"/>
@@ -88,10 +88,13 @@
         <Component class="javax.swing.JTable" name="VendorStatement">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
-                <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="Month " type="java.lang.Object"/>
-                <Column editable="true" title="Paid Amount" type="java.lang.Object"/>
+              <Table columnCount="6" rowCount="0">
+                <Column editable="false" title="Statement ID" type="java.lang.Object"/>
+                <Column editable="false" title="Issued Date" type="java.lang.Object"/>
+                <Column editable="false" title="Paid Date" type="java.lang.Object"/>
+                <Column editable="false" title="Paid Amount" type="java.lang.Object"/>
+                <Column editable="false" title="Description" type="java.lang.Object"/>
+                <Column editable="true" title="Statement Status" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

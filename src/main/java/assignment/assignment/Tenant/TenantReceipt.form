@@ -33,7 +33,7 @@
                       <EmptySpace min="-2" pref="279" max="-2" attributes="0"/>
                       <Component id="TenantImportReceipt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                      <Component id="TenantCloseReceipt" min="-2" max="-2" attributes="0"/>
+                      <Component id="TenantBackReceipt" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TenantImportReceipt" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TenantCloseReceipt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TenantBackReceipt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
@@ -94,18 +94,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="TenantImportReceipt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Import data"/>
+        <Property name="text" type="java.lang.String" value="View Receipt"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantImportReceiptActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="TenantCloseReceipt">
+    <Component class="javax.swing.JButton" name="TenantBackReceipt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Close"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantCloseReceiptActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantBackReceiptActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -38,7 +38,7 @@ public class TenantReceipt extends javax.swing.JFrame {
         TenantReceipt = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         TenantImportReceipt = new javax.swing.JButton();
-        TenantCloseReceipt = new javax.swing.JButton();
+        TenantBackReceipt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,17 +63,17 @@ public class TenantReceipt extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Receipt");
 
-        TenantImportReceipt.setText("Import data");
+        TenantImportReceipt.setText("View Receipt");
         TenantImportReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TenantImportReceiptActionPerformed(evt);
             }
         });
 
-        TenantCloseReceipt.setText("Close");
-        TenantCloseReceipt.addActionListener(new java.awt.event.ActionListener() {
+        TenantBackReceipt.setText("Back");
+        TenantBackReceipt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantCloseReceiptActionPerformed(evt);
+                TenantBackReceiptActionPerformed(evt);
             }
         });
 
@@ -90,7 +90,7 @@ public class TenantReceipt extends javax.swing.JFrame {
                         .addGap(279, 279, 279)
                         .addComponent(TenantImportReceipt)
                         .addGap(127, 127, 127)
-                        .addComponent(TenantCloseReceipt))
+                        .addComponent(TenantBackReceipt))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -106,7 +106,7 @@ public class TenantReceipt extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TenantImportReceipt)
-                    .addComponent(TenantCloseReceipt))
+                    .addComponent(TenantBackReceipt))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -138,9 +138,9 @@ public class TenantReceipt extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TenantImportReceiptActionPerformed
 
-    private void TenantCloseReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantCloseReceiptActionPerformed
+    private void TenantBackReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantBackReceiptActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_TenantCloseReceiptActionPerformed
+    }//GEN-LAST:event_TenantBackReceiptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,7 +209,7 @@ public class TenantReceipt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton TenantCloseReceipt;
+    private javax.swing.JButton TenantBackReceipt;
     private javax.swing.JButton TenantImportReceipt;
     private javax.swing.JTable TenantReceipt;
     private javax.swing.JLabel jLabel1;

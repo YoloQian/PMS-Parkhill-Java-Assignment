@@ -4,54 +4,50 @@
  */
 package assignment.assignment.Vendor;
 
-//public class Vendor {
-
 import assignment.assignment.User;
 
 public class Vendor extends User{
-    private String companyName;
-    private String password;
+    private String vendorid;
     private String phone;
-    private String service;
+    private String unitnumber;
 
-    public Vendor (int userId, String password, String role, String name, String email, String companyName, String phone, String service){
+    public Vendor (int userId, String password, String role, String name, String email, String vendorid, String phone, String unitnumber){
         super (userId, password, role, name, email);
-        this.companyName = companyName;
-        this.password = password;
-        this.phone= phone;
-        this.service= service;
+        this.vendorid = vendorid;
+        this.phone = phone;
+        this.unitnumber = unitnumber;
     }
     
-    public String getCompanyName(){
-        return companyName;
-    }
-    
-    public String password(){
-        return password;
+    public String getVendorID(){
+        return vendorid;
     }
     
     public String getPhone(){
         return phone;
     }
     
-    public String getService(){
-        return service;
-    }
-    
-    public void setCompanyName(String companyName){
-        this.companyName = companyName;
-    }
-    
-    public void setPassword(String password){
-        this.password = password;
+    public void setVendorID(String vendorid){
+        this.vendorid = vendorid;
     }
     
     public void setPhone(String phone){
         this.phone = phone;
     }
     
-    public void setService(String service){
-        this.service = service;
+    public String getVendorid() {
+        return vendorid;
+    }
+
+    public void setVendorid(String vendorid) {
+        this.vendorid = vendorid;
+    }
+
+    public String getUnitnumber() {
+        return unitnumber;
+    }
+
+    public void setUnitnumber(String unitnumber) {
+        this.unitnumber = unitnumber;
     }
     
     public void viewProfile(){

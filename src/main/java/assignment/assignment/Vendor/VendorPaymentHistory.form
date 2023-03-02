@@ -33,7 +33,7 @@
                       <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
                       <Component id="ViewPaymentHistory" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
-                      <Component id="ClosePaymentHistory" min="-2" max="-2" attributes="0"/>
+                      <Component id="BackPaymentHistory" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ViewPaymentHistory" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ClosePaymentHistory" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BackPaymentHistory" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="83" max="32767" attributes="0"/>
           </Group>
@@ -64,10 +64,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Payment History"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Payment History"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="ViewPaymentHistory">
@@ -78,12 +78,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewPaymentHistoryActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ClosePaymentHistory">
+    <Component class="javax.swing.JButton" name="BackPaymentHistory">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Close"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClosePaymentHistoryActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackPaymentHistoryActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -96,11 +96,12 @@
         <Component class="javax.swing.JTable" name="VendorPayHistory">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="0">
-                <Column editable="true" title="Payment History ID" type="java.lang.Object"/>
-                <Column editable="true" title="Unit Number" type="java.lang.Object"/>
-                <Column editable="true" title="Payment Amount" type="java.lang.Object"/>
-                <Column editable="true" title="Paid Date" type="java.lang.Object"/>
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="Payment History ID" type="java.lang.Object"/>
+                <Column editable="false" title="Record Date" type="java.lang.Object"/>
+                <Column editable="false" title="Due Date" type="java.lang.Object"/>
+                <Column editable="false" title="Payment Amoint" type="java.lang.Object"/>
+                <Column editable="false" title="Description" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

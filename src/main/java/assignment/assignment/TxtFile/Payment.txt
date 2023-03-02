@@ -1,7 +1,4 @@
-PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;InvoiceStatus;ReceiptStatus;StatementStatus
-Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued
+PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus;InvoiceStatus;StatementStatus;
+Payment003;2;2023-03-02;2023-03-03;100;Rent;Issued;Issued;Issued
 Payment002;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued
 Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued
-Payment004;1;2023-03-02;2023-03-02;200;test;Issued;Issued;Issued
-Payment005;1;2023-03-02;2222-22-22;200;rent;Issued;Issued;Issued
-Payment006;1;2023-03-02;2222-22-22;200;rent;Not Issue;Issued;Not Issue

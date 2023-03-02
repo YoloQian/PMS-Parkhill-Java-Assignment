@@ -4,6 +4,19 @@
  */
 package assignment.assignment.Tenant;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -15,6 +28,7 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
      */
     public TenantFacilityBooking() {
         initComponents();
+        getData();
     }
 
     /**
@@ -37,10 +51,10 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         addBooking = new javax.swing.JButton();
         updateBooking = new javax.swing.JButton();
-        timePicker1 = new com.github.lgooddatepicker.components.TimePicker();
+        startTime = new com.github.lgooddatepicker.components.TimePicker();
         jLabel1 = new javax.swing.JLabel();
         bookingDatePicker = new com.github.lgooddatepicker.components.DatePicker();
-        timePicker2 = new com.github.lgooddatepicker.components.TimePicker();
+        endTime = new com.github.lgooddatepicker.components.TimePicker();
         jLabel2 = new javax.swing.JLabel();
         facilityName = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,6 +88,11 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
         });
 
         updateBooking.setText("Update Booking");
+        updateBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBookingActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Booking Date :");
 
@@ -97,11 +116,21 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        bookingFacility.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookingFacilityMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(bookingFacility);
 
         jLabel3.setText("Booking Details");
 
         deleteBooking.setText("Delete Booking");
+        deleteBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBookingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -126,11 +155,11 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
                                 .addComponent(deleteBooking))
                             .addComponent(facilityName, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(timePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(endTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(bookingDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tenantId, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -157,9 +186,9 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
                     .addComponent(bookingDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(timePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(timePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,10 +225,151 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
     private void addBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookingActionPerformed
         //Code to load data
         //validation for to not have a blank data
-//        if (tenantId.getText().equals("") || facilityName.getSelectedItem().equals("")
-//                || bookingDatePicker.getModel().getValue())
+        if ((facilityName.getSelectedItem().equals("")) || (bookingDatePicker.getDate().equals("")) 
+                || (startTime.getText().equals("" )) || (endTime.getText()).equals("")){
+            JOptionPane.showMessageDialog(this, "Please Enter All Data");
+        } else {
+            //if all data field then...
+            //store enter data into String array --data--
+            LocalDate date = bookingDatePicker.getDate();
+            String pattern = "yyyy-MM-dd";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            String pickdate = formatter.format(date);
+            String data [] = {tenantId.getText(), facilityName.getSelectedItem().toString(), pickdate, startTime.getText(), endTime.getText()};
+            
+            DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+            //Add string array data
+            model.addRow(data);
+            //Successfully added message
+            JOptionPane.showMessageDialog(this, "Data Added Successfully");
+            getData();
+            //clear text field
+            facilityName.setSelectedItem("");
+            bookingDatePicker.setText("");
+            startTime.setText("");
+            endTime.setText("");
+            
+        }
     }//GEN-LAST:event_addBookingActionPerformed
 
+    private void bookingFacilityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingFacilityMouseClicked
+        //Set data to their textfield
+        
+        DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+        
+        //Set data to text field when row is selected
+        String facilityname = model.getValueAt(bookingFacility.getSelectedRow(), 2).toString();
+        String tenantid = model.getValueAt(bookingFacility.getSelectedRow(), 3).toString();
+        String bookingdate = model.getValueAt(bookingFacility.getSelectedRow(), 4).toString();
+        String starttime = model.getValueAt(bookingFacility.getSelectedRow(), 5).toString();
+        String endtime = model.getValueAt(bookingFacility.getSelectedRow(), 6).toString();
+        
+        
+        //Set to txtfield
+        tenantId.setText(tenantid);
+        facilityName.setSelectedItem(facilityname);
+        bookingDatePicker.setText(bookingdate);
+        startTime.setText(starttime);
+        endTime.setText(endtime);
+        
+    }//GEN-LAST:event_bookingFacilityMouseClicked
+
+    private void updateBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBookingActionPerformed
+        DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+        if (bookingFacility.getSelectedRowCount() == 1){
+            //if single row is selected then update
+            
+            String facilityname = facilityName.getSelectedItem().toString();
+            String tenantid = tenantId.getText();
+            String bookingdate = bookingDatePicker.getText();
+            String starttime = startTime.getText();
+            String endtime = endTime.getText();
+            
+            //set updated value on table row
+            model.setValueAt(facilityname, bookingFacility.getSelectedRow(), 2);
+            model.setValueAt(tenantid, bookingFacility.getSelectedRow(), 3);
+            model.setValueAt(bookingdate, bookingFacility.getSelectedRow(), 4);
+            model.setValueAt(starttime, bookingFacility.getSelectedRow(), 5);
+            model.setValueAt(endtime, bookingFacility.getSelectedRow(), 6);
+            
+            //update messahe display
+            JOptionPane.showMessageDialog(this, "Update Successfully");
+            getData();
+            
+        } else {
+            if (bookingFacility.getRowCount() == 0){
+                //if table is empty
+                JOptionPane.showMessageDialog(this, "Table is Empty");
+            } else {
+                //if row is not selected or multiple row is selected then 
+                JOptionPane.showMessageDialog(this, "Please select SINGLE row to Update");
+            }
+        }
+    }//GEN-LAST:event_updateBookingActionPerformed
+
+    private void deleteBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookingActionPerformed
+        DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+        
+        //delete row
+        if (bookingFacility.getSelectedRowCount() == 1){
+            //if single row is selected then delete
+            model.removeRow(bookingFacility.getSelectedRow());
+            getData();
+        } else {
+            if (bookingFacility.getRowCount() == 0){
+                //if table is empty (no data) then display message
+                JOptionPane.showMessageDialog(this, "Table is Empty");
+            } else {
+                //if table is not empty but row is not selected or multiple row is selected
+                JOptionPane.showMessageDialog(this, "Please select SINGLE row to Delete");
+            }
+        }
+    }//GEN-LAST:event_deleteBookingActionPerformed
+
+    public void getData(){
+        File file = new File("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                model.addRow(dataRow);
+            }
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantFacilityBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void writeData(){
+        File file = new File("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt");
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            DefaultTableModel model = (DefaultTableModel) bookingFacility.getModel();
+            String colHeadings = "";
+            for (int i = 1; i < model.getColumnCount(); i++) {
+                colHeadings = colHeadings + model.getColumnName(i) + ";";
+            }
+            
+            bw.write(colHeadings + "\n");
+            String line = "";
+            for (int row = 1; row < model.getRowCount(); row++){
+                for (int col = 1; col < model.getColumnCount(); col++)
+                    line = line + model.getValueAt(row,col) + ";";
+                bw.write (line + "\n");
+                line = "";
+            }
+            
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantFacilityBooking.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -261,7 +431,7 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantFacilityBooking().setVisible(true);
+                
             }
         });
     }
@@ -274,6 +444,7 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
     private com.github.lgooddatepicker.components.DatePicker bookingDatePicker;
     private javax.swing.JTable bookingFacility;
     private javax.swing.JButton deleteBooking;
+    private com.github.lgooddatepicker.components.TimePicker endTime;
     private javax.swing.JComboBox<String> facilityName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -284,9 +455,8 @@ public class TenantFacilityBooking extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.github.lgooddatepicker.components.TimePicker startTime;
     private javax.swing.JTextField tenantId;
-    private com.github.lgooddatepicker.components.TimePicker timePicker1;
-    private com.github.lgooddatepicker.components.TimePicker timePicker2;
     private javax.swing.JButton updateBooking;
     // End of variables declaration//GEN-END:variables
 }

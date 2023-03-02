@@ -4,6 +4,16 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.TenantPaymentHistory;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author TeD
@@ -13,8 +23,10 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
     /**
      * Creates new form VendorPaymentHistory
      */
-    public VendorPaymentHistory() {
+    private User user;
+    public VendorPaymentHistory(User user) {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -28,14 +40,14 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         ViewPaymentHistory = new javax.swing.JButton();
-        ClosePaymentHistory = new javax.swing.JButton();
+        BackPaymentHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         VendorPayHistory = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Payment History");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
 
         ViewPaymentHistory.setText("View Payment History");
         ViewPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -44,10 +56,10 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
             }
         });
 
-        ClosePaymentHistory.setText("Close");
-        ClosePaymentHistory.addActionListener(new java.awt.event.ActionListener() {
+        BackPaymentHistory.setText("Back");
+        BackPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClosePaymentHistoryActionPerformed(evt);
+                BackPaymentHistoryActionPerformed(evt);
             }
         });
 
@@ -56,9 +68,17 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Payment History ID", "Unit Number", "Payment Amount", "Paid Date"
+                "Payment History ID", "Record Date", "Due Date", "Payment Amoint", "Description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(VendorPayHistory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -74,7 +94,7 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
                         .addGap(232, 232, 232)
                         .addComponent(ViewPaymentHistory)
                         .addGap(152, 152, 152)
-                        .addComponent(ClosePaymentHistory))
+                        .addComponent(BackPaymentHistory))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -90,7 +110,7 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ViewPaymentHistory)
-                    .addComponent(ClosePaymentHistory))
+                    .addComponent(BackPaymentHistory))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
@@ -98,12 +118,37 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewPaymentHistoryActionPerformed
-        
+        File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            
+            DefaultTableModel model = (DefaultTableModel) VendorPayHistory.getModel();
+            
+            Object [] dataRows = br.lines().toArray();
+            for (int i = 1; i < dataRows.length; i++){
+                String rec = dataRows[i].toString();
+                String [] dataRow = rec.split(";");
+                String [] tempArray = new String[8];
+                tempArray[0] = dataRow[0];
+                tempArray[1] = dataRow[2];
+                tempArray[2] = dataRow[3];
+                tempArray[3] = dataRow[4];
+                tempArray[4] = dataRow[5];
+                tempArray[5] = dataRow[6];
+                tempArray[6] = dataRow[7];
+                tempArray[7] = dataRow[8];
+                model.addRow(tempArray);
+            }
+            br.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TenantPaymentHistory.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ViewPaymentHistoryActionPerformed
 
-    private void ClosePaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosePaymentHistoryActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ClosePaymentHistoryActionPerformed
+    private void BackPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackPaymentHistoryActionPerformed
+        new VendorPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackPaymentHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,13 +180,13 @@ public class VendorPaymentHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorPaymentHistory().setVisible(true);
+//                new VendorPaymentHistory().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ClosePaymentHistory;
+    private javax.swing.JButton BackPaymentHistory;
     private javax.swing.JTable VendorPayHistory;
     private javax.swing.JButton ViewPaymentHistory;
     private javax.swing.JLabel jLabel1;

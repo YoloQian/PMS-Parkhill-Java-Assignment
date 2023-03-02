@@ -38,7 +38,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TenantPaymentHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        ImportPaymentHistory = new javax.swing.JButton();
+        ViewPaymentHistory = new javax.swing.JButton();
         ClosePaymentHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,10 +64,10 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("Payment History");
 
-        ImportPaymentHistory.setText("View Payment History");
-        ImportPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
+        ViewPaymentHistory.setText("View Payment History");
+        ViewPaymentHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImportPaymentHistoryActionPerformed(evt);
+                ViewPaymentHistoryActionPerformed(evt);
             }
         });
 
@@ -89,7 +89,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(ImportPaymentHistory)
+                        .addComponent(ViewPaymentHistory)
                         .addGap(130, 130, 130)
                         .addComponent(ClosePaymentHistory))
                     .addGroup(layout.createSequentialGroup()
@@ -106,7 +106,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ImportPaymentHistory)
+                    .addComponent(ViewPaymentHistory)
                     .addComponent(ClosePaymentHistory))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -114,7 +114,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ImportPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImportPaymentHistoryActionPerformed
+    private void ViewPaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewPaymentHistoryActionPerformed
         File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -126,8 +126,6 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                 String rec = dataRows[i].toString();
                 String [] dataRow = rec.split(";");
                 String [] tempArray = new String[8];
-                System.out.println(Arrays.toString(dataRow));
-                System.out.println(Arrays.toString(tempArray));
                 tempArray[0] = dataRow[0];
                 tempArray[1] = dataRow[2];
                 tempArray[2] = dataRow[3];
@@ -142,7 +140,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(TenantPaymentHistory.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ImportPaymentHistoryActionPerformed
+    }//GEN-LAST:event_ViewPaymentHistoryActionPerformed
 
     private void ClosePaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosePaymentHistoryActionPerformed
         System.exit(0);
@@ -186,8 +184,8 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClosePaymentHistory;
-    private javax.swing.JButton ImportPaymentHistory;
     private javax.swing.JTable TenantPaymentHistory;
+    private javax.swing.JButton ViewPaymentHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
