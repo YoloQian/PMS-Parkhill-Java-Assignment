@@ -9,6 +9,7 @@ package assignment.assignment;
  * @author leeyu
  */
 public abstract class User {
+    TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
     private int userId;
     private String password;
     private String role;
