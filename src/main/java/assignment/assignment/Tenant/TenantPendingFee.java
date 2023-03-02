@@ -4,6 +4,7 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author TeD
  */
 public class TenantPendingFee extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form paymentHistory
      */
-    public TenantPendingFee() {
+    public TenantPendingFee(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +41,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
         TenantPendingFee = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         TenantViewPendingFee = new javax.swing.JButton();
-        TenantClosePendingFee = new javax.swing.JButton();
+        BackBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +73,10 @@ public class TenantPendingFee extends javax.swing.JFrame {
             }
         });
 
-        TenantClosePendingFee.setText("Close");
-        TenantClosePendingFee.addActionListener(new java.awt.event.ActionListener() {
+        BackBTN.setText("Back");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantClosePendingFeeActionPerformed(evt);
+                BackBTNActionPerformed(evt);
             }
         });
 
@@ -90,7 +93,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
                         .addGap(279, 279, 279)
                         .addComponent(TenantViewPendingFee)
                         .addGap(127, 127, 127)
-                        .addComponent(TenantClosePendingFee))
+                        .addComponent(BackBTN))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -106,7 +109,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TenantViewPendingFee)
-                    .addComponent(TenantClosePendingFee))
+                    .addComponent(BackBTN))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -138,9 +141,10 @@ public class TenantPendingFee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TenantViewPendingFeeActionPerformed
 
-    private void TenantClosePendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantClosePendingFeeActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_TenantClosePendingFeeActionPerformed
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        new TenantPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,7 +189,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton TenantClosePendingFee;
+    private javax.swing.JButton BackBTN;
     private javax.swing.JTable TenantPendingFee;
     private javax.swing.JButton TenantViewPendingFee;
     private javax.swing.JLabel jLabel1;

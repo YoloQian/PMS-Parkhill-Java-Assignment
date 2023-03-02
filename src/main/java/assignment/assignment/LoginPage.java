@@ -10,6 +10,7 @@ import assignment.assignment.BuildingExecutive.BuildingExecutiveMainFrame;
 import assignment.assignment.BuildingManagers.BuildingManagerMenu;
 import assignment.assignment.SecurityGuard.SecurityGuardMain;
 import assignment.assignment.Tenant.TenantMainFrame;
+import assignment.assignment.Vendor.VendorMainFrame;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -194,6 +195,11 @@ public class LoginPage extends javax.swing.JFrame {
                         }
                     case "buildingexecutive" -> {
                         new BuildingExecutiveMainFrame().setVisible(true);                        
+                        dispose();
+                        break;
+                        }
+                    case "vendor" -> {
+                        new VendorMainFrame(user).setVisible(true);                      
                         dispose();
                         break;
                         }

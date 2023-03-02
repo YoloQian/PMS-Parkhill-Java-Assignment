@@ -18,6 +18,7 @@ public class TenantViewComplaint extends javax.swing.JFrame {
      */
     public TenantViewComplaint() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -68,7 +68,6 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TenantPay" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="PaymentName" alignment="0" pref="160" max="32767" attributes="0"/>
                           <Component id="PaymentAmount" alignment="0" max="32767" attributes="0"/>
                           <Component id="PaymentDescription" max="32767" attributes="0"/>
@@ -78,15 +77,22 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="DateTimeLabel" min="-2" pref="107" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="TenantPay" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="BackBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="BackBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="PaymentName" min="-2" max="-2" attributes="0"/>
@@ -169,6 +175,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShowDueDateActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="BackBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Back"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -32,7 +32,7 @@ public class VendorPaymentPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        PaymentBTN = new javax.swing.JButton();
         VendorPaymentHistory = new javax.swing.JButton();
         VendorPendingFee = new javax.swing.JButton();
         VendorInvoice = new javax.swing.JButton();
@@ -45,10 +45,10 @@ public class VendorPaymentPage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("PAYMENT PAGE");
 
-        jButton1.setText("PAYMENT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        PaymentBTN.setText("PAYMENT");
+        PaymentBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                PaymentBTNActionPerformed(evt);
             }
         });
 
@@ -109,7 +109,7 @@ public class VendorPaymentPage extends javax.swing.JFrame {
                             .addComponent(Receipt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(VendorInvoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(VendorStatement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PaymentBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(VendorPaymentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(VendorPendingFee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BackBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -121,7 +121,7 @@ public class VendorPaymentPage extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(PaymentBTN)
                 .addGap(18, 18, 18)
                 .addComponent(VendorPaymentHistory)
                 .addGap(18, 18, 18)
@@ -170,10 +170,10 @@ public class VendorPaymentPage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ReceiptActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void PaymentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBTNActionPerformed
         new VendorMakePayment(user).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_PaymentBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,12 +213,12 @@ public class VendorPaymentPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBTN;
+    private javax.swing.JButton PaymentBTN;
     private javax.swing.JButton Receipt;
     private javax.swing.JButton VendorInvoice;
     private javax.swing.JButton VendorPaymentHistory;
     private javax.swing.JButton VendorPendingFee;
     private javax.swing.JButton VendorStatement;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

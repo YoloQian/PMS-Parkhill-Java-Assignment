@@ -89,6 +89,7 @@ public class TenantMakePayment extends javax.swing.JFrame {
         PaymentDescription = new javax.swing.JTextField();
         DateTimeLabel = new javax.swing.JLabel();
         ShowDueDate = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +125,13 @@ public class TenantMakePayment extends javax.swing.JFrame {
             }
         });
 
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,20 +146,25 @@ public class TenantMakePayment extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TenantPay)
                         .addComponent(PaymentName, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                         .addComponent(PaymentAmount)
                         .addComponent(PaymentDescription))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ShowDueDate)
                         .addGap(18, 18, 18)
-                        .addComponent(DateTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DateTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TenantPay))
                 .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BackBtn)
+                .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addComponent(BackBtn)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(PaymentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,6 +274,11 @@ public class TenantMakePayment extends javax.swing.JFrame {
         showDateDialog(DateTimeLabel);
     }//GEN-LAST:event_ShowDueDateActionPerformed
 
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        new TenantPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +322,7 @@ public class TenantMakePayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBtn;
     private javax.swing.JLabel DateTimeLabel;
     private javax.swing.JTextField PaymentAmount;
     private javax.swing.JTextField PaymentDescription;

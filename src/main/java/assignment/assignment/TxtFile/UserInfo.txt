@@ -3,3 +3,4 @@ userID;password;role;name;email
 2;ted123;tenant;ted;ted@gmail.com
 3;qian123;vendor;qian;qian@gmail.com
 4;log123;security;log;log@gmail.com
+5;jia123;buildingexecutive;jia;jia@gmail.com

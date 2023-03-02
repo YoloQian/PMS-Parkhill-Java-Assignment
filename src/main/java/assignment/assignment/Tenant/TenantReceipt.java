@@ -4,6 +4,7 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author TeD
  */
 public class TenantReceipt extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form paymentHistory
      */
-    public TenantReceipt() {
+    public TenantReceipt(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -139,7 +142,8 @@ public class TenantReceipt extends javax.swing.JFrame {
     }//GEN-LAST:event_TenantImportReceiptActionPerformed
 
     private void TenantBackReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantBackReceiptActionPerformed
-        System.exit(0);
+        new TenantPaymentPage(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_TenantBackReceiptActionPerformed
 
     /**

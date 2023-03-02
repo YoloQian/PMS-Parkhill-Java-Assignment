@@ -4,17 +4,21 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
+
 /**
  *
  * @author TeD
  */
 public class TenantApplyVisitorPass extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form TenantApplyVisitorPass
      */
-    public TenantApplyVisitorPass() {
+    public TenantApplyVisitorPass(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,11 +38,12 @@ public class TenantApplyVisitorPass extends javax.swing.JFrame {
         VisitdatePicker = new com.github.lgooddatepicker.components.DatePicker();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        BackBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("VISITOR PASS");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         jLabel3.setText("Visitor Name :");
 
@@ -54,6 +59,13 @@ public class TenantApplyVisitorPass extends javax.swing.JFrame {
         });
 
         jButton2.setText("View");
+
+        BackBTN.setText("Back");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,17 +90,25 @@ public class TenantApplyVisitorPass extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(VisitorName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(VisitdatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(VisitdatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BackBTN)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(BackBTN)))
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -112,6 +132,11 @@ public class TenantApplyVisitorPass extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        new TenantMainFrame(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,12 +168,13 @@ public class TenantApplyVisitorPass extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantApplyVisitorPass().setVisible(true);
+//                new TenantApplyVisitorPass().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBTN;
     private com.github.lgooddatepicker.components.DatePicker VisitdatePicker;
     private javax.swing.JTextField VisitorName;
     private javax.swing.JButton jButton1;

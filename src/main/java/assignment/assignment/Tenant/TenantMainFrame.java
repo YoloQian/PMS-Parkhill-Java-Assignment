@@ -4,6 +4,7 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.LoginPage;
 import assignment.assignment.User;
 
 /**
@@ -20,6 +21,7 @@ public class TenantMainFrame extends javax.swing.JFrame {
     public TenantMainFrame(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -79,8 +81,18 @@ public class TenantMainFrame extends javax.swing.JFrame {
         });
 
         ComplaintBTN.setText("COMPLAINT");
+        ComplaintBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComplaintBTNActionPerformed(evt);
+            }
+        });
 
         LogOutBTN.setText("LOG OUT");
+        LogOutBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogOutBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,22 +138,35 @@ public class TenantMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProfileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileBTNActionPerformed
-        
         new TenantViewProfile(user).setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_ProfileBTNActionPerformed
 
     private void VisitorPassBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitorPassBTNActionPerformed
-        // TODO add your handling code here:
+        new TenantApplyVisitorPass(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_VisitorPassBTNActionPerformed
 
     private void PaymentBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaymentBTNActionPerformed
         new TenantPaymentPage(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_PaymentBTNActionPerformed
 
     private void FacilityBookingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacilityBookingBTNActionPerformed
-        new TenantFacilityBooking().setVisible(true);
+        new TenantFacilityBookingView(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_FacilityBookingBTNActionPerformed
+
+    private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
+        new LoginPage().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_LogOutBTNActionPerformed
+
+    private void ComplaintBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComplaintBTNActionPerformed
+        new TenantComplaintManagement(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ComplaintBTNActionPerformed
     
     
     

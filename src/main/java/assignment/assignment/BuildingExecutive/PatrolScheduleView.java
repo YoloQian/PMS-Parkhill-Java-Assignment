@@ -29,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
  * @author leeyu
  */
 public class PatrolScheduleView extends javax.swing.JFrame {
-    private String[] columnNames = {"Checkpoint", "Schedule Time"};
+    private String[] columnNames = {"Checkpoint", "Schedule Time"}; //top string
     private Object[][] tableData;
 
     /**
@@ -40,10 +40,10 @@ public class PatrolScheduleView extends javax.swing.JFrame {
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/PatrolSchedule.txt"))) {
             String line;
             int lineNumber = 0;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) {  //this is from txt file
                 if (lineNumber > 0) { // Skip first line (header row)
                     String[] splitLine = line.split(";");
-                    Object[] row = new Object[2];
+                    Object[] row = new Object[2];  //this will be 7
                     row[0] = splitLine[0];
                     row[1] = splitLine[1];
                     data.add(row);
@@ -52,7 +52,7 @@ public class PatrolScheduleView extends javax.swing.JFrame {
             }
         } catch (IOException e) {
         }
-        tableData = data.toArray(new Object[data.size()][2]);
+        tableData = data.toArray(new Object[data.size()][2]);  //put 7 also
         initComponents();
         setLocationRelativeTo(null);
     }

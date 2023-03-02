@@ -35,7 +35,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="TenantUpdateProfile" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="TenantUpdateProfile" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="BackBTN" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="TenantID" max="32767" attributes="0"/>
                       <Component id="TenantProfileName" alignment="0" max="32767" attributes="0"/>
@@ -44,7 +48,7 @@
                       <Component id="TenantProfilePassword" alignment="0" pref="150" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,7 +83,10 @@
                   <Component id="TenantProfilePassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="TenantUpdateProfile" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="TenantUpdateProfile" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BackBTN" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -153,6 +160,14 @@
     <Component class="javax.swing.JTextField" name="TenantProfilePassword">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantProfilePasswordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="BackBTN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="BACK"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackBTNActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

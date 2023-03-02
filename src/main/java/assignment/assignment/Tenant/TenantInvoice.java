@@ -4,6 +4,7 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author TeD
  */
 public class TenantInvoice extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form paymentHistory
      */
-    public TenantInvoice() {
+    public TenantInvoice(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,7 +41,7 @@ public class TenantInvoice extends javax.swing.JFrame {
         TenantInvoice = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         TenantImportInvoice = new javax.swing.JButton();
-        TenantCloseInvoice = new javax.swing.JButton();
+        BackBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,10 +65,10 @@ public class TenantInvoice extends javax.swing.JFrame {
             }
         });
 
-        TenantCloseInvoice.setText("Close");
-        TenantCloseInvoice.addActionListener(new java.awt.event.ActionListener() {
+        BackBTN.setText("Back");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TenantCloseInvoiceActionPerformed(evt);
+                BackBTNActionPerformed(evt);
             }
         });
 
@@ -82,7 +85,7 @@ public class TenantInvoice extends javax.swing.JFrame {
                         .addGap(279, 279, 279)
                         .addComponent(TenantImportInvoice)
                         .addGap(127, 127, 127)
-                        .addComponent(TenantCloseInvoice))
+                        .addComponent(BackBTN))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -98,7 +101,7 @@ public class TenantInvoice extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TenantImportInvoice)
-                    .addComponent(TenantCloseInvoice))
+                    .addComponent(BackBTN))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -130,9 +133,10 @@ public class TenantInvoice extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TenantImportInvoiceActionPerformed
 
-    private void TenantCloseInvoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantCloseInvoiceActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_TenantCloseInvoiceActionPerformed
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        new TenantPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,13 +183,13 @@ public class TenantInvoice extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantInvoice().setVisible(true);
+//                new TenantInvoice().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton TenantCloseInvoice;
+    private javax.swing.JButton BackBTN;
     private javax.swing.JButton TenantImportInvoice;
     private javax.swing.JTable TenantInvoice;
     private javax.swing.JLabel jLabel1;

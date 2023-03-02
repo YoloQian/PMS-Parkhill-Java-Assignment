@@ -82,6 +82,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
         TenantProfileEmail = new javax.swing.JTextField();
         TenantProfilePhone = new javax.swing.JTextField();
         TenantProfilePassword = new javax.swing.JTextField();
+        BackBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,6 +137,13 @@ public class TenantViewProfile extends javax.swing.JFrame {
             }
         });
 
+        BackBTN.setText("BACK");
+        BackBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,14 +159,17 @@ public class TenantViewProfile extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TenantUpdateProfile)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TenantUpdateProfile)
+                        .addGap(31, 31, 31)
+                        .addComponent(BackBTN))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(TenantID)
                         .addComponent(TenantProfileName)
                         .addComponent(TenantProfileEmail)
                         .addComponent(TenantProfilePhone)
                         .addComponent(TenantProfilePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +197,9 @@ public class TenantViewProfile extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(TenantProfilePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(TenantUpdateProfile)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TenantUpdateProfile)
+                    .addComponent(BackBTN))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -277,6 +290,11 @@ public class TenantViewProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TenantUpdateProfileActionPerformed
 
+    private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
+        new TenantMainFrame(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,6 +338,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBTN;
     private javax.swing.JTextField TenantID;
     private javax.swing.JTextField TenantProfileEmail;
     private javax.swing.JTextField TenantProfileName;

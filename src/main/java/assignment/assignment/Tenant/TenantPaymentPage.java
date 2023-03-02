@@ -20,6 +20,7 @@ public class TenantPaymentPage extends javax.swing.JFrame {
     public TenantPaymentPage(User user) {
         this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -147,33 +148,38 @@ public class TenantPaymentPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PayHistoryBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayHistoryBTNActionPerformed
-        
-        new TenantPaymentHistory().setVisible(true);
-        
+        new TenantPaymentHistory(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_PayHistoryBTNActionPerformed
 
     private void InvoiceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceBTNActionPerformed
-        new TenantInvoice().setVisible(true);
+        new TenantInvoice(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_InvoiceBTNActionPerformed
 
     private void PendingBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PendingBTNActionPerformed
-        new TenantPendingFee().setVisible(true);
+        new TenantPendingFee(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_PendingBTNActionPerformed
 
     private void PayHistoryBTN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PayHistoryBTN1ActionPerformed
         new TenantMakePayment(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_PayHistoryBTN1ActionPerformed
 
     private void StatementBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StatementBTNActionPerformed
-        new TenantStatement().setVisible(true);
+        new TenantStatement(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_StatementBTNActionPerformed
 
     private void ReceiptBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReceiptBTNActionPerformed
-        new TenantReceipt().setVisible(true);
+        new TenantReceipt(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_ReceiptBTNActionPerformed
 
     private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
         new TenantMainFrame(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_BackBTNActionPerformed
     
     

@@ -33,7 +33,7 @@
                       <EmptySpace min="-2" pref="279" max="-2" attributes="0"/>
                       <Component id="TenantViewPendingFee" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                      <Component id="TenantClosePendingFee" min="-2" max="-2" attributes="0"/>
+                      <Component id="BackBTN" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="TenantViewPendingFee" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TenantClosePendingFee" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BackBTN" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
@@ -99,12 +99,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantViewPendingFeeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="TenantClosePendingFee">
+    <Component class="javax.swing.JButton" name="BackBTN">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Close"/>
+        <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TenantClosePendingFeeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackBTNActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

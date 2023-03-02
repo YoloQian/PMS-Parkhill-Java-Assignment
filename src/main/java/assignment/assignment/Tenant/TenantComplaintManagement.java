@@ -4,17 +4,21 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
+
 /**
  *
  * @author TeD
  */
 public class TenantComplaintManagement extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form Complaint_management
      */
-    public TenantComplaintManagement() {
+    public TenantComplaintManagement(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,6 +42,7 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
         TenantComplaintDescription = new javax.swing.JTextArea();
         TenantNewComplaint = new javax.swing.JButton();
         TenantViewComplaint = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +67,13 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
 
         TenantViewComplaint.setText("View");
 
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,12 +94,15 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(TenantNewComplaint)
                                 .addGap(18, 18, 18)
-                                .addComponent(TenantViewComplaint))))
+                                .addComponent(TenantViewComplaint)))
+                        .addContainerGap(194, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                        .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BackBtn)
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +110,8 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackBtn))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -112,7 +128,7 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TenantNewComplaint)
                     .addComponent(TenantViewComplaint))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,6 +149,11 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        new TenantMainFrame(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,12 +216,13 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantComplaintManagement().setVisible(true);
+//                new TenantComplaintManagement().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBtn;
     private javax.swing.JTextArea TenantComplaintDescription;
     private javax.swing.JTextField TenantComplaint_date;
     private javax.swing.JTextField TenantComplaint_name;

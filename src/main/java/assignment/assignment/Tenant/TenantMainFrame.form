@@ -124,11 +124,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="COMPLAINT"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComplaintBTNActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="LogOutBTN">
       <Properties>
         <Property name="text" type="java.lang.String" value="LOG OUT"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogOutBTNActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

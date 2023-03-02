@@ -4,11 +4,11 @@
  */
 package assignment.assignment.Tenant;
 
+import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -18,12 +18,14 @@ import javax.swing.table.DefaultTableModel;
  * @author TeD
  */
 public class TenantPaymentHistory extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form paymentHistory
      */
-    public TenantPaymentHistory() {
+    public TenantPaymentHistory(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +41,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         TenantPaymentHistory = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         ViewPaymentHistory = new javax.swing.JButton();
-        ClosePaymentHistory = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,10 +73,10 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
             }
         });
 
-        ClosePaymentHistory.setText("Close");
-        ClosePaymentHistory.addActionListener(new java.awt.event.ActionListener() {
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClosePaymentHistoryActionPerformed(evt);
+                BackBtnActionPerformed(evt);
             }
         });
 
@@ -91,7 +93,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                         .addGap(254, 254, 254)
                         .addComponent(ViewPaymentHistory)
                         .addGap(130, 130, 130)
-                        .addComponent(ClosePaymentHistory))
+                        .addComponent(BackBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -107,7 +109,7 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ViewPaymentHistory)
-                    .addComponent(ClosePaymentHistory))
+                    .addComponent(BackBtn))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -142,9 +144,10 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ViewPaymentHistoryActionPerformed
 
-    private void ClosePaymentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosePaymentHistoryActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ClosePaymentHistoryActionPerformed
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        new TenantPaymentPage(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BackBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,13 +180,13 @@ public class TenantPaymentHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TenantPaymentHistory().setVisible(true);
+//                new TenantPaymentHistory().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ClosePaymentHistory;
+    private javax.swing.JButton BackBtn;
     private javax.swing.JTable TenantPaymentHistory;
     private javax.swing.JButton ViewPaymentHistory;
     private javax.swing.JLabel jLabel1;
