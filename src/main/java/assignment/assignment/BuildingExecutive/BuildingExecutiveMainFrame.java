@@ -29,6 +29,7 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
 
         buildingExecutiveLabel = new javax.swing.JLabel();
         managePatrolBtn = new javax.swing.JButton();
+        taskBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,6 +39,13 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
         managePatrolBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 managePatrolBtnActionPerformed(evt);
+            }
+        });
+
+        taskBtn.setText("Task Management");
+        taskBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskBtnActionPerformed(evt);
             }
         });
 
@@ -52,7 +60,9 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
                         .addComponent(buildingExecutiveLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(managePatrolBtn)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(taskBtn)
+                            .addComponent(managePatrolBtn))))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -60,7 +70,9 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(buildingExecutiveLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(taskBtn)
+                .addGap(18, 18, 18)
                 .addComponent(managePatrolBtn)
                 .addGap(90, 90, 90))
         );
@@ -73,6 +85,12 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
         new PatrolScheduleView().setVisible(true);
         dispose();
     }//GEN-LAST:event_managePatrolBtnActionPerformed
+
+    private void taskBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskBtnActionPerformed
+        // TODO add your handling code here:
+        new TaskManagement().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_taskBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,5 +129,6 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buildingExecutiveLabel;
     private javax.swing.JButton managePatrolBtn;
+    private javax.swing.JButton taskBtn;
     // End of variables declaration//GEN-END:variables
 }

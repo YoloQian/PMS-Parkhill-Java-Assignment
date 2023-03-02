@@ -4,16 +4,43 @@
  */
 package assignment.assignment.BuildingExecutive;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author leeyu
  */
-public class TaskManagement extends javax.swing.JFrame {
+public class TaskManagement extends javax.swing.JFrame {    
+    private String[] columnNames = {"Employee ID", "Phone No.", "Visit Date", "Tenant ID"};
+    private Object[][] tableData;
 
     /**
      * Creates new form AssignJob
      */
     public TaskManagement() {
+        List<Object[]> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+            String line;
+            int lineNumber = 0;
+            while ((line = br.readLine()) != null) {
+                if (lineNumber > 0) { // Skip first line (header row)
+                    String[] splitLine = line.split(";");
+                    Object[] row = new Object[4];
+                    row[0] = splitLine[0];
+                    row[1] = splitLine[1];
+                    row[2] = splitLine[2];
+                    row[3] = splitLine[3];
+                    data.add(row);
+                }
+                lineNumber++;
+            }
+        } catch (IOException e) {
+        }
+        tableData = data.toArray(new Object[data.size()][4]);
         initComponents();        
         setLocationRelativeTo(null);
     }
@@ -35,37 +62,14 @@ public class TaskManagement extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         taskLabel = new javax.swing.JLabel();
         taskTF = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         taskMLabel.setText("Task Management");
 
-        taskManagementTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "EmployeeID", "Name", "Email", "Task"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        taskManagementTable.setModel(new javax.swing.table.DefaultTableModel(tableData, columnNames
+        ));
         jScrollPane1.setViewportView(taskManagementTable);
 
         deleteBtn.setText("Delete Task");
@@ -84,6 +88,13 @@ public class TaskManagement extends javax.swing.JFrame {
             }
         });
 
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,27 +102,34 @@ public class TaskManagement extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(taskMLabel)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(taskLabel)
-                                .addComponent(taskTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(67, 67, 67)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(assignBtn)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(searchBtn)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(deleteBtn))))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(taskLabel)
+                                    .addComponent(taskTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(assignBtn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(searchBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(deleteBtn))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(taskMLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backBtn)
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(taskMLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(taskMLabel)
+                    .addComponent(backBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -136,6 +154,12 @@ public class TaskManagement extends javax.swing.JFrame {
     private void taskTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_taskTFActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        new BuildingExecutiveMainFrame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +199,7 @@ public class TaskManagement extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
