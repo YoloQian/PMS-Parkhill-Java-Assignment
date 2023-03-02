@@ -60,7 +60,12 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
             }
         });
 
-        statusBtn.setText("View & Update Status");
+        statusBtn.setText("View & Update Complaint Status");
+        statusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +83,7 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
                     .addComponent(statusBtn)
                     .addComponent(taskBtn)
                     .addComponent(managePatrolBtn))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,6 +122,12 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
         this.dispose();
         LoginPage.setVisible(true);
     }//GEN-LAST:event_LogOutBTNActionPerformed
+
+    private void statusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusBtnActionPerformed
+        // TODO add your handling code here:
+        new ComplaintStatusView().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_statusBtnActionPerformed
 
     /**
      * @param args the command line arguments
