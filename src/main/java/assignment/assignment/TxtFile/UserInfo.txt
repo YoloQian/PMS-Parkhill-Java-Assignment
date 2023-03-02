@@ -6,3 +6,4 @@ userID;password;role;name;email
 5;qian;accountexecutive;accountqian;accountqian@mail.com
 6;qian;buildingmanager;buildingqian;buildingqian@mail.com
 7;qian;adminexecutive;adminqian;adminqian@mail.com
+8;heng;buildingexecutive;ong;huat@mail.com

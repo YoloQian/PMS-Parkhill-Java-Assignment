@@ -15,6 +15,7 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
      */
     public BuildingExecutiveMainFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -27,13 +28,18 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         buildingExecutiveLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        managePatrolBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buildingExecutiveLabel.setText("Building Executive");
 
-        jButton1.setText("Manage Patrolling Schedule ");
+        managePatrolBtn.setText("Manage Patrolling Schedule ");
+        managePatrolBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managePatrolBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,7 +52,7 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
                         .addComponent(buildingExecutiveLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addComponent(jButton1)))
+                        .addComponent(managePatrolBtn)))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -55,12 +61,18 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(buildingExecutiveLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(managePatrolBtn)
                 .addGap(90, 90, 90))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void managePatrolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePatrolBtnActionPerformed
+        // TODO add your handling code here:
+        new PatrolScheduleForm().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_managePatrolBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,14 +103,13 @@ public class BuildingExecutiveMainFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuildingExecutiveMainFrame().setVisible(true);
+            public void run() {                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buildingExecutiveLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton managePatrolBtn;
     // End of variables declaration//GEN-END:variables
 }
