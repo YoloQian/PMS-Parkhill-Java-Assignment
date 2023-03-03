@@ -65,8 +65,6 @@ public class VisitorPassView extends javax.swing.JFrame {
         visitorPassLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         visitorPassTable = new javax.swing.JTable();
-        visitorPassUpdateBtn = new javax.swing.JButton();
-        visitorPassDeleteBtn = new javax.swing.JButton();
         visitorPassTableBackBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -83,15 +81,6 @@ public class VisitorPassView extends javax.swing.JFrame {
         visitorPassTable.setDefaultEditor(Object.class, null); // this makes the table non-editable
         visitorPassTable.setRowSelectionAllowed(true); // this allows the rows to be selected
         jScrollPane1.setViewportView(visitorPassTable);
-
-        visitorPassUpdateBtn.setText("Update");
-        visitorPassUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visitorPassUpdateBtnActionPerformed(evt);
-            }
-        });
-
-        visitorPassDeleteBtn.setText("Delete");
 
         visitorPassTableBackBtn.setText("Back");
         visitorPassTableBackBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,11 +116,11 @@ public class VisitorPassView extends javax.swing.JFrame {
                 .addGap(93, 93, 93))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
@@ -142,10 +131,6 @@ public class VisitorPassView extends javax.swing.JFrame {
                             .addComponent(searchTenantIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(visitorPassUpdateBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(visitorPassDeleteBtn)
                         .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
@@ -160,10 +145,7 @@ public class VisitorPassView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(visitorPassUpdateBtn)
-                            .addComponent(visitorPassDeleteBtn)
-                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,11 +160,6 @@ public class VisitorPassView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void visitorPassUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassUpdateBtnActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_visitorPassUpdateBtnActionPerformed
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
@@ -255,10 +232,8 @@ public class VisitorPassView extends javax.swing.JFrame {
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTenantIDTF;
     private javax.swing.JTextField searchVisitorNameTF;
-    private javax.swing.JButton visitorPassDeleteBtn;
     private javax.swing.JLabel visitorPassLabel;
     private javax.swing.JTable visitorPassTable;
     private javax.swing.JButton visitorPassTableBackBtn;
-    private javax.swing.JButton visitorPassUpdateBtn;
     // End of variables declaration//GEN-END:variables
 }
