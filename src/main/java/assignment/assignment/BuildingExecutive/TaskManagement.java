@@ -243,7 +243,6 @@ public class TaskManagement extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-                // TODO add your handling code here:
         // Get selected row index
         int selectedRow = taskManagementTable.getSelectedRow();
         if (selectedRow == -1) {
