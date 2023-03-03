@@ -169,18 +169,21 @@ public class LoginPage extends javax.swing.JFrame {
                     this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
                     switch (user.getRole()) {
                     case "accountexecutive" -> {
-                        new AccountExecutiveMenu(user).setVisible(true);
-                        dispose();
+                        AccountExecutiveMenu AccountExecutiveMenu = new AccountExecutiveMenu();
+                        this.dispose();
+                        AccountExecutiveMenu.setVisible(true);
                         break;
                         }   
                     case "adminexecutive" -> {
-                        new AdminExecutiveMenu(user).setVisible(true);
-                        dispose();
+                        AdminExecutiveMenu AdminExecutiveMenu = new AdminExecutiveMenu();
+                        this.dispose();
+                        AdminExecutiveMenu.setVisible(true);
                         break;
                         }   
                     case "buildingmanager" -> {
-                        new BuildingManagerMenu(user).setVisible(true);
-                        dispose();
+                        BuildingManagerMenu BuildingManagerMenu = new BuildingManagerMenu();
+                        this.dispose();
+                        BuildingManagerMenu.setVisible(true);
                         break;
                         }    
                     case "tenant" -> {
