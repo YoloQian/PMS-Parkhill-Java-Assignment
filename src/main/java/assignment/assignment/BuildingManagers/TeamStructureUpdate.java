@@ -42,6 +42,7 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         teamstructureupdateTABLE = new javax.swing.JTable();
         showteamstructureBTN = new javax.swing.JButton();
+        modifyBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +92,8 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
             }
         });
 
+        modifyBTN.setText("Modify");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,8 +106,11 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(backBTN))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(showteamstructureBTN, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(modifyBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(showteamstructureBTN))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -119,7 +125,9 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showteamstructureBTN)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showteamstructureBTN)
+                    .addComponent(modifyBTN))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
@@ -195,6 +203,7 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBTN;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modifyBTN;
     private javax.swing.JButton showteamstructureBTN;
     private javax.swing.JLabel teamstructureupdateLABEL;
     private javax.swing.JTable teamstructureupdateTABLE;

@@ -42,6 +42,7 @@ public class FacilityBookingModify extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         facilitybookingmodifyTABLE = new javax.swing.JTable();
         viewbookingsBTN = new javax.swing.JButton();
+        modifyBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +99,8 @@ public class FacilityBookingModify extends javax.swing.JFrame {
             }
         });
 
+        modifyBTN.setText("Modify");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,9 +113,11 @@ public class FacilityBookingModify extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(backBTN))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(modifyBTN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(deleteBTN)
                                 .addGap(236, 236, 236)
                                 .addComponent(viewbookingsBTN)))
@@ -131,7 +136,8 @@ public class FacilityBookingModify extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewbookingsBTN)
-                    .addComponent(deleteBTN))
+                    .addComponent(deleteBTN)
+                    .addComponent(modifyBTN))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,6 +240,7 @@ public class FacilityBookingModify extends javax.swing.JFrame {
     private javax.swing.JLabel facilitybookingmodifyLABEL;
     private javax.swing.JTable facilitybookingmodifyTABLE;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modifyBTN;
     private javax.swing.JButton viewbookingsBTN;
     // End of variables declaration//GEN-END:variables
 }
