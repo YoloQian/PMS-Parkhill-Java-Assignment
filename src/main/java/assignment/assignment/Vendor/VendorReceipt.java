@@ -25,6 +25,23 @@ public class VendorReceipt extends javax.swing.JFrame {
      */
     private User user;
     public VendorReceipt(User user) {
+        this.user = user;
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/VendorInfo.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+                    this.user = new Vendor(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -118,27 +135,26 @@ public class VendorReceipt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VendorImportReceiptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorImportReceiptActionPerformed
-        File file = new File("src/main/java/assignment/assignment/TxtFile/Receipt.txt");
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            
+            String userid = Integer.toString(user.getUserId());
+            File file = new File("src/main/java/assignment/assignment/TxtFile/Receipt.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
             DefaultTableModel model = (DefaultTableModel) VendorReceipt.getModel();
-            
-            Object [] dataRows = br.lines().toArray();
-            for (int i = 1; i < dataRows.length; i++){
-                String rec = dataRows[i].toString();
-                String [] dataRow = rec.split(";");
-                String [] tempArray = new String[5];
-                tempArray[0] = dataRow[0];
-                tempArray[1] = dataRow[2];
-                tempArray[2] = dataRow[3];
-                tempArray[3] = dataRow[4];
-                tempArray[4] = dataRow[5];
-                model.addRow(tempArray);
+            model.setRowCount(0);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    if (data[1].equals(userid)){
+                        Object[] row = { data[0], data[2], data[3], data[4], data[5]};
+                        model.addRow(row);
+                    }
             }
             br.close();
-        } catch (IOException ex) {
-            Logger.getLogger(TenantReceipt.class.getName()).log(Level.SEVERE, null, ex);
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_VendorImportReceiptActionPerformed
 

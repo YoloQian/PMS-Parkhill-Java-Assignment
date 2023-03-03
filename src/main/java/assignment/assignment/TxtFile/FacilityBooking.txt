@@ -1,4 +1,3 @@
 FacilityBookingID;Facility ID;FacilityName;Tenant ID;Booking Date;Start time;End Time
 Fbooking001;F1;Badminton Court;Tenant001;2023-03-03;4pm;6pm
-Fbooking002;F1;Badminton Court;Tenant001;2023-03-03;4pm;6pm
 Fbooking003;F1;Badminton Court;Tenant002;2023-03-03;4pm;6pm

@@ -1,8 +1,6 @@
 PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus;InvoiceStatus;StatementStatus;PaymentStatus
-Payment003;2;2023-03-02;2023-03-03;100;Rent;Issued;Issued;Issued;Paid
-Payment002;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Paid
-Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Unpaid
-Payment004;6;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Unpaid
-Payment005;7;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Unpaid
-Payment006;8;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Unpaid
-
+Payment003;2;2023-03-02;2023-03-03;100;Rent;Issued;Issued;Issued;Unpaid
+Payment002;2;2023-03-02;2023-03-02;100;Rent;Not issued;Not issued;Not issued;Paid
+Payment004;3;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Paid
+Payment005;3;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Paid
+Payment006;3;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Unpaid
