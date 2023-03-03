@@ -166,57 +166,57 @@ public class LoginPage extends javax.swing.JFrame {
 
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(";");
-                if (splitLine[0].equals(UserIDTF.getText())&&splitLine[1].equals(PasswordTF.getText())) {
+                if (splitLine[0].equals(UserIDTF.getText()) && splitLine[1].equals(PasswordTF.getText())) {
                     this.user = new User(Integer.parseInt(splitLine[0]), splitLine[1], splitLine[2], splitLine[3], splitLine[4]) {};
                     switch (user.getRole()) {
-                    case "accountexecutive" -> {
-                        AccountExecutiveMenu AccountExecutiveMenu = new AccountExecutiveMenu();
-                        this.dispose();
-                        AccountExecutiveMenu.setVisible(true);
-                        break;
+                        case "accountexecutive" -> {
+                            AccountExecutiveMenu AccountExecutiveMenu = new AccountExecutiveMenu();
+                            this.dispose();
+                            AccountExecutiveMenu.setVisible(true);
+                            break;
                         }   
-                    case "adminexecutive" -> {
-                        AdminExecutiveMenu AdminExecutiveMenu = new AdminExecutiveMenu();
-                        this.dispose();
-                        AdminExecutiveMenu.setVisible(true);
-                        break;
+                        case "adminexecutive" -> {
+                            AdminExecutiveMenu AdminExecutiveMenu = new AdminExecutiveMenu();
+                            this.dispose();
+                            AdminExecutiveMenu.setVisible(true);
+                            break;
                         }   
-                    case "buildingmanager" -> {
-                        BuildingManagerMenu BuildingManagerMenu = new BuildingManagerMenu();
-                        this.dispose();
-                        BuildingManagerMenu.setVisible(true);
-                        break;
+                        case "buildingmanager" -> {
+                            BuildingManagerMenu BuildingManagerMenu = new BuildingManagerMenu();
+                            this.dispose();
+                            BuildingManagerMenu.setVisible(true);
+                            break;
                         }    
-                    case "tenant" -> {
-                        new TenantMainFrame(user).setVisible(true);
-                        dispose();
-                        break;
+                        case "tenant" -> {
+                            new TenantMainFrame(user).setVisible(true);
+                            dispose();
+                            break;
                         }
-                    case "security" -> {
-                        new SecurityGuardMain(user).setVisible(true);                        
-                        dispose();
-                        break;
+                        case "security" -> {
+                            new SecurityGuardMain(user).setVisible(true);                        
+                            dispose();
+                            break;
                         }
-                    case "buildingexecutive" -> {
-                        new BuildingExecutiveMainFrame().setVisible(true);                        
-                        dispose();
-                        break;
+                        case "buildingexecutive" -> {
+                            new BuildingExecutiveMainFrame().setVisible(true);                        
+                            dispose();
+                            break;
                         }
-                    case "vendor" -> {
-                        new VendorMainFrame(user).setVisible(true);                      
-                        dispose();
-                        break;
+                        case "vendor" -> {
+                            new VendorMainFrame(user).setVisible(true);                      
+                            dispose();
+                            break;
                         }
                     }
-                } else {
-            JOptionPane.showMessageDialog(this, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+                    br.close();
+                    return;
+                }
             }
             br.close();
-        }catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
             System.out.println("fail");
-            }
+        }
     }//GEN-LAST:event_LoginBTNActionPerformed
 
     private void UserIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserIDTFActionPerformed
