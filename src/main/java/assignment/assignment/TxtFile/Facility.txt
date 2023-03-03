@@ -1,0 +1,6 @@
+FacilityID;FacilityType;FacilityName;Location
+Facility001;indoor;pool;third floor
+Facility002;outdoor;park;courtyard
+Facility003;outdoor;park;courtyard
+Facility004;outdoor;park;courtyard
+Facility005;Indoor;GYM;24Floor

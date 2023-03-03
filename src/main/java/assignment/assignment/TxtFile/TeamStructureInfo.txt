@@ -1,0 +1,3 @@
+TeamID;TeamType;TeamDate;Members;Positions;Description
+TeamStruc001;Testing;2023-03-03;Ted,Qian,YuWei;Tenant,Vendor,Account Executive;Bruh
+TeamStruc002;Testing;2023-03-03;Ted,Qian,YuWei;Tenant,Vendor,Account Executive;Bruh
