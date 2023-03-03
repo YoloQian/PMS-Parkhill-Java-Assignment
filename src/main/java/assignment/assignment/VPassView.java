@@ -111,7 +111,7 @@ public class VPassView extends javax.swing.JFrame {
 
     private void visitorPassTableBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visitorPassTableBackBtnActionPerformed
         // TODO add your handling code here:
-        new LoginPage().setVisible(true);
+        new LoginPage1().setVisible(true);
         dispose();        
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
 

@@ -4,7 +4,7 @@
  */
 package assignment.assignment.Tenant;
 
-import assignment.assignment.LoginPage;
+import assignment.assignment.LoginPage1;
 import assignment.assignment.User;
 
 /**
@@ -159,7 +159,7 @@ public class TenantMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_FacilityBookingBTNActionPerformed
 
     private void LogOutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBTNActionPerformed
-        new LoginPage().setVisible(true);
+        new LoginPage1().setVisible(true);
         dispose();
     }//GEN-LAST:event_LogOutBTNActionPerformed
 

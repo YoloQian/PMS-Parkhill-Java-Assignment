@@ -4,6 +4,17 @@
  */
 package assignment.assignment;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -17,6 +28,7 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
     public GeneralInfoFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        viewAvailableFacilities();
     }
 
     /**
@@ -34,6 +46,7 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         facilitesLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        facilitiesAvailableLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +65,8 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
             }
         });
 
+        facilitiesAvailableLabel.setText("facilities");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,7 +75,10 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
-                    .addComponent(facilitesLabel)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(facilitesLabel)
+                        .addGap(46, 46, 46)
+                        .addComponent(facilitiesAvailableLabel))
                     .addComponent(GILabel)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(locationLabel)
@@ -81,7 +99,9 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(floorLabel)
                 .addGap(18, 18, 18)
-                .addComponent(facilitesLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(facilitesLabel)
+                    .addComponent(facilitiesAvailableLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(61, 61, 61))
@@ -95,7 +115,26 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
         new VPassView().setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void viewAvailableFacilities(){
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/Facility.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            ArrayList<String> facilityNames = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                if (!line.startsWith("FacilityID")) {
+                    String[] data = line.split(";");
+                    if (!facilityNames.contains(data[2])) {
+                        facilityNames.add(data[2]);
+                    }}
+            }
+            facilitiesAvailableLabel.setText(facilityNames.toString());
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -122,6 +161,9 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GeneralInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -134,6 +176,7 @@ public class GeneralInfoFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel GILabel;
     private javax.swing.JLabel facilitesLabel;
+    private javax.swing.JLabel facilitiesAvailableLabel;
     private javax.swing.JLabel floorLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
