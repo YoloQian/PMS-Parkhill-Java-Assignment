@@ -58,6 +58,11 @@ public class VendorMainFrame extends javax.swing.JFrame {
         });
 
         VendorComplaintBTN.setText("COMPLAINT");
+        VendorComplaintBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VendorComplaintBTNActionPerformed(evt);
+            }
+        });
 
         VendorLogoutBTN.setText("LOGOUT");
         VendorLogoutBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +122,12 @@ public class VendorMainFrame extends javax.swing.JFrame {
         new LoginPage().setVisible(true);
         dispose();
     }//GEN-LAST:event_VendorLogoutBTNActionPerformed
+
+    private void VendorComplaintBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorComplaintBTNActionPerformed
+        // TODO add your handling code here:
+        new VendorComplaintManagement(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_VendorComplaintBTNActionPerformed
 
     /**
      * @param args the command line arguments

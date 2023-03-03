@@ -268,7 +268,7 @@ public class IssueInvoice extends javax.swing.JFrame {
                 try (FileWriter fw = new FileWriter(invoiceFile, true);
                      BufferedWriter bw = new BufferedWriter(fw);
                      PrintWriter pw = new PrintWriter(bw)) {
-                    pw.println(invoiceID + ";" + userid + ";" + issueddate + ";" + duedate + ";" + issuedamount + ";" + description + ";Issued;" + paymentID);
+                    pw.println(invoiceID + ";" + userid + ";" + issueddate + ";" + duedate + ";" + issuedamount + ";" + description + ";Issued");
                 }
                 System.out.println("Success");  
                 

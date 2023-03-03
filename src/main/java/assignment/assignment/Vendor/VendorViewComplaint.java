@@ -1,5 +1,7 @@
 package assignment.assignment.Vendor;
 
+import assignment.assignment.User;
+
 
 
 /*
@@ -16,8 +18,17 @@ public class VendorViewComplaint extends javax.swing.JFrame {
     /**
      * Creates new form VisitorPassView
      */
-    public VendorViewComplaint() {
+    private User user;
+
+    public VendorViewComplaint(User user) {
+        this.user = user;
         initComponents();
+        setLocationRelativeTo(null);
+
+    }
+
+    VendorViewComplaint() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -33,7 +44,7 @@ public class VendorViewComplaint extends javax.swing.JFrame {
         AdminImportComplaintData2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         VendorViewComplaint = new javax.swing.JTable();
-        VendorCloseComplaint = new javax.swing.JButton();
+        backBTN = new javax.swing.JButton();
         VendorImportComplaintData = new javax.swing.JButton();
         VendorUpdateComplaint = new javax.swing.JButton();
         VendorDeleteComplaint = new javax.swing.JButton();
@@ -62,10 +73,10 @@ public class VendorViewComplaint extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(VendorViewComplaint);
 
-        VendorCloseComplaint.setText("Close");
-        VendorCloseComplaint.addActionListener(new java.awt.event.ActionListener() {
+        backBTN.setText("Back");
+        backBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorCloseComplaintActionPerformed(evt);
+                backBTNActionPerformed(evt);
             }
         });
 
@@ -107,7 +118,7 @@ public class VendorViewComplaint extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(VendorDeleteComplaint)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(VendorCloseComplaint)))
+                        .addComponent(backBTN)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,7 +128,7 @@ public class VendorViewComplaint extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorCloseComplaint)
+                    .addComponent(backBTN)
                     .addComponent(VendorImportComplaintData)
                     .addComponent(VendorUpdateComplaint)
                     .addComponent(VendorDeleteComplaint))
@@ -127,9 +138,11 @@ public class VendorViewComplaint extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VendorCloseComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorCloseComplaintActionPerformed
+    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_VendorCloseComplaintActionPerformed
+        new VendorComplaintManagement(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backBTNActionPerformed
 
     private void VendorImportComplaintDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorImportComplaintDataActionPerformed
         // TODO add your handling code here:
@@ -1200,18 +1213,18 @@ public class VendorViewComplaint extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VendorViewComplaint().setVisible(true);
+                /**new VendorViewComplaint().setVisible(true);**/
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AdminImportComplaintData2;
-    private javax.swing.JButton VendorCloseComplaint;
     private javax.swing.JButton VendorDeleteComplaint;
     private javax.swing.JButton VendorImportComplaintData;
     private javax.swing.JButton VendorUpdateComplaint;
     private javax.swing.JTable VendorViewComplaint;
+    private javax.swing.JButton backBTN;
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

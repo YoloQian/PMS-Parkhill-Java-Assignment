@@ -219,7 +219,7 @@ public class RecordPayment extends javax.swing.JFrame {
             
             if (confirmation == JOptionPane.YES_OPTION) {
                 try (PrintWriter pw = new PrintWriter(bw)) {
-                    pw.println(paymentID + ";" + userid + ";" + recorddate + ";" + duedate + ";" + paymentamount + ";" + description + ";Not Issue;Not Issue;Not Issue");
+                    pw.println(paymentID + ";" + userid + ";" + recorddate + ";" + duedate + ";" + paymentamount + ";" + description + ";Not Issue;Not Issue;Not Issue;Unpaid");
                 }
                 System.out.println("Success");  
             } else {

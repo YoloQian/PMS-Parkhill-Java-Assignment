@@ -6,3 +6,8 @@ Invoice004;3;2023-03-03;2023-04-03;RM100;Rent;Issued
 Invoice005;6;2023-03-03;2023-04-03;RM100;Rent;Issued
 Invoice006;7;2023-03-03;2023-04-03;RM100;Rent;Issued
 Invoice007;9;2023-03-03;2023-04-03;RM100;Rent;Issued
+Invoice008;2;2023-03-03;2222-22-22;200;done;Issued
+Invoice009;2;2023-03-03;2222-22-22;200;done;Issued
+Invoice010;2;2023-03-03;2222-22-22;200;done;Issued
+Invoice011;2;2023-03-03;2222-22-22;200;done;Issued
+Invoice012;2;2023-03-03;2222-22-22;200;done;Issued

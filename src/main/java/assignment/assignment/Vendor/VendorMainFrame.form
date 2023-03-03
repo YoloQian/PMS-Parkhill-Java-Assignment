@@ -64,10 +64,10 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="WelcomeResidentTXT">
       <Properties>
+        <Property name="text" type="java.lang.String" value="WELCOME VENDOR"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="36" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="WELCOME VENDOR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="VendorProfileBTN">
@@ -90,6 +90,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="COMPLAINT"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VendorComplaintBTNActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="VendorLogoutBTN">
       <Properties>
