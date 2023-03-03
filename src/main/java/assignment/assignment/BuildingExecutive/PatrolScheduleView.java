@@ -214,7 +214,7 @@ public class PatrolScheduleView extends javax.swing.JFrame {
             int currentRow = 0;
             while ((line = reader.readLine()) != null) {
                 // check if this is the selected row to delete
-                if (currentRow == selectedRow) {
+                if (currentRow == selectedRow+1) {
                     // skip this line
                     currentRow++;
                     continue;
