@@ -5,9 +5,12 @@
 package assignment.assignment.BuildingManagers;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,6 +47,7 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
         searchidTF = new javax.swing.JTextField();
         searchidBTN = new javax.swing.JButton();
         showaccountexecutive = new javax.swing.JButton();
+        modifyBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +91,11 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
         accountexecutivemodifyLABEL.setText("Account Executive Modify");
 
         deleteBTN.setText("Delete");
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
 
         accountexecutivesearchPANEL.setBorder(javax.swing.BorderFactory.createTitledBorder("Search"));
 
@@ -134,6 +143,8 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
             }
         });
 
+        modifyBTN.setText("Modify");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,10 +161,15 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(showaccountexecutive)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(modifyBTN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(showaccountexecutive))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(deleteBTN)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -166,17 +182,19 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
                     .addComponent(backBTN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(deleteBTN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(showaccountexecutive)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(showaccountexecutive)
+                                .addGap(33, 33, 33))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(modifyBTN)
+                                .addGap(18, 18, 18)))
+                        .addComponent(deleteBTN)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,6 +263,30 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchidBTNActionPerformed
 
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = accountexecutivemodifyTABLE.getSelectedRow();
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) accountexecutivemodifyTABLE.getModel();
+            model.removeRow(selectedRow);
+            // save the updated data back to the file
+            try (FileWriter fw = new FileWriter("AccountExecutiveInfo.txt");
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter pw = new PrintWriter(bw)) {
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        pw.print(model.getValueAt(i, j));
+                        if (j != model.getColumnCount() - 1) {
+                            pw.print(";");
+                        }
+                    }
+                    pw.println();
+                }
+            } catch (IOException e) {
+            }
+        }
+    }//GEN-LAST:event_deleteBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +330,7 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
     private javax.swing.JButton backBTN;
     private javax.swing.JButton deleteBTN;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modifyBTN;
     private javax.swing.JButton searchidBTN;
     private javax.swing.JLabel searchidLABEL;
     private javax.swing.JTextField searchidTF;

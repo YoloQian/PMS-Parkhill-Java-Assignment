@@ -5,9 +5,12 @@
 package assignment.assignment.BuildingManagers;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -82,6 +85,11 @@ public class MaintenanceModify extends javax.swing.JFrame {
         });
 
         deleteBTN.setText("Delete");
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
 
         showmaintenanceBTN.setText("Show Maintenance");
         showmaintenanceBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +168,30 @@ public class MaintenanceModify extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_showmaintenanceBTNActionPerformed
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = maintenancemodifyTABLE.getSelectedRow();
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) maintenancemodifyTABLE.getModel();
+            model.removeRow(selectedRow);
+            // save the updated data back to the file
+            try (FileWriter fw = new FileWriter("Maintenance.txt");
+                 BufferedWriter bw = new BufferedWriter(fw);
+                 PrintWriter pw = new PrintWriter(bw)) {
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    for (int j = 0; j < model.getColumnCount(); j++) {
+                        pw.print(model.getValueAt(i, j));
+                        if (j != model.getColumnCount() - 1) {
+                            pw.print(";");
+                        }
+                    }
+                    pw.println();
+                }
+            } catch (IOException e) {
+            }
+        }
+    }//GEN-LAST:event_deleteBTNActionPerformed
 
     /**
      * @param args the command line arguments
