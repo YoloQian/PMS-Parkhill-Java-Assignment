@@ -30,8 +30,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TenantFacilityBookingView extends javax.swing.JFrame {
     private User user;
-    private String[] columnNames = {"FacilityBookingID", "Facility ID", "FacilityName",
-                                    "Tenant ID", "Booking Date", "Start Date", "End Date"}; //top string
+    private String[] columnNames = {"FacilityBookingID", "FacilityName",
+                                     "Booking Date", "Start Date", "End Date"}; //top string
     private Object[][] tableData;
     /**
      * Creates new form VisitorPassView
@@ -53,8 +53,6 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
                     row[2] = splitLine[2];
                     row[3] = splitLine[3];
                     row[4] = splitLine[4];
-                    row[5] = splitLine[5];
-                    row[6] = splitLine[6];
                     data.add(row);
                 }
                 lineNumber++;
@@ -242,8 +240,11 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
             for (int i = 0; i < model.getRowCount(); i++) {
                 if (i == row) {
                     // Update the selected row with the new data
-                    writer.write(updatefacilityname + ";" + updatebookingdate + ";" + updatestartime + ";" + updateendtime);
-                    model.setValueAt(updatefacilityname, i, 2); // Update the table cell with the new data
+                    writer.write(FacilityBookingid + ";" + Facilityid + ";" + tenantid + ";" + updatefacilityname + ";" + updatebookingdate + ";" + updatestartime + ";" + updateendtime);
+                    model.setValueAt(FacilityBookingid, i, 0); // Update the table cell with the new data
+                    model.setValueAt(Facilityid, i, 1); // Update the table cell with the new data
+                    model.setValueAt(tenantid, i, 2); // Update the table cell with the new data
+                    model.setValueAt(updatefacilityname, i, 3); // Update the table cell with the new data
                     model.setValueAt(updatebookingdate, i, 4); // Update the table cell with the new data
                     model.setValueAt(updatestartime, i, 5); // Update the table cell with the new data
                     model.setValueAt(updateendtime, i, 6); // Update the table cell with the new data
@@ -326,6 +327,8 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
 
     private void NewBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBTNActionPerformed
         // TODO add your handling code here:
+        new TenantFBookingAdd(user).setVisible(true);
+        dispose();
     }//GEN-LAST:event_NewBTNActionPerformed
 
     private void BackBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBTNActionPerformed
