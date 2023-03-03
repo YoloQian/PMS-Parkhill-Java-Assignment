@@ -92,7 +92,7 @@
         <Component class="javax.swing.JTable" name="paymentviewTABLE">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="4">
+              <Table columnCount="10" rowCount="4">
                 <Column editable="false" title="PaymentID" type="java.lang.String"/>
                 <Column editable="false" title="UserID" type="java.lang.Integer"/>
                 <Column editable="false" title="RecordDate" type="java.lang.String"/>
@@ -102,6 +102,7 @@
                 <Column editable="false" title="InvoiceStatus" type="java.lang.String"/>
                 <Column editable="false" title="ReceiptStatus" type="java.lang.String"/>
                 <Column editable="false" title="StatementStatus" type="java.lang.String"/>
+                <Column editable="false" title="PaymentStatus" type="java.lang.String"/>
               </Table>
             </Property>
           </Properties>
