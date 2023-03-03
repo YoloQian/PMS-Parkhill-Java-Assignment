@@ -4,6 +4,12 @@
  */
 package assignment.assignment.BuildingManagers;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -88,6 +94,11 @@ public class ViewReport extends javax.swing.JFrame {
         });
 
         showteamstructureBTN.setText("Show Team Structure");
+        showteamstructureBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showteamstructureBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout teamstructurePANELLayout = new javax.swing.GroupLayout(teamstructurePANEL);
         teamstructurePANEL.setLayout(teamstructurePANELLayout);
@@ -152,6 +163,11 @@ public class ViewReport extends javax.swing.JFrame {
         });
 
         showoabpBTN.setText("Show Operations And Budget Planning");
+        showoabpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showoabpBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout operationsandbudgetplanningPANELLayout = new javax.swing.GroupLayout(operationsandbudgetplanningPANEL);
         operationsandbudgetplanningPANEL.setLayout(operationsandbudgetplanningPANELLayout);
@@ -216,6 +232,11 @@ public class ViewReport extends javax.swing.JFrame {
         });
 
         showexecutiveusersBTN.setText("Show Executive Users");
+        showexecutiveusersBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showexecutiveusersBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout executiveusersPANELLayout = new javax.swing.GroupLayout(executiveusersPANEL);
         executiveusersPANEL.setLayout(executiveusersPANELLayout);
@@ -315,6 +336,78 @@ public class ViewReport extends javax.swing.JFrame {
         this.dispose();
         ExecutiveUsersDetails.setVisible(true);
     }//GEN-LAST:event_executiveusersdetailsBTNActionPerformed
+
+    private void showteamstructureBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showteamstructureBTNActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/ReportInfo.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            DefaultTableModel model = (DefaultTableModel) teamstructureTABLE.getModel();
+            model.setRowCount(0);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    if (data[1].equals("Team Structure")) {
+                        Object[] row = { data[0], data[2], data[3]};
+                        model.addRow(row);
+                    }
+            }
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_showteamstructureBTNActionPerformed
+
+    private void showoabpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showoabpBTNActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/ReportInfo.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            DefaultTableModel model = (DefaultTableModel) operationsandbudgetplanningTABLE.getModel();
+            model.setRowCount(0);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    if (data[1].equals("Operations And Budget Planning")) {
+                        Object[] row = { data[0], data[2], data[4], data[5]};
+                        model.addRow(row);
+                    }
+            }
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_showoabpBTNActionPerformed
+
+    private void showexecutiveusersBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showexecutiveusersBTNActionPerformed
+        // TODO add your handling code here:
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/ReportInfo.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            DefaultTableModel model = (DefaultTableModel) executiveusersTABLE.getModel();
+            model.setRowCount(0);
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    if (data[1].equals("Executive Users")) {
+                        Object[] row = { data[0], data[2], data[6], data[7]};
+                        model.addRow(row);
+                    }
+            }
+            br.close();
+            fr.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_showexecutiveusersBTNActionPerformed
 
     /**
      * @param args the command line arguments

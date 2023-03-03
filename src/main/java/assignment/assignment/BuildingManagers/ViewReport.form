@@ -145,6 +145,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Show Team Structure"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showteamstructureBTNActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -222,6 +225,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Show Operations And Budget Planning"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showoabpBTNActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -300,6 +306,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Show Executive Users"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showexecutiveusersBTNActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

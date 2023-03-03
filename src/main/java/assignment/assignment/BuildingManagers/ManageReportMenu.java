@@ -4,6 +4,17 @@
  */
 package assignment.assignment.BuildingManagers;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
@@ -40,6 +51,11 @@ public class ManageReportMenu extends javax.swing.JFrame {
         generatereportPANEL.setBorder(javax.swing.BorderFactory.createTitledBorder("Generate Report"));
 
         generateBTN.setText("Generate");
+        generateBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateBTNActionPerformed(evt);
+            }
+        });
 
         reporttypeLABEL.setText("Report Type: ");
 
@@ -150,6 +166,175 @@ public class ManageReportMenu extends javax.swing.JFrame {
         ViewReport.setVisible(true);
     }//GEN-LAST:event_viewreportBTNActionPerformed
 
+    private void generateBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateBTNActionPerformed
+        // Read the selected report type from reporttypeCOMBO
+        String selectedReportType = reporttypeCOMBO.getSelectedItem().toString();
+
+        // If the selected report type is "Team Structures", count the total number of teams and append it to ReportInfo.txt
+        if (selectedReportType.equals("Team Structures")) {
+            int totalTeams = 0;
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/TeamStructureInfo.txt"));
+                String line;
+                // Start counting from row 2
+                reader.readLine(); // Skip the header row
+                while ((line = reader.readLine()) != null) {
+                    if (line.split(";")[0].trim().length() > 0) {
+                        totalTeams++;
+                    }
+                }
+                reader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return;
+            }
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                List<String> lines = new ArrayList<String>();
+                String line;
+                boolean headerLine = true;
+                while ((line = reader.readLine()) != null) {
+                    if (headerLine) {
+                        headerLine = false;
+                        continue; // Skip the header line
+                    }
+                    lines.add(line);
+                }
+                reader.close();
+                int reportID = 0;
+                if (lines.size() > 0) {
+                    reportID = Integer.parseInt(lines.get(lines.size() - 1).split(";")[0].substring(8,11));
+                }
+                reportID++;
+                String reportIDStr = "ReportID" + String.format("%03d", reportID);
+                LocalDate reportDate = LocalDate.now();
+                String reportDateStr = reportDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String newLine = reportIDStr + ";Team Structure;" + reportDateStr + ";" + totalTeams + ";null;null;null;null";
+                lines.add(newLine);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                writer.write("ReportID;ReportType;ReportDate;TotalTeams;TotalFundAllocated;TotalMaintenance;TotalAccountExecutive;TotalBuildingExecutive"); // Add the header line
+                writer.newLine();
+                for (String l : lines) {
+                    writer.write(l);
+                    writer.newLine();
+                }
+                JOptionPane.showMessageDialog(this, "Report generated successfully!", "Report Generation", JOptionPane.INFORMATION_MESSAGE);
+                writer.close();
+            } catch (IOException ex) {
+            }
+        }else if (selectedReportType.equals("Executive Users")) {
+            int totalAccountExecutives = 0;
+            int totalBuildingExecutives = 0;
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/UserInfo.txt"));
+                String line;
+                // Start counting from row 2
+                reader.readLine(); // Skip the header row
+                while ((line = reader.readLine()) != null) {
+                    String[] columns = line.split(";");
+                    if (columns[2].trim().equals("accountexecutive")) {
+                        totalAccountExecutives++;
+                    } else if (columns[2].trim().equals("buildingexecutive")) {
+                        totalBuildingExecutives++;
+                    }
+                }
+                reader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return;
+            }
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                List<String> lines = new ArrayList<String>();
+                String line;
+                boolean headerLine = true;
+                while ((line = reader.readLine()) != null) {
+                    if (headerLine) {
+                        headerLine = false;
+                        continue; // Skip the header line
+                    }
+                    lines.add(line);
+                }
+                reader.close();
+                int reportID = 0;
+                if (lines.size() > 0) {
+                    reportID = Integer.parseInt(lines.get(lines.size() - 1).split(";")[0].substring(8,11));
+                }
+                reportID++;
+                String reportIDStr = "ReportID" + String.format("%03d", reportID);
+                LocalDate reportDate = LocalDate.now();
+                String reportDateStr = reportDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String newLine = reportIDStr + ";Executive Users;" + reportDateStr + ";null;null;null;" + totalAccountExecutives + ";" + totalBuildingExecutives;
+                lines.add(newLine);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                writer.write("ReportID;ReportType;ReportDate;TotalTeams;TotalFundAllocated;TotalMaintenance;TotalAccountExecutive;TotalBuildingExecutive"); // Add the header line
+                writer.newLine();
+                for (String l : lines) {
+                    writer.write(l);
+                    writer.newLine();
+                }
+                writer.close();
+                JOptionPane.showMessageDialog(this, "Report generated successfully!", "Report Generation", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+            }
+        }else if (selectedReportType.equals("Operations And Budget Planning")) {
+            double totalFundAllocation = 0;
+            double totalMaintenance = 0;
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/OperationsandBudgetPlanning.txt"));
+                String line;
+                // Start counting from row 2
+                reader.readLine(); // Skip the header row
+                while ((line = reader.readLine()) != null) {
+                    String[] arr = line.split(";");
+                    if (arr[1].trim().equals("Fund Allocation")) {
+                        totalFundAllocation += Double.parseDouble(arr[7]);
+                    } else if (arr[1].trim().equals("Maintenance")) {
+                        totalMaintenance += Double.parseDouble(arr[7]);
+                    }
+                }
+                reader.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return;
+            }
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                List<String> lines = new ArrayList<String>();
+                String line;
+                boolean headerLine = true;
+                while ((line = reader.readLine()) != null) {
+                    if (headerLine) {
+                        headerLine = false;
+                        continue; // Skip the header line
+                    }
+                    lines.add(line);
+                }
+                reader.close();
+                int reportID = 0;
+                if (lines.size() > 0) {
+                    reportID = Integer.parseInt(lines.get(lines.size() - 1).split(";")[0].substring(8,11));
+                }
+                reportID++;
+                String reportIDStr = "ReportID" + String.format("%03d", reportID);
+                LocalDate reportDate = LocalDate.now();
+                String reportDateStr = reportDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String newLine = reportIDStr + ";Operations And Budget Planning;" + reportDateStr + ";null;" + totalFundAllocation + ";" + totalMaintenance + ";null;null";
+                lines.add(newLine);
+                BufferedWriter writer = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "/src/main/java/assignment/assignment/TxtFile/ReportInfo.txt"));
+                writer.write("ReportID;ReportType;ReportDate;TotalTeams;TotalFundAllocated;TotalMaintenance;TotalAccountExecutive;TotalBuildingExecutive"); // Add the header line
+                writer.newLine();
+                for (String l : lines) {
+                    writer.write(l);
+                    writer.newLine();
+                }
+                writer.close();
+                JOptionPane.showMessageDialog(this, "Report generated successfully!", "Report Generation", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+            }
+        }
+    }//GEN-LAST:event_generateBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,4 +382,8 @@ public class ManageReportMenu extends javax.swing.JFrame {
     private javax.swing.JLabel reporttypeLABEL;
     private javax.swing.JButton viewreportBTN;
     // End of variables declaration//GEN-END:variables
+
+    private void appendToFile(String newLine, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
