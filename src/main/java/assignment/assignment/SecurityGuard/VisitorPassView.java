@@ -1,12 +1,21 @@
 package assignment.assignment.SecurityGuard;
 
+import assignment.assignment.Tenant.Tenant;
 import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -21,21 +30,37 @@ import java.util.List;
  */
 public class VisitorPassView extends javax.swing.JFrame {
     private User user;
+    private Tenant tenant;
     private String[] columnNames = {"Visitor Name", "Phone No.", "Visit Date", "Tenant ID"};
     private Object[][] tableData;
+    int count;
+    int correctline;
     /**
      * Creates new form VisitorPassView
      * @param user
      */
     public VisitorPassView(User user) {
         this.user = user;
+        getInfo(user);
         // Read data from text file and create Object[][] data
         List<Object[]> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
             String line;
             int lineNumber = 0;
             while ((line = br.readLine()) != null) {
-                if (lineNumber > 0) { // Skip first line (header row)
+                if (user.getRole().equals("tenant")) {
+                    if (lineNumber > 0) {
+                        String[] splitLine = line.split(";");
+                        Object[] row = new Object[4];
+                        if (tenant.getTenantID().equals(splitLine[3])) {
+                            row[0] = splitLine[0];
+                            row[1] = splitLine[1];
+                            row[2] = splitLine[2];
+                            row[3] = splitLine[3];
+                            data.add(row);
+                        }
+                    }                        
+                }else if (lineNumber > 0) { // Skip first line (header row)
                     String[] splitLine = line.split(";");
                     Object[] row = new Object[4];
                     row[0] = splitLine[0];
@@ -51,6 +76,27 @@ public class VisitorPassView extends javax.swing.JFrame {
         tableData = data.toArray(new Object[data.size()][4]);
         initComponents();
         setLocationRelativeTo(null);
+    }
+        public void getInfo(User user) {
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                    correctline = count;
+                } else {
+                    count++;
+                }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
     }
 
     /**
@@ -71,6 +117,8 @@ public class VisitorPassView extends javax.swing.JFrame {
         searchVisitorNameTF = new javax.swing.JTextField();
         searchTenantIDTF = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +152,20 @@ public class VisitorPassView extends javax.swing.JFrame {
             }
         });
 
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+
+        deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,9 +179,7 @@ public class VisitorPassView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -131,7 +191,11 @@ public class VisitorPassView extends javax.swing.JFrame {
                             .addComponent(searchTenantIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                        .addGap(49, 49, 49)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(updateBtn)
+                            .addComponent(deleteBtn))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,8 +218,13 @@ public class VisitorPassView extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(searchTenantIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                            .addComponent(searchTenantIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteBtn)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,6 +259,125 @@ public class VisitorPassView extends javax.swing.JFrame {
                 columnNames
         ));
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        // Get selected row index
+        int row = visitorPassTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) visitorPassTable.getModel();
+        
+        if (row == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String rowTenantID = (String) model.getValueAt(row, 3);
+        if (user.getRole().equals("tenant")){
+            if(!tenant.getTenantID().equals(rowTenantID)) {
+                JOptionPane.showMessageDialog(this, "You can only update or delete you visitor pass!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+                
+        // Get the data from the selected row in the table
+        String name = (String) visitorPassTable.getValueAt(row, 0);
+        String phone = (String) visitorPassTable.getValueAt(row, 1);
+        String date = (String) visitorPassTable.getValueAt(row, 2);
+
+        // Display a dialog to allow the user to update the data
+        String updatedName = JOptionPane.showInputDialog(this, "Update Visitor Name", name);
+        if (updatedName == null || updatedName.isEmpty()) {
+            return; // User clicked cancel or entered empty input, do nothing
+        }
+
+        // Validate the updated data
+        if (updatedName.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+                // Display a dialog to allow the user to update the data
+        String updatedPhone = JOptionPane.showInputDialog(this, "Update Visitor Name", phone);
+        if (updatedPhone == null || updatedPhone.isEmpty()) {
+            return; // User clicked cancel or entered empty input, do nothing
+        }
+
+        // Validate the updated data
+        if (updatedPhone.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String updatedDate = JOptionPane.showInputDialog(this, "Update date and time (yyyy-MM-dd)", date);
+        if (updatedDate == null || updatedDate.isEmpty()) {
+            return; // User clicked cancel or entered empty input, do nothing
+        }
+
+        // Validate the updated datetime
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate.parse(updatedDate, formatter);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Please enter datetime in the format: yyyy-MM-dd", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+
+            // Write the first row 
+            writer.write("name;phone;visitDate;tenantID");
+            writer.newLine();
+
+            // Loop through the other rows and write them to the file
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (i == row) {
+                    // Update the selected row with the new data   
+                    rowTenantID = (String) model.getValueAt(i, 3);
+                    writer.write(updatedName + ";" + updatedPhone + ";" + updatedDate + ";" + rowTenantID);
+                    model.setValueAt(updatedName, i, 0); // Update the table cell with the new data
+                    model.setValueAt(updatedPhone, i, 1);
+                    model.setValueAt(updatedDate, i, 2);// Update the table cell with the new data
+                } else {
+                    // Write the other rows back to the file unchanged
+                    String rowName = (String) model.getValueAt(i, 0);
+                    String rowPhone = (String) model.getValueAt(i, 1);
+                    String rowDate = (String) model.getValueAt(i, 2);
+                    writer.write(rowName + ";" + rowPhone + ";" + rowDate + ";" + rowTenantID);
+                }
+                writer.newLine();
+            }
+            JOptionPane.showMessageDialog(this, "Visitor Pass updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+    }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+                // Get selected row index
+        int selectedRow = visitorPassTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) visitorPassTable.getModel();
+        model.removeRow(selectedRow);
+        List<String> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                data.add(line);
+            }
+            br.close();
+            data.remove(selectedRow + 1);
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"));
+            for (String updatedLine : data) {
+                writer.write(updatedLine);
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error deleting row", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
     
     /**
      * @param args the command line arguments
@@ -226,12 +414,14 @@ public class VisitorPassView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTenantIDTF;
     private javax.swing.JTextField searchVisitorNameTF;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JLabel visitorPassLabel;
     private javax.swing.JTable visitorPassTable;
     private javax.swing.JButton visitorPassTableBackBtn;
