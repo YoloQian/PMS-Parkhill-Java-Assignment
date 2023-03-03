@@ -198,7 +198,7 @@ public class PatrolScheduleView extends javax.swing.JFrame {
         }
 
         // confirm deletion
-        int confirmDelete = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this entry?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+        int confirmDelete = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this chekcpoint?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirmDelete == JOptionPane.NO_OPTION) {
             return;
         }
@@ -214,7 +214,7 @@ public class PatrolScheduleView extends javax.swing.JFrame {
             int currentRow = 0;
             while ((line = reader.readLine()) != null) {
                 // check if this is the selected row to delete
-                if (currentRow == selectedRow) {
+                if (currentRow == selectedRow+1) {
                     // skip this line
                     currentRow++;
                     continue;

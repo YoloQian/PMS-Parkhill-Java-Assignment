@@ -6,3 +6,4 @@ userID;password;role;name;email
 5;build123;buildingmanager;jia;jia@gmail.com
 6;accexe123;accountexecutive;jia;jia@gmail.com
 7;adminexe123;adminexecutive;jia;jia@gmail.com
+8;8;buildingexecutive;bye;bye@mail.com
