@@ -1,4 +1,4 @@
-tenantID;userId;phone;unitNumber
-Tenant001;1;012345;A1-01
-Tenant002;2;012345;A1-03
-Tenant003;3;012345;A1-02
+tenantID;userId;phone;unitNumber;UnitIssuedDate
+Tenant001;1;0134453667;TA-51;2023-03-03
+Tenant002;2;012345;A1-03;null
+Tenant003;3;012345;A1-02;null

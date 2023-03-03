@@ -60,20 +60,20 @@ public class ViewPaymentInfo extends javax.swing.JFrame {
 
         paymentviewTABLE.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "PaymentID", "UserID", "RecordDate", "DueDate", "PaymentAmount", "Description", "InvoiceStatus", "ReceiptStatus", "StatementStatus"
+                "PaymentID", "UserID", "RecordDate", "DueDate", "PaymentAmount", "Description", "InvoiceStatus", "ReceiptStatus", "StatementStatus", "PaymentStatus"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -140,7 +140,7 @@ public class ViewPaymentInfo extends javax.swing.JFrame {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(";");
-                Object[] row = { data[0], data[1],data[2], data[3], data[4], data[5], data[6], data[7], data[8] };
+                Object[] row = { data[0], data[1],data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9] };
                 model.addRow(row);
 
             }

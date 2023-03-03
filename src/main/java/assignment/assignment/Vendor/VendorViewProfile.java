@@ -41,7 +41,7 @@ public class VendorViewProfile extends javax.swing.JFrame {
     
     public void getInfo(User user) {
         try {
-            File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");         
+            File file = new File("src/main/java/assignment/assignment/TxtFile/VendorInfo.txt");         
             BufferedReader br = new BufferedReader(new FileReader(file));    
             String line;            
 

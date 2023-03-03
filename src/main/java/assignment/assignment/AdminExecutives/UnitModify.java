@@ -47,6 +47,7 @@ public class UnitModify extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         unitmodifyTABLE = new javax.swing.JTable();
         viewunitBTN = new javax.swing.JButton();
+        modifyBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +143,8 @@ public class UnitModify extends javax.swing.JFrame {
             }
         });
 
+        modifyBTN.setText("Modify");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,9 +162,14 @@ public class UnitModify extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(deleteBTN)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(viewunitBTN)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(modifyBTN)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(viewunitBTN))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(deleteBTN)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -176,14 +184,16 @@ public class UnitModify extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewunitBTN))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(accountexecutivesearchPANEL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(deleteBTN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewunitBTN)))
+                        .addGap(27, 27, 27)
+                        .addComponent(modifyBTN)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBTN)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -303,6 +313,7 @@ public class UnitModify extends javax.swing.JFrame {
     private javax.swing.JButton backBTN;
     private javax.swing.JButton deleteBTN;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton modifyBTN;
     private javax.swing.JButton searchidBTN;
     private javax.swing.JLabel searchidLABEL;
     private javax.swing.JTextField searchidTF;
