@@ -1,7 +1,7 @@
 package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.LoginPage;
-import assignment.assignment.LoginPage1;
+import assignment.assignment.LoginPage;
 import static assignment.assignment.SecurityGuard.DateTimeDialog.setComboBox;
 import assignment.assignment.User;
 import java.io.BufferedReader;

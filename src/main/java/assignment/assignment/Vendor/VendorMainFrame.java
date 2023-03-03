@@ -4,7 +4,7 @@
  */
 package assignment.assignment.Vendor;
 
-import assignment.assignment.LoginPage1;
+import assignment.assignment.LoginPage;
 import assignment.assignment.User;
 
 /**
@@ -114,7 +114,7 @@ public class VendorMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_VendorProfileBTNActionPerformed
 
     private void VendorLogoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorLogoutBTNActionPerformed
-        new LoginPage1().setVisible(true);
+        new LoginPage().setVisible(true);
         dispose();
     }//GEN-LAST:event_VendorLogoutBTNActionPerformed
 

@@ -4,7 +4,7 @@
  */
 package assignment.assignment.AdminExecutives;
 
-import assignment.assignment.LoginPage1;
+import assignment.assignment.LoginPage;
 import assignment.assignment.User;
 
 /**
@@ -147,7 +147,7 @@ public class AdminExecutiveMenu extends javax.swing.JFrame {
 
     private void logoutBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBTNActionPerformed
         // TODO add your handling code here:
-        LoginPage1 LoginPage = new LoginPage1();
+        LoginPage LoginPage = new LoginPage();
         this.dispose();
         LoginPage.setVisible(true);
     }//GEN-LAST:event_logoutBTNActionPerformed
