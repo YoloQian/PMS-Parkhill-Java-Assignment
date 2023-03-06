@@ -56,7 +56,7 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "PaymentID", "UserID", "UserType", "Pending Amount", "Description"
+                "PendingID", "UserID", "UserType", "Pending Amount", "Description"
             }
         ) {
             Class[] types = new Class [] {
@@ -135,37 +135,21 @@ public class ViewOutstandingFees extends javax.swing.JFrame {
     private void viewoutstandingfeesBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewoutstandingfeesBTNActionPerformed
         // TODO add your handling code here:
         try {
-            File paymentFile = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
-            File userInfoFile = new File("src/main/java/assignment/assignment/TxtFile/UserInfo.txt");
-            FileReader paymentReader = new FileReader(paymentFile);
-            FileReader userInfoReader = new FileReader(userInfoFile);
-            BufferedReader paymentBufferedReader = new BufferedReader(paymentReader);
-            BufferedReader userInfoBufferedReader = new BufferedReader(userInfoReader);
-            String paymentLine, userInfoLine;
+            File file = new File("src/main/java/assignment/assignment/TxtFile/PendingFee.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
             DefaultTableModel model = (DefaultTableModel) outstandingfeesTABLE.getModel();
             model.setRowCount(0);
-            paymentBufferedReader.readLine();
-            userInfoBufferedReader.readLine();
-            while ((paymentLine = paymentBufferedReader.readLine()) != null) {
-                String[] paymentData = paymentLine.split(";");
-                if (paymentData[9].equals("Unpaid")) {
-                    while ((userInfoLine = userInfoBufferedReader.readLine()) != null) {
-                        String[] userInfoData = userInfoLine.split(";");
-                        if (userInfoData[0].equals(paymentData[1])) {
-                            Object[] row = {paymentData[0], paymentData[1], userInfoData[2], paymentData[4], paymentData[5]};
-                            model.addRow(row);
-                            break;
-                        }
-                    }
-                    userInfoReader = new FileReader(userInfoFile); // reset the reader to the beginning of the file
-                    userInfoBufferedReader = new BufferedReader(userInfoReader);
-                    userInfoBufferedReader.readLine(); // skip the header line
-                }
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(";");
+                    Object[] row = { data[0], data[1],data[2],data[3], data[4]};
+                    model.addRow(row);
+                
             }
-            paymentBufferedReader.close();
-            userInfoBufferedReader.close();
-            paymentReader.close();
-            userInfoReader.close();
+            br.close();
+            fr.close();
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }

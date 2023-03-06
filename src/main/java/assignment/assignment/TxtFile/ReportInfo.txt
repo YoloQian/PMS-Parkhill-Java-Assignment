@@ -1,11 +1,6 @@
 ReportID;ReportType;ReportDate;TotalTeams;TotalFundAllocated;TotalMaintenance;TotalAccountExecutive;TotalBuildingExecutive
-ReportID001;Team Structure;2023-03-03;2;null;null;null;null
-ReportID002;Team Structure;2023-03-03;2;null;null;null;null
-ReportID003;Operations And Budget Planning;2023-03-03;null;1200.0;800.0;null;null
-ReportID004;Operations And Budget Planning;2023-03-03;null;1200.0;800.0;null;null
-ReportID005;Executive Users;2023-03-03;null;null;null;0;1
-ReportID006;Executive Users;2023-03-03;null;null;null;0;1
-ReportID007;Team Structure;2023-03-03;2;null;null;null;null
-ReportID008;Team Structure;2023-03-03;2;null;null;null;null
-ReportID009;Operations And Budget Planning;2023-03-03;null;1200.0;800.0;null;null
-ReportID010;Executive Users;2023-03-03;null;null;null;2;2
+ReportID001;Team Structure;2023-03-03;2;3;1000;2;2
+ReportID002;Team Structure;2023-03-03;2;1;500;1;1
+ReportID003;Operations And Budget Planning;2023-03-03;2;1200;800;1;1
+ReportID004;Operations And Budget Planning;2023-03-03;1;1200;800;1;1
+ReportID005;Executive Users;2023-03-03;2;600;200;0;1

@@ -19,9 +19,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class TenantViewProfile extends javax.swing.JFrame {
     
     private User user;
-    private Tenant tenant;
-    int count;
-    int correctline;
+    private static Tenant tenant;
+    static int count;
+    static int correctline;
     
     public TenantViewProfile(User user) {
         
@@ -39,7 +39,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
         
     }
     
-    public void getInfo(User user) {
+    public static void getInfo(User user) {
         try {
             File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");         
             BufferedReader br = new BufferedReader(new FileReader(file));    
@@ -48,7 +48,7 @@ public class TenantViewProfile extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {
                 String[] splitLine = line.split(";");
                 if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
-                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
+                    TenantViewProfile.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
                             user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
                     correctline = count;
                 } else {
@@ -240,12 +240,11 @@ public class TenantViewProfile extends javax.swing.JFrame {
             
             String line = "";
             while((line = br.readLine()) != null){
-                if (correctline == 0){
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(userid)){
                     bw.write(colHeadings + "\n");
-                    correctline = 9999;
                 } else {
                     bw.write(line + "\n");
-                    correctline--;
                 }
             }
             

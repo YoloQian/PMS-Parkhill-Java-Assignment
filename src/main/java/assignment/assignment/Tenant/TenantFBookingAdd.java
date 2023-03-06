@@ -135,9 +135,9 @@ public class TenantFBookingAdd extends javax.swing.JFrame {
             }
         });
 
+        facilitybookingnewLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         facilitybookingnewLABEL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         facilitybookingnewLABEL.setText("New Facility Booking");
-        facilitybookingnewLABEL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +184,7 @@ public class TenantFBookingAdd extends javax.swing.JFrame {
             String endtime = endtimeTP.getText();
 
             String message = "Are you sure you want to add this new Facility Booking?\n\n"
-            + "Facility ID : " + facilitybookingid + "\n"
+            + "FacilityBooking ID : " + facilitybookingid + "\n"
             + "Facility Name : " + facilityname + "\n"
             + "Tenant ID : " + tenantid + "\n"
             + "Booking Date (YY-MM-DD) : " + bookingdate + "\n"
@@ -195,7 +195,7 @@ public class TenantFBookingAdd extends javax.swing.JFrame {
 
             if (confirmation == JOptionPane.YES_OPTION) {
                 try (PrintWriter pw = new PrintWriter(bw)) {
-                    pw.println(facilitybookingid + ";;" + facilityname + ";" + tenantid + ";" + bookingdate + ";" + starttime + ";" + endtime);
+                    pw.println(facilitybookingid + ";" + facilityname + ";" + tenantid + ";" + bookingdate + ";" + starttime + ";" + endtime);
                 }
                 System.out.println("Success");
             } else {
@@ -209,7 +209,7 @@ public class TenantFBookingAdd extends javax.swing.JFrame {
 
     private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
         // TODO add your handling code here:
-        new TenantMakePayment(user).setVisible(true);
+        new TenantFacilityBookingView(user).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBTNActionPerformed
 

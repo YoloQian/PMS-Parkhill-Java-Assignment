@@ -6,6 +6,7 @@ package assignment.assignment.BuildingExecutive;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -203,73 +204,83 @@ public class TaskManagement extends javax.swing.JFrame {
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
         // TODO add your handling code here:
         // Get selected row index
-        int selectedRow = taskManagementTable.getSelectedRow();
-        if (selectedRow == -1) {
+        int row = taskManagementTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) taskManagementTable.getModel();
+        String employeeID = (String) taskManagementTable.getValueAt(row, 0);
+        String updatedTask = taskTF.getText();
+        
+        if (row == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        if (selectedRow != -1) {
-            String task = taskTF.getText();
-            if (task.contains(";")) {
-                JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+        }                
+
+        // Validate the updated data
+        if (updatedTask.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-            }
-                    // Validate form data
-            if (task.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            taskManagementTable.setValueAt(task, selectedRow, 1);
-            List<String> data = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    data.add(line);
+        }
+
+        try (BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                if (employeeID.equals(parts[0])) {
+                   line = parts[0] + ";" + updatedTask + ";" + parts[2];                   
+                   model.setValueAt(updatedTask, row, 1); // Update the table cell with the new data
                 }
-                br.close();
-                String[] row = data.get(selectedRow + 1).split(";");
-                row[1] = task;
-                data.set(selectedRow + 1, String.join(";", row));
-                BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"));
-                for (String updatedLine : data) {
-                    writer.write(updatedLine);
-                    writer.newLine();
-                }
-                writer.close();
-            } catch (IOException e) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
             }
+            
+        
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Complaint updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_assignBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
         // Get selected row index
-        int selectedRow = taskManagementTable.getSelectedRow();
-        if (selectedRow == -1) {
+        int row = taskManagementTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) taskManagementTable.getModel();
+        String employeeID = (String) taskManagementTable.getValueAt(row, 0);
+        
+        if (row == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }        
-        if (selectedRow != -1) {
-            String task = "";
-            taskManagementTable.setValueAt(task, selectedRow, 1);
-            List<String> data = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    data.add(line);
+        }
+
+        try (BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"))) {
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                if (employeeID.equals(parts[0])) {
+                   line = parts[0] + ";" + ";" + parts[2];                   
+                   model.setValueAt(null, row, 1); // Update the table cell with the new data
                 }
-                br.close();
-                String[] row = data.get(selectedRow + 1).split(";");
-                row[1] = task;
-                data.set(selectedRow + 1, String.join(";", row));
-                BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt"));
-                for (String updatedLine : data) {
-                    writer.write(updatedLine);
-                    writer.newLine();
-                }
-                writer.close();
-            } catch (IOException e) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
             }
+            
+        
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/EmployeeInfo.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "Complaint updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 

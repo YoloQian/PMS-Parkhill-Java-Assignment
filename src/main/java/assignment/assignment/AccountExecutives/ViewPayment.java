@@ -4,12 +4,9 @@
  */
 package assignment.assignment.AccountExecutives;
 
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 
@@ -92,11 +89,6 @@ public class ViewPayment extends javax.swing.JFrame {
         });
 
         modifyBTN.setText("Modify");
-        modifyBTN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyBTNActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,34 +158,6 @@ public class ViewPayment extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_showpaymentsBTNActionPerformed
-
-    private void modifyBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBTNActionPerformed
-        // TODO add your handling code here:
-            try {
-                File paymentFile = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
-                FileWriter paymentWriter = new FileWriter(paymentFile);
-                BufferedWriter paymentBufferedWriter = new BufferedWriter(paymentWriter);
-                paymentBufferedWriter.write("PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;InvoiceStatus;ReceiptStatus;StatementStatus;PaymentStatus\n");
-                for (int i = 0; i < paymentmodifyTABLE.getRowCount(); i++) {
-                    String userID = paymentmodifyTABLE.getValueAt(i, 1).toString();
-                    String paymentID = paymentmodifyTABLE.getValueAt(i, 0).toString();
-                    String recorddate = paymentmodifyTABLE.getValueAt(i, 2).toString();
-                    String duedate = paymentmodifyTABLE.getValueAt(i, 3).toString();
-                    String paymentamount = paymentmodifyTABLE.getValueAt(i, 4).toString();
-                    String description = paymentmodifyTABLE.getValueAt(i, 5).toString();
-                    String invoicestatus = paymentmodifyTABLE.getValueAt(i, 6).toString();
-                    String receiptstatus = paymentmodifyTABLE.getValueAt(i, 7).toString();
-                    String statementStatus = paymentmodifyTABLE.getValueAt(i, 8).toString();
-                    String paymentStatus = paymentmodifyTABLE.getValueAt(i, 9).toString();
-                    String row = paymentID + ";" + userID + ";" + recorddate + ";" + duedate + ";" + paymentamount + ";" + description + ";" + invoicestatus + ";" + receiptstatus + ";" + statementStatus + ";" + paymentStatus + "\n";
-                    paymentBufferedWriter.write(row);
-                }
-                paymentBufferedWriter.close();
-                paymentWriter.close();
-            } catch (IOException ex) {
-                System.out.println("Error: " + ex.getMessage());
-            }
-    }//GEN-LAST:event_modifyBTNActionPerformed
 
     /**
      * @param args the command line arguments

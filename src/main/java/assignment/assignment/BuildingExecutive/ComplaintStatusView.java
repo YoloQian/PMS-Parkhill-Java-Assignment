@@ -34,12 +34,12 @@ public class ComplaintStatusView extends javax.swing.JFrame {
                     String[] splitLine = line.split(";");
                     Object[] row = new Object[7];  //this will be 7
                     row[0] = splitLine[0];
-                    row[1] = splitLine[1];
-                    row[2] = splitLine[2];
-                    row[3] = splitLine[3];
-                    row[4] = splitLine[4];
-                    row[5] = splitLine[5];
-                    row[6] = splitLine[6];
+                    row[1] = splitLine[2];
+                    row[2] = splitLine[3];
+                    row[3] = splitLine[4];
+                    row[4] = splitLine[5];
+                    row[5] = splitLine[6];
+                    row[6] = splitLine[7];
                     data.add(row);
                 }
                 lineNumber++;

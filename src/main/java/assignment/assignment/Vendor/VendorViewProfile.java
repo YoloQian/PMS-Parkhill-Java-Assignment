@@ -191,12 +191,11 @@ public class VendorViewProfile extends javax.swing.JFrame {
             
             String line = "";
             while((line = br.readLine()) != null){
-                if (correctline == 0){
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(userid)){
                     bw.write(colHeadings + "\n");
-                    correctline = 9999;
                 } else {
                     bw.write(line + "\n");
-                    correctline--;
                 }
             }
             

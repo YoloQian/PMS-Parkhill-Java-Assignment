@@ -4,7 +4,15 @@
  */
 package assignment.assignment.Tenant;
 
+import static assignment.assignment.SecurityGuard.DateTimeDialog.showDateDialog;
+import static assignment.assignment.Tenant.TenantViewProfile.getInfo;
 import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,9 +24,11 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
      * Creates new form Complaint_management
      */
     public TenantComplaintManagement(User user) {
-        this.user = user;
+        this.user = user;        
+        getInfo(user);
         initComponents();
         setLocationRelativeTo(null);
+        tenantNameTF.setText(user.getName());
     }
 
     /**
@@ -32,17 +42,17 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        TenantComplaint_name = new javax.swing.JTextField();
+        tenantNameTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        TenantComplaint_date = new javax.swing.JTextField();
         TenantComplaint_subject = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TenantComplaintDescription = new javax.swing.JTextArea();
         TenantNewComplaint = new javax.swing.JButton();
         TenantViewComplaint = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
+        setDateBtn = new javax.swing.JButton();
+        dateLabel = new javax.swing.JLabel();
+        TenantComplaintDescription = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +61,7 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
 
         jLabel1.setText("Name :");
 
-        TenantComplaint_name.setEditable(false);
+        tenantNameTF.setEditable(false);
 
         jLabel3.setText("Date :");
 
@@ -59,13 +69,19 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
 
         jLabel5.setText("Description");
 
-        TenantComplaintDescription.setColumns(20);
-        TenantComplaintDescription.setRows(5);
-        jScrollPane1.setViewportView(TenantComplaintDescription);
-
         TenantNewComplaint.setText("New");
+        TenantNewComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantNewComplaintActionPerformed(evt);
+            }
+        });
 
         TenantViewComplaint.setText("View");
+        TenantViewComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TenantViewComplaintActionPerformed(evt);
+            }
+        });
 
         BackBtn.setText("Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +89,15 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                 BackBtnActionPerformed(evt);
             }
         });
+
+        setDateBtn.setText("Set Date");
+        setDateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDateBtnActionPerformed(evt);
+            }
+        });
+
+        dateLabel.setText("No Date Selected");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,19 +113,22 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TenantComplaint_date, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TenantComplaint_subject, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(TenantNewComplaint)
                                 .addGap(18, 18, 18)
-                                .addComponent(TenantViewComplaint)))
-                        .addContainerGap(194, Short.MAX_VALUE))
+                                .addComponent(TenantViewComplaint))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(setDateBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(dateLabel))
+                            .addComponent(TenantComplaintDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tenantNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                         .addComponent(BackBtn)
                         .addGap(27, 27, 27))))
         );
@@ -110,25 +138,26 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(TenantComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tenantNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BackBtn))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(TenantComplaint_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setDateBtn)
+                    .addComponent(dateLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(TenantComplaint_subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(TenantComplaintDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(145, 145, 145)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TenantNewComplaint)
                     .addComponent(TenantViewComplaint))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,6 +184,67 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_BackBtnActionPerformed
 
+    private void TenantViewComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewComplaintActionPerformed
+        // TODO add your handling code here:
+        new TenantViewComplaint(user).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_TenantViewComplaintActionPerformed
+
+    private void TenantNewComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantNewComplaintActionPerformed
+        // TODO add your handling code here:
+        // Get form data
+        String name = tenantNameTF.getText();
+        String date = dateLabel.getText();
+        String subject = TenantComplaint_subject.getText();
+        String description = TenantComplaintDescription.getText();
+
+        // Validate form data
+        if (name.isEmpty() || description.isEmpty() || subject.isEmpty() || date.equals("No Date Selected")) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (name.contains(";") || subject.contains(";") || description.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Write data to file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/Complaint.txt", true))) {
+            writer.write(generateNewID("Complaint.txt", "Complaint") + ";" + user.getUserId() + ";" + date + ";" + subject + ";" + name + ";" + description + ";;No Reply");
+            writer.newLine();
+            JOptionPane.showMessageDialog(this, "Complaint recorded successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // Clear form fields after successful submission
+            TenantComplaintDescription.setText("");
+            TenantComplaint_subject.setText("");
+            dateLabel.setText("No Time Selected");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_TenantNewComplaintActionPerformed
+
+    private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
+        // TODO add your handling code here:
+        showDateDialog(dateLabel);
+    }//GEN-LAST:event_setDateBtnActionPerformed
+    public static String generateNewID(String fileName, String ID) {
+        String newID = ID + "001";
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/" + fileName))) {
+            String line;
+            String lastID = null;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(";");
+                lastID = parts[0];
+            }
+            if (lastID != null) {
+                int num = Integer.parseInt(lastID.substring(ID.length())) + 1;
+                newID = ID + String.format("%03d", num);
+            }
+        } catch (IOException e) {
+            // Handle file read error
+        }
+        return newID;
+    }
     /**
      * @param args the command line arguments
      */
@@ -180,60 +270,21 @@ public class TenantComplaintManagement extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(TenantComplaintManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-//                new TenantComplaintManagement().setVisible(true);
-            }
-        });
     }
-
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
-    private javax.swing.JTextArea TenantComplaintDescription;
-    private javax.swing.JTextField TenantComplaint_date;
-    private javax.swing.JTextField TenantComplaint_name;
+    private javax.swing.JTextField TenantComplaintDescription;
     private javax.swing.JTextField TenantComplaint_subject;
     private javax.swing.JButton TenantNewComplaint;
     private javax.swing.JButton TenantViewComplaint;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton setDateBtn;
+    private javax.swing.JTextField tenantNameTF;
     // End of variables declaration//GEN-END:variables
 }

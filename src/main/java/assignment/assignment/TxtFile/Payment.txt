@@ -1,10 +1,6 @@
-PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;InvoiceStatus;ReceiptStatus;StatementStatus;PaymentStatus
-Payment003;2;2023-03-02;2023-03-03;100;Rent;Issued;UnIssued;UnIssued;Paid
-Payment002;2;2023-03-02;2023-03-02;100;Rent;UnIssued;UnIssued;UnIssued;Paid
-Payment004;3;2023-03-02;2023-03-02;100;Rent;UnIssued;UnIssued;UnIssued;Paid
-Payment005;3;2023-03-02;2023-03-02;100;Rent;UnIssued;UnIssued;UnIssued;Paid
-Payment006;3;2023-03-02;2023-03-02;100;Rent;UnIssued;UnIssued;UnIssued;Unpaid
-Payment007;3;2023-03-06;2023-3-10;300;Please Pay On Time;UnIssued;UnIssued;UnIssued;Unpaid
-Payment008;2;2023-03-06;2023-3-10;300;Please Pay On Time;UnIssued;UnIssued;UnIssued;Unpaid
-Payment009;2;2023-03-06;2023-3-10;300;Please Pay On Time;UnIssued;UnIssued;UnIssued;Unpaid
-Payment0010;3;2023-03-06;2023-3-10;300;Please Pay On Time;UnIssued;UnIssued;UnIssued;Unpaid
+PaymentID;UserID;RecordDate;DueDate;PaymentAmount;Description;ReceiptStatus;InvoiceStatus;StatementStatus;PaymentStatus
+Payment001;2;2023-03-02;2023-03-03;100;Water bill;Issued;Issued;Issued;Unpaid
+Payment002;2;2023-03-02;2023-03-02;100;Electric bill;Issued;Issued;Issued;Paid
+Payment003;2;2023-03-02;2023-03-02;100;Rent;Issued;Issued;Issued;Paid
+Payment004;2;2023-03-02;2023-03-02;100;Deposit;Issued;Issued;Issued;Paid
+Payment005;2;2023-03-02;2023-03-02;100;Water bill;Issued;Issued;Issued;Paid

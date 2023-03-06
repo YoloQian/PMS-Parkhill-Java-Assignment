@@ -2,6 +2,7 @@ package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.Tenant.Tenant;
 import assignment.assignment.Tenant.TenantApplyVisitorPass;
+import assignment.assignment.Tenant.TenantMainFrame;
 import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,6 +37,7 @@ public class VisitorPassView extends javax.swing.JFrame {
     private String[] columnNames = {"Visitor Name", "Phone No.", "Visit Date", "Tenant ID"};
     private Object[][] tableData;
     int count;
+    int correctline;
     /**
      * Creates new form VisitorPassView
      * @param user
@@ -77,12 +79,11 @@ public class VisitorPassView extends javax.swing.JFrame {
         tableData = data.toArray(new Object[data.size()][4]);
         initComponents();
         setLocationRelativeTo(null);
-        
         // Set Components' Visibility
         if (user.getRole().equals("security")) {
             updateBtn.setVisible(false);
             deleteBtn.setVisible(false);
-         
+
         }
         else if (user.getRole().equals("tenant")) {
             visitorLabel.setVisible(false);
@@ -91,7 +92,6 @@ public class VisitorPassView extends javax.swing.JFrame {
             searchTenantIDTF.setVisible(false);
             searchBtn.setVisible(false);
         }
-        
     }
         public void getInfo(User user) {
         try {
@@ -104,6 +104,7 @@ public class VisitorPassView extends javax.swing.JFrame {
                 if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
                     this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
                             user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                    correctline = count;
                 } else {
                     count++;
                 }
@@ -287,11 +288,6 @@ public class VisitorPassView extends javax.swing.JFrame {
         }
         
         String rowTenantID = (String) model.getValueAt(row, 3);
-        if (user.getRole().equals("tenant")){
-            if(!tenant.getTenantID().equals(rowTenantID)) {
-                JOptionPane.showMessageDialog(this, "You can only update or delete you visitor pass!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
                 
         // Get the data from the selected row in the table
         String name = (String) visitorPassTable.getValueAt(row, 0);
@@ -310,7 +306,7 @@ public class VisitorPassView extends javax.swing.JFrame {
             return;
         }
                 // Display a dialog to allow the user to update the data
-        String updatedPhone = JOptionPane.showInputDialog(this, "Update Visitor Name", phone);
+        String updatedPhone = JOptionPane.showInputDialog(this, "Update Visitor Phone", phone);
         if (updatedPhone == null || updatedPhone.isEmpty()) {
             return; // User clicked cancel or entered empty input, do nothing
         }
@@ -340,6 +336,7 @@ public class VisitorPassView extends javax.swing.JFrame {
             String line;
             while ((line = file.readLine()) != null) {
                 String[] parts = line.split(";");
+                System.out.println(Arrays.toString(parts));
 
                 if (name.equals(parts[0]) && phone.equals(parts[1]) && date.equals(parts[2]) && rowTenantID.equals(parts[3])) {
                    line = updatedName + ";" + updatedPhone + ";" + updatedDate + ";" + rowTenantID;                   
@@ -362,13 +359,14 @@ public class VisitorPassView extends javax.swing.JFrame {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
         // Get selected row index
         int selectedRow = visitorPassTable.getSelectedRow();
-        
+
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -389,7 +387,7 @@ public class VisitorPassView extends javax.swing.JFrame {
                    data.remove(line);
                 }
             }
-            
+
             br.close();
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"));

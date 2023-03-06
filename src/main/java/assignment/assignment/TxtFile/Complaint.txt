@@ -1,6 +1,5 @@
 ComplaintID;UserID;ComplaintDate;Subject;Name;Description;Reply;Status
-Complaint001;2;2023-03-02;testing;qian;smelly la;;No Reply
-Complaint002;2;2023-03-02;testing;qian;smelly la;;No Reply
-Complaint003;2314;2023-03-03;4123;41234;smelly;;No Reply
-Complaint004;2;2023-03-03;smelly;qian;smelly;;No Reply
-Complaint005;4;2023-03-03;Damn Dirty;Stephanie;The toilet is very dirty;;No Reply
+Complaint001;2;2023-03-03;Leak;qian;Bath ceiling leaking;;No Reply
+Complaint002;2;2023-04-03;Court dirty;Yu Wei;The badminton court is dirty;;No Reply
+Complaint003;2;2023-03-05;Broken glass;Qian;Removed and action taken;Replied;Replied
+Complaint004;11;2023-03-06;Dirty;Stephanie;The toilet is very dirty;;No Reply

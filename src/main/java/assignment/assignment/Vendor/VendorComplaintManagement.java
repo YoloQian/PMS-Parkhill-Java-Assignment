@@ -4,23 +4,33 @@
  */
 package assignment.assignment.Vendor;
 
+import assignment.assignment.Tenant.*;
+import static assignment.assignment.SecurityGuard.DateTimeDialog.showDateDialog;
+import static assignment.assignment.Tenant.TenantComplaintManagement.generateNewID;
+import static assignment.assignment.Tenant.TenantViewProfile.getInfo;
+import assignment.assignment.User;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TeD
  */
-
-import assignment.assignment.User;
-
 public class VendorComplaintManagement extends javax.swing.JFrame {
-
+    private User user;
     /**
      * Creates new form Complaint_management
      */
-    private User user;
     public VendorComplaintManagement(User user) {
-        this.user = user;
+        this.user = user;        
+        getInfo(user);
         initComponents();
         setLocationRelativeTo(null);
+        VendorNameTF.setText(user.getName());
     }
 
     /**
@@ -34,21 +44,17 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        VendorComplaint_name = new javax.swing.JTextField();
-        VendorComplaint_UnitNumber = new javax.swing.JTextField();
+        VendorNameTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        VendorComplaint_date = new javax.swing.JTextField();
         VendorComplaint_subject = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        VendorComplaint_details = new javax.swing.JTextArea();
-        VendorNew_complaint = new javax.swing.JButton();
-        VendorView_complaint = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        VendorComplaint_status = new javax.swing.JTextField();
-        backBTN = new javax.swing.JButton();
+        VendorNewComplaint = new javax.swing.JButton();
+        VendorViewComplaint = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
+        setDateBtn = new javax.swing.JButton();
+        dateLabel = new javax.swing.JLabel();
+        VendorComplaintDescription = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,41 +63,43 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
 
         jLabel1.setText("Name :");
 
-        jLabel2.setText("Unit Number :");
-
-        VendorComplaint_name.setEditable(false);
-
-        VendorComplaint_UnitNumber.setEditable(false);
+        VendorNameTF.setEditable(false);
 
         jLabel3.setText("Date :");
 
         jLabel4.setText("Subject :");
 
-        jLabel5.setText("Complaint Details :");
+        jLabel5.setText("Description");
 
-        VendorComplaint_details.setColumns(20);
-        VendorComplaint_details.setRows(5);
-        jScrollPane1.setViewportView(VendorComplaint_details);
-
-        VendorNew_complaint.setText("New");
-
-        VendorView_complaint.setText("View");
-        VendorView_complaint.addActionListener(new java.awt.event.ActionListener() {
+        VendorNewComplaint.setText("New");
+        VendorNewComplaint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorView_complaintActionPerformed(evt);
+                VendorNewComplaintActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Status :");
-
-        VendorComplaint_status.setEditable(false);
-
-        backBTN.setText("Back");
-        backBTN.addActionListener(new java.awt.event.ActionListener() {
+        VendorViewComplaint.setText("View");
+        VendorViewComplaint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBTNActionPerformed(evt);
+                VendorViewComplaintActionPerformed(evt);
             }
         });
+
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
+        setDateBtn.setText("Set Date");
+        setDateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDateBtnActionPerformed(evt);
+            }
+        });
+
+        dateLabel.setText("No Date Selected");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,32 +115,24 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VendorComplaint_date, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(VendorComplaint_subject, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(VendorNew_complaint)
+                                .addComponent(VendorNewComplaint)
                                 .addGap(18, 18, 18)
-                                .addComponent(VendorView_complaint)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(108, 108, 108)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(VendorComplaint_status, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 15, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(backBTN))))))
+                                .addComponent(VendorViewComplaint))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(setDateBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(dateLabel))
+                            .addComponent(VendorComplaintDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VendorComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(VendorComplaint_UnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(VendorNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                        .addComponent(BackBtn)
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,31 +140,26 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(VendorComplaint_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(VendorComplaint_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(VendorComplaint_UnitNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VendorNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BackBtn))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(VendorComplaint_date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setDateBtn)
+                    .addComponent(dateLabel))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(VendorComplaint_subject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VendorNew_complaint)
-                    .addComponent(VendorView_complaint)
-                    .addComponent(backBTN))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(VendorComplaintDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(145, 145, 145)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VendorNewComplaint)
+                    .addComponent(VendorViewComplaint))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,18 +181,55 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VendorView_complaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorView_complaintActionPerformed
-        // TODO add your handling code here:
-        new VendorViewComplaint().setVisible(true);
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        new TenantMainFrame(user).setVisible(true);
         dispose();
-    }//GEN-LAST:event_VendorView_complaintActionPerformed
+    }//GEN-LAST:event_BackBtnActionPerformed
 
-    private void backBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBTNActionPerformed
+    private void VendorViewComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorViewComplaintActionPerformed
         // TODO add your handling code here:
-        new VendorMainFrame(user).setVisible(true);
+        new TenantViewComplaint(user).setVisible(true);
         dispose();
-    }//GEN-LAST:event_backBTNActionPerformed
+    }//GEN-LAST:event_VendorViewComplaintActionPerformed
 
+    private void VendorNewComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorNewComplaintActionPerformed
+        // TODO add your handling code here:
+        // Get form data
+        String name = VendorNameTF.getText();
+        String date = dateLabel.getText();
+        String subject = VendorComplaint_subject.getText();
+        String description = VendorComplaintDescription.getText();
+
+        // Validate form data
+        if (name.isEmpty() || description.isEmpty() || subject.isEmpty() || date.equals("No Date Selected")) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (name.contains(";") || subject.contains(";") || description.contains(";")) {
+            JOptionPane.showMessageDialog(this, "Please remove semicolons (;) from input", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Write data to file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/Complaint.txt", true))) {
+            writer.write(generateNewID("Complaint.txt", "Complaint") + ";" + user.getUserId() + ";" + date + ";" + subject + ";" + name + ";" + description + ";;No Reply");
+            writer.newLine();
+            JOptionPane.showMessageDialog(this, "Complaint recorded successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            // Clear form fields after successful submission
+            VendorComplaintDescription.setText("");
+            VendorComplaint_subject.setText("");
+            dateLabel.setText("No Time Selected");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_VendorNewComplaintActionPerformed
+
+    private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
+        // TODO add your handling code here:
+        showDateDialog(dateLabel);
+    }//GEN-LAST:event_setDateBtnActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -223,96 +255,21 @@ public class VendorComplaintManagement extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VendorComplaintManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                /**new VendorComplaintManagement().setVisible(true);**/
-            }
-        });
     }
-
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField VendorComplaint_UnitNumber;
-    private javax.swing.JTextField VendorComplaint_date;
-    private javax.swing.JTextArea VendorComplaint_details;
-    private javax.swing.JTextField VendorComplaint_name;
-    private javax.swing.JTextField VendorComplaint_status;
+    private javax.swing.JButton BackBtn;
+    private javax.swing.JTextField VendorComplaintDescription;
     private javax.swing.JTextField VendorComplaint_subject;
-    private javax.swing.JButton VendorNew_complaint;
-    private javax.swing.JButton VendorView_complaint;
-    private javax.swing.JButton backBTN;
+    private javax.swing.JTextField VendorNameTF;
+    private javax.swing.JButton VendorNewComplaint;
+    private javax.swing.JButton VendorViewComplaint;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton setDateBtn;
     // End of variables declaration//GEN-END:variables
 }

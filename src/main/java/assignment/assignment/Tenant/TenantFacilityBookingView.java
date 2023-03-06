@@ -9,10 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,38 +28,77 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TenantFacilityBookingView extends javax.swing.JFrame {
     private User user;
-    private String[] columnNames = {"FacilityBookingID", "FacilityName",
-                                     "Booking Date", "Start Date", "End Date"}; //top string
-    private Object[][] tableData;
+    private Tenant tenant;
+    private String [] columnNames = {"FacilityBookingID", "FacilityName", "TenantID", "Booking Date", "StartTime", "EndTime"};
+    private Object [] [] tableData;
+    int count;
+    int correctline;
     /**
      * Creates new form VisitorPassView
      */
     public TenantFacilityBookingView(User user) {
         this.user = user;
-                
-                
+        getInfo(user);
+        //Read data from text  file and create object [][] data
         List<Object[]> data = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"))) {
             String line;
             int lineNumber = 0;
-            while ((line = br.readLine()) != null) {  //this is from txt file
-                if (lineNumber > 0) { // Skip first line (header row)
+            while ((line = br.readLine()) != null) {
+                if (user.getRole().equals("tenant")) {
+                    if (lineNumber > 0) {
+                        String[] splitLine = line.split(";");
+                        Object[] row = new Object[6];
+                        if (tenant.getTenantID().equals(splitLine[2])) {
+                            row[0] = splitLine[0];
+                            row[1] = splitLine[1];
+                            row[2] = splitLine[2];
+                            row[3] = splitLine[3];
+                            row[4] = splitLine[4];
+                            row[5] = splitLine[5];
+                            data.add(row);
+                        }
+                    }                        
+                }else if (lineNumber > 0) { // Skip first line (header row)
                     String[] splitLine = line.split(";");
-                    Object[] row = new Object[7];  //this will be 7
+                    Object[] row = new Object[6];
                     row[0] = splitLine[0];
                     row[1] = splitLine[1];
                     row[2] = splitLine[2];
                     row[3] = splitLine[3];
                     row[4] = splitLine[4];
+                    row[5] = splitLine[5];
                     data.add(row);
                 }
                 lineNumber++;
             }
         } catch (IOException e) {
         }
-        tableData = data.toArray(new Object[data.size()][7]);  //put 7 also
+        tableData = data.toArray(new Object[data.size()][4]);
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    public void getInfo(User user) {
+        try {
+            File file = new File("src/main/java/assignment/assignment/TxtFile/TenantInfo.txt");         
+            BufferedReader br = new BufferedReader(new FileReader(file));    
+            String line;            
+
+            while ((line = br.readLine()) != null) {
+                String[] splitLine = line.split(";");
+                if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
+                    this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
+                            user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
+                    correctline = count;
+                } else {
+                    count++;
+                }
+            }
+            br.close();
+        }catch (IOException e) {
+            System.out.println("fail");
+            }
     }
 
     /**
@@ -125,24 +162,23 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(NewBTN)
-                        .addGap(62, 62, 62)
-                        .addComponent(UpdateBTN)
-                        .addGap(77, 77, 77)
-                        .addComponent(DeleteBTN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BackBTN)
-                                .addGap(16, 16, 16)))))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BackBTN)
+                        .addGap(16, 16, 16)))
                 .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(NewBTN)
+                .addGap(62, 62, 62)
+                .addComponent(UpdateBTN)
+                .addGap(77, 77, 77)
+                .addComponent(DeleteBTN)
+                .addGap(60, 227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,18 +204,21 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Get selected row index
         int row = AdminViewFacility.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) AdminViewFacility.getModel();
         if (row == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to update", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        
+        
         // Get the data from the selected row in the table
         String FacilityBookingid = (String) AdminViewFacility.getValueAt(row, 0);
-        String Facilityid = (String) AdminViewFacility.getValueAt(row, 1);
-        String facilityname = (String) AdminViewFacility.getValueAt(row, 2);
-        String tenantid = (String) AdminViewFacility.getValueAt(row, 3);
-        String bookingdate = (String) AdminViewFacility.getValueAt(row, 4);
-        String starttime = (String) AdminViewFacility.getValueAt(row, 5);
-        String endtime = (String) AdminViewFacility.getValueAt(row, 6);
+        String facilityname = (String) AdminViewFacility.getValueAt(row, 1);
+        String tenantid = (String) AdminViewFacility.getValueAt(row, 2);
+        String bookingdate = (String) AdminViewFacility.getValueAt(row, 3);
+        String starttime = (String) AdminViewFacility.getValueAt(row, 4);
+        String endtime = (String) AdminViewFacility.getValueAt(row, 5);
 
         // Display a dialog to allow the user to update the data
         String updatefacilityname = JOptionPane.showInputDialog(this, "Facility Updated", facilityname);
@@ -229,100 +268,79 @@ public class TenantFacilityBookingView extends javax.swing.JFrame {
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"))) {
-            DefaultTableModel model = (DefaultTableModel) AdminViewFacility.getModel();
+        try (BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"))) {
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                System.out.println(Arrays.toString(parts));
 
-            // Write the first row 
-            writer.write("FacilityBookingID;Facility ID;FacilityName;Tenant ID;Booking Date;Start time;End Time");
-            writer.newLine();
-
-            // Loop through the other rows and write them to the file
-            for (int i = 0; i < model.getRowCount(); i++) {
-                if (i == row) {
-                    // Update the selected row with the new data
-                    writer.write(FacilityBookingid + ";" + Facilityid + ";" + tenantid + ";" + updatefacilityname + ";" + updatebookingdate + ";" + updatestartime + ";" + updateendtime);
-                    model.setValueAt(FacilityBookingid, i, 0); // Update the table cell with the new data
-                    model.setValueAt(Facilityid, i, 1); // Update the table cell with the new data
-                    model.setValueAt(tenantid, i, 2); // Update the table cell with the new data
-                    model.setValueAt(updatefacilityname, i, 3); // Update the table cell with the new data
-                    model.setValueAt(updatebookingdate, i, 4); // Update the table cell with the new data
-                    model.setValueAt(updatestartime, i, 5); // Update the table cell with the new data
-                    model.setValueAt(updateendtime, i, 6); // Update the table cell with the new data
-                } else {
-                    // Write the other rows back to the file unchanged
-                    String rowfacilityname = (String) model.getValueAt(i, 2);
-                    String rowbookingdate = (String) model.getValueAt(i, 4);
-                    String rowstartime = (String) model.getValueAt(i, 5);
-                    String rowendtime = (String) model.getValueAt(i, 6);
-                    writer.write(rowfacilityname + ";" + rowbookingdate + ";" + rowstartime + ";" + rowendtime);
+                if (FacilityBookingid.equals(parts[0]) && facilityname.equals(parts[1]) && tenantid.equals(parts[2]) && bookingdate.equals(parts[3])
+                        && starttime.equals(parts[4]) && endtime.equals(parts[5])) {
+                   line = FacilityBookingid + ";" + updatefacilityname + ";" + tenantid + ";" + updatebookingdate + ";" + updatestartime + ";" + updateendtime;                   
+                    model.setValueAt(updatefacilityname, row, 1); // Update the table cell with the new data
+                    model.setValueAt(updatebookingdate, row, 3);
+                    model.setValueAt(updatestartime, row, 4);// Update the table cell with the new data
+                    model.setValueAt(updateendtime, row, 5);// Update the table cell with the new data
                 }
-                writer.newLine();
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
             }
-            JOptionPane.showMessageDialog(this, "Booking updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
+        
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
+            JOptionPane.showMessageDialog(this, "FacilityBooking updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_UpdateBTNActionPerformed
 
     private void DeleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBTNActionPerformed
-        // get the index of the selected row
+        // TODO add your handling code here:
+        // Get selected row index
         int selectedRow = AdminViewFacility.getSelectedRow();
-        
-        //check if a row is selected
+
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        //confirm deletion
-        int confirmDelete = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this entry?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
-        if (confirmDelete == JOptionPane.NO_OPTION){
-            return;
-        }
-        
-        //create a new temporary file
-        File FacilityTempFile = new File("src/main/java/assignment/assignment/TxtFile/FacilityTemp.txt");
-        
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"));
-             FileOutputStream fos = new FileOutputStream(FacilityTempFile);
-             PrintWriter writer = new PrintWriter(fos)) {
-
-            String line;
-            int currentRow = 0;
-            while ((line = reader.readLine()) != null) {
-                // check if this is the selected row to delete
-                if (currentRow == selectedRow) {
-                    // skip this line
-                    currentRow++;
-                    continue;
-                }
-                // write the line to the temporary file
-                writer.println(line);
-                currentRow++;
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // delete the original file
-        File originalFile = new File("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt");
-        if (!originalFile.delete()) {
-            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        //rename the temporary file to the original file
-        if (!FacilityTempFile.renameTo(originalFile)) {
-            JOptionPane.showMessageDialog(this, "Error deleting entry", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        //update the table model
+                // Get the data from the selected row in the table
+        String FacilityBookingid = (String) AdminViewFacility.getValueAt(selectedRow, 0);
+        String facilityname = (String) AdminViewFacility.getValueAt(selectedRow, 1);
+        String tenantid = (String) AdminViewFacility.getValueAt(selectedRow, 2);
+        String bookingdate = (String) AdminViewFacility.getValueAt(selectedRow, 3);
+        String starttime = (String) AdminViewFacility.getValueAt(selectedRow, 4);
+        String endtime = (String) AdminViewFacility.getValueAt(selectedRow, 5);
         DefaultTableModel model = (DefaultTableModel) AdminViewFacility.getModel();
         model.removeRow(selectedRow);
+        List<String> data = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                data.add(line);
+                String[] parts = line.split(";");
+                if (FacilityBookingid.equals(parts[0]) && facilityname.equals(parts[1]) && tenantid.equals(parts[2]) && bookingdate.equals(parts[3])
+                        && starttime.equals(parts[4]) && endtime.equals(parts[5])) {
+                   data.remove(line);
+                }
+            }
 
-        JOptionPane.showMessageDialog(this, "Entry deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+            br.close();
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/FacilityBooking.txt"));
+            for (String updatedLine : data) {
+                writer.write(updatedLine);
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error deleting row", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_DeleteBTNActionPerformed
 
     private void NewBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewBTNActionPerformed

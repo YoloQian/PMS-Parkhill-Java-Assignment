@@ -137,7 +137,7 @@ public class TenantPendingFee extends javax.swing.JFrame {
     private void TenantViewPendingFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TenantViewPendingFeeActionPerformed
         try {
             String userid = Integer.toString(user.getUserId());
-            File file = new File("src/main/java/assignment/assignment/TxtFile/Payment.txt");
+            File file = new File("src/main/java/assignment/assignment/TxtFile/PendingFee.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line;
@@ -146,8 +146,8 @@ public class TenantPendingFee extends javax.swing.JFrame {
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(";");
-                    if (data[1].equals(userid)&& data[9].equals("Unpaid")){
-                        Object[] row = { data[0], data[4], data[5]};
+                    if (data[1].equals(userid)){
+                        Object[] row = { data[0], data[3], data[4]};
                         model.addRow(row);
                     }
             }
