@@ -36,7 +36,6 @@ public class VisitorPassView extends javax.swing.JFrame {
     private String[] columnNames = {"Visitor Name", "Phone No.", "Visit Date", "Tenant ID"};
     private Object[][] tableData;
     int count;
-    int correctline;
     /**
      * Creates new form VisitorPassView
      * @param user
@@ -78,6 +77,21 @@ public class VisitorPassView extends javax.swing.JFrame {
         tableData = data.toArray(new Object[data.size()][4]);
         initComponents();
         setLocationRelativeTo(null);
+        
+        // Set Components' Visibility
+        if (user.getRole().equals("security")) {
+            updateBtn.setVisible(false);
+            deleteBtn.setVisible(false);
+         
+        }
+        else if (user.getRole().equals("tenant")) {
+            visitorLabel.setVisible(false);
+            tenantLabel.setVisible(false);
+            searchVisitorNameTF.setVisible(false);
+            searchTenantIDTF.setVisible(false);
+            searchBtn.setVisible(false);
+        }
+        
     }
         public void getInfo(User user) {
         try {
@@ -90,7 +104,6 @@ public class VisitorPassView extends javax.swing.JFrame {
                 if (splitLine[1].equals(Integer.toString(user.getUserId()))) {
                     this.tenant = new Tenant(user.getUserId(), user.getPassword(), user.getRole(),
                             user.getName(), user.getEmail(), splitLine[0], splitLine[2], splitLine[3]) {};
-                    correctline = count;
                 } else {
                     count++;
                 }
@@ -114,8 +127,8 @@ public class VisitorPassView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         visitorPassTable = new javax.swing.JTable();
         visitorPassTableBackBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        visitorLabel = new javax.swing.JLabel();
+        tenantLabel = new javax.swing.JLabel();
         searchVisitorNameTF = new javax.swing.JTextField();
         searchTenantIDTF = new javax.swing.JTextField();
         searchBtn = new javax.swing.JButton();
@@ -139,9 +152,9 @@ public class VisitorPassView extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Visitor Name:");
+        visitorLabel.setText("Visitor Name:");
 
-        jLabel2.setText("Tenant ID:");
+        tenantLabel.setText("Tenant ID:");
 
         searchVisitorNameTF.setPreferredSize(new java.awt.Dimension(100, 22));
 
@@ -185,8 +198,8 @@ public class VisitorPassView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(visitorLabel)
+                            .addComponent(tenantLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchVisitorNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,11 +228,11 @@ public class VisitorPassView extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                            .addComponent(visitorLabel)
                             .addComponent(searchVisitorNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(tenantLabel)
                             .addComponent(searchTenantIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -327,7 +340,6 @@ public class VisitorPassView extends javax.swing.JFrame {
             String line;
             while ((line = file.readLine()) != null) {
                 String[] parts = line.split(";");
-                System.out.println(Arrays.toString(parts));
 
                 if (name.equals(parts[0]) && phone.equals(parts[1]) && date.equals(parts[2]) && rowTenantID.equals(parts[3])) {
                    line = updatedName + ";" + updatedPhone + ";" + updatedDate + ";" + rowTenantID;                   
@@ -354,12 +366,17 @@ public class VisitorPassView extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-                // Get selected row index
+        // Get selected row index
         int selectedRow = visitorPassTable.getSelectedRow();
+        
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+                // Get the data from the selected row in the table
+        String name = (String) visitorPassTable.getValueAt(selectedRow, 0);
+        String phone = (String) visitorPassTable.getValueAt(selectedRow, 1);
+        String date = (String) visitorPassTable.getValueAt(selectedRow, 2);
         DefaultTableModel model = (DefaultTableModel) visitorPassTable.getModel();
         model.removeRow(selectedRow);
         List<String> data = new ArrayList<>();
@@ -367,9 +384,14 @@ public class VisitorPassView extends javax.swing.JFrame {
             String line;
             while ((line = br.readLine()) != null) {
                 data.add(line);
+                String[] parts = line.split(";");
+                if (name.equals(parts[0]) && phone.equals(parts[1]) && date.equals(parts[2]) && tenant.getTenantID().equals(parts[3])) {
+                   data.remove(line);
+                }
             }
+            
             br.close();
-            data.remove(selectedRow + 1);
+
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"));
             for (String updatedLine : data) {
                 writer.write(updatedLine);
@@ -417,13 +439,13 @@ public class VisitorPassView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchTenantIDTF;
     private javax.swing.JTextField searchVisitorNameTF;
+    private javax.swing.JLabel tenantLabel;
     private javax.swing.JButton updateBtn;
+    private javax.swing.JLabel visitorLabel;
     private javax.swing.JLabel visitorPassLabel;
     private javax.swing.JTable visitorPassTable;
     private javax.swing.JButton visitorPassTableBackBtn;
