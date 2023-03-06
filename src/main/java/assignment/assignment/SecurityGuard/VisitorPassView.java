@@ -1,11 +1,12 @@
 package assignment.assignment.SecurityGuard;
 
 import assignment.assignment.Tenant.Tenant;
-import assignment.assignment.Tenant.TenantMainFrame;
+import assignment.assignment.Tenant.TenantApplyVisitorPass;
 import assignment.assignment.User;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -237,7 +239,7 @@ public class VisitorPassView extends javax.swing.JFrame {
          dispose();
         }
         else if (user.getRole().equals("tenant")) {
-           new TenantMainFrame(user).setVisible(true);
+           new TenantApplyVisitorPass(user).setVisible(true);
            dispose();
         }
     }//GEN-LAST:event_visitorPassTableBackBtnActionPerformed
@@ -276,6 +278,7 @@ public class VisitorPassView extends javax.swing.JFrame {
             if(!tenant.getTenantID().equals(rowTenantID)) {
                 JOptionPane.showMessageDialog(this, "You can only update or delete you visitor pass!", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
                 
         // Get the data from the selected row in the table
         String name = (String) visitorPassTable.getValueAt(row, 0);
@@ -319,34 +322,33 @@ public class VisitorPassView extends javax.swing.JFrame {
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+        try (BufferedReader file = new BufferedReader(new FileReader("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt"))) {
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+            while ((line = file.readLine()) != null) {
+                String[] parts = line.split(";");
+                System.out.println(Arrays.toString(parts));
 
-            // Write the first row 
-            writer.write("name;phone;visitDate;tenantID");
-            writer.newLine();
-
-            // Loop through the other rows and write them to the file
-            for (int i = 0; i < model.getRowCount(); i++) {
-                if (i == row) {
-                    // Update the selected row with the new data   
-                    rowTenantID = (String) model.getValueAt(i, 3);
-                    writer.write(updatedName + ";" + updatedPhone + ";" + updatedDate + ";" + rowTenantID);
-                    model.setValueAt(updatedName, i, 0); // Update the table cell with the new data
-                    model.setValueAt(updatedPhone, i, 1);
-                    model.setValueAt(updatedDate, i, 2);// Update the table cell with the new data
-                } else {
-                    // Write the other rows back to the file unchanged
-                    String rowName = (String) model.getValueAt(i, 0);
-                    String rowPhone = (String) model.getValueAt(i, 1);
-                    String rowDate = (String) model.getValueAt(i, 2);
-                    writer.write(rowName + ";" + rowPhone + ";" + rowDate + ";" + rowTenantID);
+                if (name.equals(parts[0]) && phone.equals(parts[1]) && date.equals(parts[2]) && rowTenantID.equals(parts[3])) {
+                   line = updatedName + ";" + updatedPhone + ";" + updatedDate + ";" + rowTenantID;                   
+                    model.setValueAt(updatedName, row, 0); // Update the table cell with the new data
+                    model.setValueAt(updatedPhone, row, 1);
+                    model.setValueAt(updatedDate, row, 2);// Update the table cell with the new data
                 }
-                writer.newLine();
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
             }
+            
+        
+            file.close();
+
+            // Write the modified string to the same file
+            FileOutputStream fileOut = new FileOutputStream("src/main/java/assignment/assignment/TxtFile/VisitorPass.txt");
+            fileOut.write(inputBuffer.toString().getBytes());
+            fileOut.close();
             JOptionPane.showMessageDialog(this, "Visitor Pass updated successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Error writing to file", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         }
     }//GEN-LAST:event_updateBtnActionPerformed
 
