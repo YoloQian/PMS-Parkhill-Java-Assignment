@@ -11,3 +11,7 @@ userID;password;role;name;email
 10;stephanie;buildingexecutive;Stephanie;step@gmail.com
 11;samsame;tenant;Sam;sam@gmail.com
 12;worker2;employee;worker;worker@gmail.com
+13;accexe;accountexecutive;Sam;samacc@gmail.com
+14;buildexe;buildingmanager;Bob;bobman@gmail.com
+15;adminexe;adminexecutive;Mike;mikead@gmail.com
+16;nickten;tenant;Nick;nickten@gmail.com

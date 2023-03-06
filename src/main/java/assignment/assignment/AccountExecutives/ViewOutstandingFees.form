@@ -85,7 +85,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="false" title="PendingID" type="java.lang.String"/>
+                <Column editable="false" title="PaymentID" type="java.lang.String"/>
                 <Column editable="false" title="UserID" type="java.lang.Integer"/>
                 <Column editable="false" title="UserType" type="java.lang.String"/>
                 <Column editable="false" title="Pending Amount" type="java.lang.Integer"/>

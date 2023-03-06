@@ -4,3 +4,4 @@ Receipt002;2;2023-03-02;2023-03-05;100;electric bill
 Receipt003;2;2023-03-10;2023-03-16;100;rent
 Receipt004;3;2023-03-03;;;;Issued;Payment003
 Receipt005;;2023-03-03;;;;Issued;Payment002
+Receipt006;;2023-03-06;2023-03-06;100;;Issued;Payment007

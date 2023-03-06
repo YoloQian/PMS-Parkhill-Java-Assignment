@@ -1,4 +1,0 @@
-PendingFeeID;UserID;Role;PendingAmount;Description
-Pending001;2;Tenant;100;Electric Bill
-Pending002;2;Tenant;110;Rent
-Pending003;3;Tenant;120;Water bill
