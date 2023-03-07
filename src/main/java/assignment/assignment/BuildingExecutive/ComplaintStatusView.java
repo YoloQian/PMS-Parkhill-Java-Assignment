@@ -32,7 +32,7 @@ public class ComplaintStatusView extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {  //this is from txt file
                 if (lineNumber > 0) { // Skip first line (header row)
                     String[] splitLine = line.split(";");
-                    Object[] row = new Object[7];  //this will be 7
+                    Object[] row = new Object[8];  //this will be 7
                     row[0] = splitLine[0];
                     row[1] = splitLine[2];
                     row[2] = splitLine[3];
@@ -46,7 +46,7 @@ public class ComplaintStatusView extends javax.swing.JFrame {
             }
         } catch (IOException e) {
         }
-        tableData = data.toArray(new Object[data.size()][7]);
+        tableData = data.toArray(new Object[data.size()][8]);
         initComponents();        
         setLocationRelativeTo(null);
     }
@@ -169,8 +169,8 @@ public class ComplaintStatusView extends javax.swing.JFrame {
                 }
                 br.close();
                 String[] row = data.get(selectedRow + 1).split(";");
-                row[5] = reply;
-                row[6] = status;
+                row[6] = reply;
+                row[7] = status;
                 data.set(selectedRow + 1, String.join(";", row));
                 BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/assignment/assignment/TxtFile/Complaint.txt"));
                 for (String updatedLine : data) {
