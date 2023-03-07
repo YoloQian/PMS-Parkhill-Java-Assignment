@@ -2,4 +2,4 @@ ComplaintID;UserID;ComplaintDate;Subject;Name;Description;Reply;Status
 Complaint001;2;2023-03-03;Leak;qian;Toilet Leaking;This issue has been resolved;Replied
 Complaint002;2;2023-04-03;Court dirty;Yu Wei;The badminton court is dirty;;No Reply
 Complaint003;2;2023-03-05;Broken glass;Qian;Broken glass in the main entrance;Removed and action taken;Replied
-Complaint004;11;2023-03-06;Dirty;Stephanie;The toilet is very dirty;;No Reply
+Complaint004;11;2023-03-06;Dirty;Stephanie;The toilet is very dirty;Then Clean it;Replied
