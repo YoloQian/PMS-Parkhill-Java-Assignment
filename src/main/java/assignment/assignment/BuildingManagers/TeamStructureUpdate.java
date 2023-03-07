@@ -93,6 +93,11 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
         });
 
         modifyBTN.setText("Modify");
+        modifyBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +168,11 @@ public class TeamStructureUpdate extends javax.swing.JFrame {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_showteamstructureBTNActionPerformed
+
+    private void modifyBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBTNActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_modifyBTNActionPerformed
 
     /**
      * @param args the command line arguments

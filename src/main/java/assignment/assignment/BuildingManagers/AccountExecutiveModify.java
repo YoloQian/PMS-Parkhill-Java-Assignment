@@ -144,6 +144,11 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
         });
 
         modifyBTN.setText("Modify");
+        modifyBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -226,7 +231,7 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
                 while ((accountexeInfoLine = accountexeInfoBR.readLine()) != null) {
                     String[] accountexeInfoData = accountexeInfoLine.split(";");
                     if (accountexeInfoData[1].equals(userInfoData[0])) { // Match UserID
-                        Object[] row = { accountexeInfoData[0], userInfoData[0], userInfoData[3], userInfoData[4], userInfoData[1] };
+                        Object[] row = {userInfoData[0], userInfoData[3], userInfoData[4], userInfoData[1] };
                         model.addRow(row);
                         break; // Exit tenantInfo loop when match is found
                     }
@@ -286,6 +291,10 @@ public class AccountExecutiveModify extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_deleteBTNActionPerformed
+
+    private void modifyBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifyBTNActionPerformed
 
     /**
      * @param args the command line arguments
